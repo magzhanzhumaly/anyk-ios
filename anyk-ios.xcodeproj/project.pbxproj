@@ -76,6 +76,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5658148D28C28D4800D0368A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5658148E28C28D4D00D0368A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				569C7D9528C288DB00992C8B /* LaunchScreen.storyboard */,
+				569C7D9028C288D800992C8B /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5658148F28C28D5300D0368A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				569C7D8E28C288D800992C8B /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		569C7D7E28C288D800992C8B = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +125,10 @@
 			children = (
 				569C7D8A28C288D800992C8B /* AppDelegate.swift */,
 				569C7D8C28C288D800992C8B /* SceneDelegate.swift */,
-				569C7D8E28C288D800992C8B /* ViewController.swift */,
-				569C7D9028C288D800992C8B /* Main.storyboard */,
+				5658148D28C28D4800D0368A /* Model */,
+				5658148E28C28D4D00D0368A /* View */,
+				5658148F28C28D5300D0368A /* Controller */,
 				569C7D9328C288DB00992C8B /* Assets.xcassets */,
-				569C7D9528C288DB00992C8B /* LaunchScreen.storyboard */,
 				569C7D9828C288DB00992C8B /* Info.plist */,
 			);
 			path = "anyk-ios";
@@ -437,8 +461,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FD5GB5JXX8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "anyk-ios/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Anyk;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -464,8 +490,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FD5GB5JXX8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "anyk-ios/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Anyk;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

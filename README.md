@@ -1,2 +1,2 @@
 # anyk-ios
-iOS deliverable of the anyk.kz website
+iOS deliverable of anyk.kz

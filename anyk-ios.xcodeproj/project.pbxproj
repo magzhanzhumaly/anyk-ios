@@ -8,15 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		2D82598B3A4E5E37D4738CCF /* Pods_anyk_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E095696AE70D848FCADBFB /* Pods_anyk_iosTests.framework */; };
+		5619C35A28CA0FF500E86D94 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C35928CA0FF500E86D94 /* SideMenu.swift */; };
+		5619C35C28CA101D00E86D94 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C35B28CA101D00E86D94 /* InfoViewController.swift */; };
+		5619C35E28CA104E00E86D94 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C35D28CA104E00E86D94 /* SettingsViewController.swift */; };
+		5619C36228CA1A0400E86D94 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36128CA1A0400E86D94 /* LoginViewController.swift */; };
+		5619C36428CA1A0B00E86D94 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36328CA1A0B00E86D94 /* SearchViewController.swift */; };
+		5619C36628CA1A1400E86D94 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36528CA1A1400E86D94 /* MainPageViewController.swift */; };
+		5619C36828CA1A1C00E86D94 /* MortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */; };
+		5619C36A28CA1A2300E86D94 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */; };
+		5619C36C28CA1A3000E86D94 /* ResidentialComplexesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */; };
+		5619C36E28CA1A3900E86D94 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */; };
+		5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */; };
+		5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C37128CA1A4D00E86D94 /* HelpViewController.swift */; };
 		569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8A28C288D800992C8B /* AppDelegate.swift */; };
 		569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8C28C288D800992C8B /* SceneDelegate.swift */; };
-		569C7D8F28C288D800992C8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8E28C288D800992C8B /* ViewController.swift */; };
+		569C7D8F28C288D800992C8B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8E28C288D800992C8B /* ContainerViewController.swift */; };
 		569C7D9228C288D800992C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 569C7D9028C288D800992C8B /* Main.storyboard */; };
 		569C7D9428C288DB00992C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569C7D9328C288DB00992C8B /* Assets.xcassets */; };
 		569C7D9728C288DB00992C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 569C7D9528C288DB00992C8B /* LaunchScreen.storyboard */; };
 		569C7DA228C288DB00992C8B /* anyk_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7DA128C288DB00992C8B /* anyk_iosTests.swift */; };
 		569C7DAC28C288DB00992C8B /* anyk_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7DAB28C288DB00992C8B /* anyk_iosUITests.swift */; };
 		569C7DAE28C288DB00992C8B /* anyk_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7DAD28C288DB00992C8B /* anyk_iosUITestsLaunchTests.swift */; };
+		56CC972628CD2674001D655D /* Main 2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CC972528CD2674001D655D /* Main 2.storyboard */; };
 		BE62D0F6BC85AA49F4670B72 /* Pods_anyk_ios_anyk_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56DF6831AE5F23915A74B51 /* Pods_anyk_ios_anyk_iosUITests.framework */; };
 		DBF005DD03A3A9AC56AAF54E /* Pods_anyk_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC38F18FE2BA7870A44C25A1 /* Pods_anyk_ios.framework */; };
 /* End PBXBuildFile section */
@@ -41,10 +54,22 @@
 /* Begin PBXFileReference section */
 		2CC2CD741F5B2DE4309918CD /* Pods-anyk-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anyk-iosTests.release.xcconfig"; path = "Target Support Files/Pods-anyk-iosTests/Pods-anyk-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		53706184C97EFD3AAE1021BC /* Pods-anyk-ios-anyk-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anyk-ios-anyk-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-anyk-ios-anyk-iosUITests/Pods-anyk-ios-anyk-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5619C35928CA0FF500E86D94 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		5619C35B28CA101D00E86D94 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		5619C35D28CA104E00E86D94 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5619C36128CA1A0400E86D94 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5619C36328CA1A0B00E86D94 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5619C36528CA1A1400E86D94 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageViewController.swift; sourceTree = "<group>"; };
+		5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
+		5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentialComplexesViewController.swift; sourceTree = "<group>"; };
+		5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		5619C37128CA1A4D00E86D94 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		569C7D8728C288D800992C8B /* anyk-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "anyk-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569C7D8A28C288D800992C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		569C7D8C28C288D800992C8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		569C7D8E28C288D800992C8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		569C7D8E28C288D800992C8B /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		569C7D9128C288D800992C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		569C7D9328C288DB00992C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		569C7D9628C288DB00992C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +79,7 @@
 		569C7DA728C288DB00992C8B /* anyk-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "anyk-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569C7DAB28C288DB00992C8B /* anyk_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = anyk_iosUITests.swift; sourceTree = "<group>"; };
 		569C7DAD28C288DB00992C8B /* anyk_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = anyk_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		56CC972528CD2674001D655D /* Main 2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main 2.storyboard"; path = "../../../../Desktop/sort later/Main 2.storyboard"; sourceTree = "<group>"; };
 		988EE4272AADD3DA405E51E1 /* Pods-anyk-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anyk-ios.debug.xcconfig"; path = "Target Support Files/Pods-anyk-ios/Pods-anyk-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		B720F11074BC815D62BC4FEA /* Pods-anyk-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anyk-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-anyk-iosTests/Pods-anyk-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8E095696AE70D848FCADBFB /* Pods_anyk_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_anyk_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				569C7D9528C288DB00992C8B /* LaunchScreen.storyboard */,
+				56CC972528CD2674001D655D /* Main 2.storyboard */,
 				569C7D9028C288D800992C8B /* Main.storyboard */,
 			);
 			path = View;
@@ -110,7 +137,19 @@
 		5658148F28C28D5300D0368A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				569C7D8E28C288D800992C8B /* ViewController.swift */,
+				5619C35928CA0FF500E86D94 /* SideMenu.swift */,
+				569C7D8E28C288D800992C8B /* ContainerViewController.swift */,
+				5619C35B28CA101D00E86D94 /* InfoViewController.swift */,
+				5619C35D28CA104E00E86D94 /* SettingsViewController.swift */,
+				5619C36128CA1A0400E86D94 /* LoginViewController.swift */,
+				5619C36328CA1A0B00E86D94 /* SearchViewController.swift */,
+				5619C36528CA1A1400E86D94 /* MainPageViewController.swift */,
+				5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */,
+				5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */,
+				5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */,
+				5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */,
+				5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */,
+				5619C37128CA1A4D00E86D94 /* HelpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -188,7 +227,6 @@
 				B720F11074BC815D62BC4FEA /* Pods-anyk-iosTests.debug.xcconfig */,
 				2CC2CD741F5B2DE4309918CD /* Pods-anyk-iosTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -203,6 +241,7 @@
 				569C7D8328C288D800992C8B /* Sources */,
 				569C7D8428C288D800992C8B /* Frameworks */,
 				569C7D8528C288D800992C8B /* Resources */,
+				768B17E891E842E58AD81CB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,6 +279,7 @@
 				569C7DA328C288DB00992C8B /* Sources */,
 				569C7DA428C288DB00992C8B /* Frameworks */,
 				569C7DA528C288DB00992C8B /* Resources */,
+				71294A357A26D71C59BB0778 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,6 +342,7 @@
 				569C7D9728C288DB00992C8B /* LaunchScreen.storyboard in Resources */,
 				569C7D9428C288DB00992C8B /* Assets.xcassets in Resources */,
 				569C7D9228C288D800992C8B /* Main.storyboard in Resources */,
+				56CC972628CD2674001D655D /* Main 2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +383,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71294A357A26D71C59BB0778 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-anyk-ios-anyk-iosUITests/Pods-anyk-ios-anyk-iosUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-anyk-ios-anyk-iosUITests/Pods-anyk-ios-anyk-iosUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-anyk-ios-anyk-iosUITests/Pods-anyk-ios-anyk-iosUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		768B17E891E842E58AD81CB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-anyk-ios/Pods-anyk-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-anyk-ios/Pods-anyk-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-anyk-ios/Pods-anyk-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AE8AF9FC13E05352E35ACA86 /* [CP] Check Pods Manifest.lock */ = {
@@ -395,9 +470,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569C7D8F28C288D800992C8B /* ViewController.swift in Sources */,
+				5619C36A28CA1A2300E86D94 /* ArticlesViewController.swift in Sources */,
+				5619C36228CA1A0400E86D94 /* LoginViewController.swift in Sources */,
+				569C7D8F28C288D800992C8B /* ContainerViewController.swift in Sources */,
+				5619C36428CA1A0B00E86D94 /* SearchViewController.swift in Sources */,
+				5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */,
+				5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */,
 				569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */,
+				5619C36828CA1A1C00E86D94 /* MortgageViewController.swift in Sources */,
+				5619C36C28CA1A3000E86D94 /* ResidentialComplexesViewController.swift in Sources */,
 				569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */,
+				5619C35A28CA0FF500E86D94 /* SideMenu.swift in Sources */,
+				5619C36E28CA1A3900E86D94 /* CommunityViewController.swift in Sources */,
+				5619C35C28CA101D00E86D94 /* InfoViewController.swift in Sources */,
+				5619C36628CA1A1400E86D94 /* MainPageViewController.swift in Sources */,
+				5619C35E28CA104E00E86D94 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +669,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -612,6 +700,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -229,10 +229,10 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 2*h/3 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20))
         btn.setTitle("ПОДОБРАТЬ ПРОГРАММЫ", for: .normal)
-        btn.backgroundColor = UIColor(red: 211/255.0,
-                                      green: 112/255.0,
-                                      blue: 86/255.0,
-                                      alpha: 1)
+        btn.setTitleColor(UIColor(red: 211/255.0,
+                                  green: 112/255.0,
+                                  blue: 86/255.0,
+                                  alpha: 1), for: .normal)
         btn.titleLabel?.numberOfLines = 3
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
@@ -251,7 +251,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         let myView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: h/6))
         myView.backgroundColor = .gray
-        myView.alpha = 0.1
+//        myView.alpha = 0.1
         myView.alpha = 0.0
 
         return myView
@@ -402,6 +402,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         aboutUsController.didMove(toParent: self)
         helpController.didMove(toParent: self)
         
+        // TO DELETE
+//        mainPageView.isHidden = true
         loginController.view.isHidden = true
         searchController.view.isHidden = true
         mainPageController.view.isHidden = true

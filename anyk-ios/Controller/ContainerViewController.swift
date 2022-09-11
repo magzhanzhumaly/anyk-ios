@@ -134,7 +134,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let h = UIScreen.main.bounds.height - 88
 
         let lbl = UILabel(frame: CGRect(x: 20, y: h/2, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
-        lbl.text = "Стоимость жилья"
+        lbl.text = "Срок до"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
         lbl.textColor = .black
@@ -150,7 +150,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let txtField = UITextField(frame: CGRect(x: 20, y: 5*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
 //        txtField.backgroundColor = .black
-        txtField.placeholder = "0₸"
+        txtField.placeholder = "0 лет"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
         txtField.textAlignment = .left
@@ -229,14 +229,14 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 2*h/3 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20))
         btn.setTitle("ПОДОБРАТЬ ПРОГРАММЫ", for: .normal)
-        btn.setTitleColor(UIColor(red: 211/255.0,
-                                  green: 112/255.0,
-                                  blue: 86/255.0,
-                                  alpha: 1), for: .normal)
         btn.titleLabel?.numberOfLines = 3
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
         btn.configuration?.titleAlignment = .center
+        btn.backgroundColor = UIColor(red: 211/255.0,
+                                      green: 112/255.0,
+                                      blue: 86/255.0,
+                                      alpha: 1)
 //          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         return btn
@@ -407,10 +407,10 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         loginController.view.isHidden = true
         searchController.view.isHidden = true
         mainPageController.view.isHidden = true
-//        mortgageController.view.isHidden = true
+        mortgageController.view.isHidden = true
         articlesController.view.isHidden = true
         residentialComplexesController.view.isHidden = true
-        communityController.view.isHidden = true
+//        communityController.view.isHidden = true
         aboutUsController.view.isHidden = true
         helpController.view.isHidden = true
     }

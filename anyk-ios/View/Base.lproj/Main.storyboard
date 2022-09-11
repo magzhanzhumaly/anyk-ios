@@ -71,6 +71,11 @@
                                 <rect key="frame" x="75" y="467" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4b-1O-Q6H">
+                                <rect key="frame" x="0.0" y="86" width="390" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HKg-Wu-c9C"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

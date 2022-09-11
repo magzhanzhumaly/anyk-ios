@@ -9,8 +9,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet var loginVCView: UIView!
-    
     // BACKGROUND VIEWS (TEMPORARY)
     var myView0: UIView = {
         let h = UIScreen.main.bounds.height - 88
@@ -130,7 +128,7 @@ class LoginViewController: UIViewController {
         txtField.placeholder = "+"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
-        txtField.textAlignment = .left
+        txtField.textAlignment = .center
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no

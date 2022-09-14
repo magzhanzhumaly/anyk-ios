@@ -403,14 +403,14 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         helpController.didMove(toParent: self)
         
         // TO DELETE
-        mainPageView.isHidden = true
+//        mainPageView.isHidden = true
         loginController.view.isHidden = true
         searchController.view.isHidden = true
         mainPageController.view.isHidden = true
         mortgageController.view.isHidden = true
         articlesController.view.isHidden = true
         residentialComplexesController.view.isHidden = true
-//        communityController.view.isHidden = true
+        communityController.view.isHidden = true
         aboutUsController.view.isHidden = true
         helpController.view.isHidden = true
     }

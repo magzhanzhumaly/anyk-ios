@@ -16,7 +16,7 @@ class MortgageViewController: UIViewController {
         let myView = UIView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: h/6))
         myView.backgroundColor = .gray
         myView.alpha = 0.1
-//        myView.alpha = 0.0
+        myView.alpha = 0.0
 
         return myView
     }()
@@ -27,7 +27,7 @@ class MortgageViewController: UIViewController {
         let myView = UIView(frame: CGRect(x: 0, y: h/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
         myView.backgroundColor = .gray
         myView.alpha = 0.2
-//        myView.alpha = 0.0
+        myView.alpha = 0.0
 
         return myView
     }()
@@ -38,7 +38,7 @@ class MortgageViewController: UIViewController {
         let myView = UIView(frame: CGRect(x: 0, y: h/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
         myView.backgroundColor = .gray
         myView.alpha = 0.3
-//        myView.alpha = 0.0
+        myView.alpha = 0.0
 
         return myView
     }()
@@ -49,7 +49,7 @@ class MortgageViewController: UIViewController {
         let myView = UIView(frame: CGRect(x: 0, y: h/2 + 88, width: UIScreen.main.bounds.width, height: h/6))
         myView.backgroundColor = .gray
         myView.alpha = 0.4
-//        myView.alpha = 0.0
+        myView.alpha = 0.0
 
         return myView
     }()
@@ -60,7 +60,7 @@ class MortgageViewController: UIViewController {
         let myView = UIView(frame: CGRect(x: 0, y: h*2/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
         myView.backgroundColor = .gray
         myView.alpha = 0.5
-//        myView.alpha = 0 // TO DELETE
+        myView.alpha = 0 // TO DELETE
 
         return myView
     }()
@@ -72,12 +72,10 @@ class MortgageViewController: UIViewController {
         myView.backgroundColor = .gray
         
         myView.alpha = 0.6
-//        myView.alpha = 0.0
+        myView.alpha = 0.0
 
         return myView
     }()
-    
-    
     
     
     var titleText: UILabel = {

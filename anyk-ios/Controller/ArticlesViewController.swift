@@ -63,6 +63,21 @@ class ArticlesViewController: UIViewController {
             }()
             view.addSubview(txt)
             // Second segment tapped
+        case 2:
+            var txt: UILabel = {
+                let h = UIScreen.main.bounds.height - 88
+
+                let lbl = UILabel(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: h/3, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+                lbl.text = "3"
+                lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+                lbl.numberOfLines = 1
+                lbl.textColor = .black
+                lbl.textAlignment = .left
+        //        lbl.backgroundColor = .black
+        //        lbl.alpha = 0.5
+                return lbl
+            }()
+            view.addSubview(txt)
         case 3:
             var txt: UILabel = {
                 let h = UIScreen.main.bounds.height - 88

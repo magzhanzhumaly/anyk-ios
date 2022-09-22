@@ -27,6 +27,19 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
 //    @IBOutlet var containerView: UIView!
 
+    var scrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100))
+        return scrollView
+    }()
+//    view.addSubview(scrollView)
+
+    
+    var segCtrl1Choice: Int = 0
+    var segCtrl2Choice: Int = 0
+    var segCtrl3Choice: Int = 0
+    var segCtrl4Choice: Int = 0
+    let h = UIScreen.main.bounds.height - 88
+
     var titleText: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
@@ -218,11 +231,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
                                   alpha: 1), for: .normal)
         btn.titleLabel?.textAlignment = .left
         btn.configuration?.titleAlignment = .trailing
-//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
         return btn
         
     }()
+    
+    var isExtended: Bool = false
     
     var secondButton: UIButton = {
         let h = UIScreen.main.bounds.height - 88
@@ -237,82 +250,728 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
                                       green: 112/255.0,
                                       blue: 86/255.0,
                                       alpha: 1)
-//          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
         return btn
     }()
 
-
     
-    
-    // BACKGROUND VIEWS (TEMPORARY)
-    var myView0: UIView = {
+    // extended part of the page
+    var txt5: UILabel = {
         let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-//        myView.alpha = 0.1
-        myView.alpha = 0.0
 
-        return myView
+        let lbl = UILabel(frame: CGRect(x: 20, y: 2*h/3, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Тип жилья"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 3
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
     }()
 
-    var myView1: UIView = {
-        let h = UIScreen.main.bounds.height - 88
+    var segControl1: UISegmentedControl = {
         
-        let myView = UIView(frame: CGRect(x: 0, y: h/6 , width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.2
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView2: UIView = {
         let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/3 , width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.3
-        myView.alpha = 0.0
 
-        return myView
-    }()
-    
-    var myView3: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/2 , width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.4
-        myView.alpha = 0.0
+        let segmentItems = ["Не важно", "Первичное", "Вторичное"]
+        let control = UISegmentedControl(items: segmentItems)
+        control.frame = CGRect(x: 20, y: 25*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+        control.addTarget(self, action: #selector(segmentControl1(_:)), for: .valueChanged)
+        //        control.text
+        control.selectedSegmentIndex = 0
 
-        return myView
-    }()
-    
-    var myView4: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*2/3 , width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-//        myView.alpha = 0.5
-        myView.alpha = 0 // TO DELETE
-
-        return myView
-    }()
-    
-    var myView5: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*5/6 , width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.6
-        myView.alpha = 0.0
-
-        return myView
+        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
+        return control
     }()
 
+    @objc func segmentControl1(_ segmentedControl: UISegmentedControl) {
+        
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            segCtrl1Choice = 0
+        case 1:
+            segCtrl1Choice = 1
+        case 2:
+            segCtrl1Choice = 2
+        default:
+            segCtrl1Choice = 0
+        }
+    }
     
+    var txt6: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 28*h/36, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Можете подтвердить доход?"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+
+    var segControl2: UISegmentedControl = {
+        
+        let h = UIScreen.main.bounds.height - 88
+
+        let segmentItems = ["Не выбрано", "Да", "Нет"]
+        let control = UISegmentedControl(items: segmentItems)
+        control.frame = CGRect(x: 20, y: 29*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+        control.addTarget(self, action: #selector(segmentControl2(_:)), for: .valueChanged)
+        //        control.text
+        control.selectedSegmentIndex = 0
+
+        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
+        return control
+    }()
+
+    var txt6_1: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Доход"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+    
+    var txtField6_1: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField(frame: CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+)
+//        txtField.backgroundColor = .black
+        txtField.placeholder = "0₸"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.default
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    var txt6_2: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Расходы"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+    
+    var txtField6_2: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField(frame: CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+)
+//        txtField.backgroundColor = .black
+        txtField.placeholder = "0₸"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.default
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    var txt6_3: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 10*h/9, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Количество детей до 18 лет"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+    
+    var txtField6_3: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField(frame: CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+)
+//        txtField.backgroundColor = .black
+        txtField.placeholder = "0"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.default
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    @objc func segmentControl2(_ segmentedControl: UISegmentedControl) {
+        
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            segCtrl2Choice = 0
+            
+            txt7.frame = CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl3.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            txt8.frame = CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl4.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+                        
+            firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+            
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+
+            txt6_1.removeFromSuperview()
+            txtField6_1.removeFromSuperview()
+            
+            txt6_2.removeFromSuperview()
+            txtField6_2.removeFromSuperview()
+            
+            txt6_3.removeFromSuperview()
+            txtField6_3.removeFromSuperview()
+            
+            
+            
+            
+            txt8_1.frame = CGRect(x: 20, y: 10*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_1.frame = CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_2.frame = CGRect(x: 20, y: 44*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_2.frame = CGRect(x: 20, y: 45*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_3.frame = CGRect(x: 20, y: 48*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_3.frame = CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            
+            if segCtrl4Choice == 1 {
+                
+                firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+                
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 17*h/9)
+                
+            }
+            
+        case 1:   // если "Можете подтвердить доход?" = да
+            segCtrl2Choice = 1
+            
+            
+            txt7.frame = CGRect(x: 20, y: 11*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl3.frame = CGRect(x: 20, y: 15*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            txt8.frame = CGRect(x: 20, y: 4*h/3, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl4.frame = CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+            
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 5*h/3)
+            
+            scrollView.addSubview(txt6_1)
+            scrollView.addSubview(txtField6_1)
+            
+            scrollView.addSubview(txt6_2)
+            scrollView.addSubview(txtField6_2)
+            
+            scrollView.addSubview(txt6_3)
+            scrollView.addSubview(txtField6_3)
+            
+             
+            // seg4 options
+            
+            txt8_1.frame = CGRect(x: 20, y: 13*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+
+            txtField8_1.frame = CGRect(x: 20, y: 53*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_2.frame = CGRect(x: 20, y: 56*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_2.frame = CGRect(x: 20, y: 57*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_3.frame = CGRect(x: 20, y: 60*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_3.frame = CGRect(x: 20, y: 61*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+      
+            if segCtrl4Choice == 1 {
+                firstButton.frame = CGRect(x: 0, y: 64*h/36, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 64*h/36 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+                //
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 20*h/9)
+            }
+        case 2:
+            segCtrl2Choice = 2
+            
+            txt7.frame = CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl3.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            txt8.frame = CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl4.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+                        
+            firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+            
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+            
+            txt6_1.removeFromSuperview()
+            txtField6_1.removeFromSuperview()
+            
+            txt6_2.removeFromSuperview()
+            txtField6_2.removeFromSuperview()
+            
+            txt6_3.removeFromSuperview()
+            txtField6_3.removeFromSuperview()
+            
+            txt8_1.frame = CGRect(x: 20, y: 10*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_1.frame = CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_2.frame = CGRect(x: 20, y: 44*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_2.frame = CGRect(x: 20, y: 45*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_3.frame = CGRect(x: 20, y: 48*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_3.frame = CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            if segCtrl4Choice == 1 {
+                
+                firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+                
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 17*h/9)
+                
+            }
+            
+        default:
+            segCtrl2Choice = 0
+           
+            txt7.frame = CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl3.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            txt8.frame = CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36)
+            segControl4.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+                        
+            firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+            
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+            
+            txt6_1.removeFromSuperview()
+            txtField6_1.removeFromSuperview()
+            
+            txt6_2.removeFromSuperview()
+            txtField6_2.removeFromSuperview()
+            
+            txt6_3.removeFromSuperview()
+            txtField6_3.removeFromSuperview()
+            
+            
+            txt8_1.frame = CGRect(x: 20, y: 10*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_1.frame = CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_2.frame = CGRect(x: 20, y: 44*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_2.frame = CGRect(x: 20, y: 45*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+            txt8_3.frame = CGRect(x: 20, y: 48*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+            txtField8_3.frame = CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+            
+            if segCtrl4Choice == 1 {
+                
+                firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+                
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 17*h/9)
+                
+            }
+        }
+    }
+    
+    var txt7: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Наличие жилья"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+
+    var segControl3: UISegmentedControl = {
+        
+        let h = UIScreen.main.bounds.height - 88
+
+        let segmentItems = ["Не выбрано", "Есть жилье", "Нет жилья"]
+        let control = UISegmentedControl(items: segmentItems)
+        control.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+        control.addTarget(self, action: #selector(segmentControl3(_:)), for: .valueChanged)
+        //        control.text
+        control.selectedSegmentIndex = 0
+
+        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
+        return control
+    }()
+
+    @objc func segmentControl3(_ segmentedControl: UISegmentedControl) {
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            segCtrl3Choice = 0
+        case 1:
+            segCtrl3Choice = 1
+        case 2:
+            segCtrl3Choice = 2
+        default:
+            segCtrl3Choice = 0
+        }
+    }
+    
+    var txt8: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Есть депозит в ЖССБ"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+
+    var segControl4: UISegmentedControl = {
+        
+        let h = UIScreen.main.bounds.height - 88
+
+        let segmentItems = ["нет", "да"]
+        let control = UISegmentedControl(items: segmentItems)
+        control.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+        control.addTarget(self, action: #selector(segmentControl4(_:)), for: .valueChanged)
+        //        control.text
+        control.selectedSegmentIndex = 0
+
+        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
+        return control
+    }()
+    
+    
+    // HERE
+    
+    var txt8_1: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 10*h/9, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Дата открытия депозита"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+    
+    var txtField8_1: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField(frame: CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18))
+//        txtField.backgroundColor = .black
+        txtField.placeholder = "ДД/ММ/ГГ"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.default
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    var txt8_2: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 44*h/36, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Вознаграждение за прошлый период"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+    
+    var txtField8_2: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField(frame: CGRect(x: 20, y: 45*h/36, width: UIScreen.main.bounds.width - 40, height: h/18))
+//        txtField.backgroundColor = .black
+        txtField.placeholder = "0₸"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.default
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    var txt8_3: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let lbl = UILabel(frame: CGRect(x: 20, y: 48*h/36, width: UIScreen.main.bounds.width - 40, height: h/36))
+        lbl.text = "Вознаграждение за текущий период"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+//        lbl.backgroundColor = .gray
+//        lbl.alpha = 0.5
+        return lbl
+    }()
+    
+    var txtField8_3: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField(frame: CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18))
+//        txtField.backgroundColor = .black
+        txtField.placeholder = "0₸"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.default
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    // HERE
+    
+    @objc func segmentControl4(_ segmentedControl: UISegmentedControl) {
+        
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            segCtrl4Choice = 0
+            
+
+//            txt7.frame = CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+//            segControl3.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+//
+//            txt8.frame = CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36)
+//            segControl4.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+//
+//            firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+//            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+//
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+//
+            txt8_1.removeFromSuperview()
+            txtField8_1.removeFromSuperview()
+
+            txt8_2.removeFromSuperview()
+            txtField8_2.removeFromSuperview()
+
+            txt8_3.removeFromSuperview()
+            txtField8_3.removeFromSuperview()
+            
+            
+            // GGGGG
+            if segCtrl2Choice == 1 {  // if seg2 is open
+                
+                firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+  
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 5*h/3)
+                
+            } else {   // if seg2 is closed
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+                firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+
+            }
+        case 1:   // если "Можете подтвердить доход?" = да
+            segCtrl4Choice = 1
+            
+            
+            scrollView.addSubview(txt8_1)
+            scrollView.addSubview(txtField8_1)
+
+            scrollView.addSubview(txt8_2)
+            scrollView.addSubview(txtField8_2)
+
+            scrollView.addSubview(txt8_3)
+            scrollView.addSubview(txtField8_3)
+
+            firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 17*h/9)
+          
+            
+            if segCtrl2Choice == 1 {
+                
+                txt8_1.frame = CGRect(x: 20, y: 13*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+
+                txtField8_1.frame = CGRect(x: 20, y: 53*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+                txt8_2.frame = CGRect(x: 20, y: 56*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+                txtField8_2.frame = CGRect(x: 20, y: 57*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+                txt8_3.frame = CGRect(x: 20, y: 60*h/36, width: UIScreen.main.bounds.width - 40, height: h/36)
+                txtField8_3.frame = CGRect(x: 20, y: 61*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+       
+                firstButton.frame = CGRect(x: 0, y: 64*h/36, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+                secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 64*h/36 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+//
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: 20*h/9)
+            }
+                // when seg2 options are NOT opened
+           
+//            txt7.frame = CGRect(x: 20, y: 11*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
+//            segControl3.frame = CGRect(x: 20, y: 15*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
+//
+//            txt8.frame = CGRect(x: 20, y: 4*h/3, width: UIScreen.main.bounds.width - 40, height: h/36)
+//            segControl4.frame = CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
+//
+//            firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+//            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+//
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 5*h/3)
+//
+//            scrollView.addSubview(txt6_1)
+//            scrollView.addSubview(txtField6_1)
+//
+//            scrollView.addSubview(txt6_2)
+//            scrollView.addSubview(txtField6_2)
+//
+//            scrollView.addSubview(txt6_3)
+//            scrollView.addSubview(txtField6_3)
+
+        default:
+            segCtrl4Choice = 0
+            
+            txt8_1.removeFromSuperview()
+            txtField8_1.removeFromSuperview()
+
+            txt8_2.removeFromSuperview()
+            txtField8_2.removeFromSuperview()
+
+            txt8_3.removeFromSuperview()
+            txtField8_3.removeFromSuperview()
+        }
+    }
+    
+    
+    @objc func firstButtonAction(sender: UIButton!) {
+        let h = UIScreen.main.bounds.height - 88
+
+        if isExtended == false {   // when opening
+
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+            firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+            
+            scrollView.addSubview(txt5)
+            scrollView.addSubview(segControl1)
+            
+            scrollView.addSubview(txt6)
+            scrollView.addSubview(segControl2)
+
+            
+            scrollView.addSubview(txt7)
+            scrollView.addSubview(segControl3)
+
+            scrollView.addSubview(txt8)
+            scrollView.addSubview(segControl4)
+
+    //        let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 2*h/3 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20))
+
+
+            isExtended = true
+        } else {   // when closing
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+            firstButton.frame = CGRect(x: 0, y: 2*h/3, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
+            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 2*h/3 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
+            
+            txt5.removeFromSuperview()
+            segControl1.removeFromSuperview()
+            
+            txt6.removeFromSuperview()
+            segControl2.removeFromSuperview()
+
+            txt7.removeFromSuperview()
+            segControl3.removeFromSuperview()
+
+//            txt5.removeFromSuperview()
+//            segControl1.removeFromSuperview()
+            
+            
+            if segCtrl2Choice == 1 {
+                
+            }
+            
+            if segCtrl4Choice == 1 {
+                
+            }
+            
+            
+            isExtended = false
+
+        }
+    }
+    
+    @objc func secondButtonAction(sender: UIButton!) {
+        print("secondButton tapped")
+        let h = Int(UIScreen.main.bounds.height) - 88
+        let w = Int(UIScreen.main.bounds.width)
+
+        let wb = (w - 120)/2
+        let hb = h/9 - 20
+        let x = Int.random(in: 0..<(w - wb))
+        let y = Int.random(in: 0..<(h - hb))
+        
+//        let randomDouble = Double.random(in: 2.71828...3.14159)
+//        let randomBool = Bool.random()
+
+//        secondButton.frame = CGRect(x: x, y: y, width: wb, height: hb)
+        
+        let detailVC = MortgageListViewController()
+        navigationController?.pushViewController(detailVC,animated:true)
+
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -324,40 +983,42 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         print("UIScreen.main.bounds.height")
         print(UIScreen.main.bounds.height)
         sideMenu = SideMenuNavigationController(rootViewController: menu)
-
+        
         SideMenuManager.default.leftMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         
+        mainPageView.addSubview(scrollView)
+//        scrollView.backgroundColor = .gray
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+
+        
 //        containerView.isHidden = true
-        mainPageView.addSubview(titleText)
-        mainPageView.addSubview(subTitleText)
+        scrollView.addSubview(titleText)
+        scrollView.addSubview(subTitleText)
         
         
-        mainPageView.addSubview(txtField1txt)
-        mainPageView.addSubview(txtField1)
+        scrollView.addSubview(txtField1txt)
+        scrollView.addSubview(txtField1)
 
-        mainPageView.addSubview(txtField2txt)
-        mainPageView.addSubview(txtField2)
+        scrollView.addSubview(txtField2txt)
+        scrollView.addSubview(txtField2)
         
-        mainPageView.addSubview(txtField3txt)
-        mainPageView.addSubview(txtField3)
+        scrollView.addSubview(txtField3txt)
+        scrollView.addSubview(txtField3)
 
-        mainPageView.addSubview(txtField4txt)
-        mainPageView.addSubview(txtField4)
+        scrollView.addSubview(txtField4txt)
+        scrollView.addSubview(txtField4)
         
-        mainPageView.addSubview(firstButton)
-        mainPageView.addSubview(secondButton)
+        scrollView.addSubview(firstButton)
+        scrollView.addSubview(secondButton)
+        
 
         
 
         
-        mainPageView.addSubview(myView0)
-        mainPageView.addSubview(myView1)
-        mainPageView.addSubview(myView2)
-        mainPageView.addSubview(myView3)
-        mainPageView.addSubview(myView4)
-        mainPageView.addSubview(myView5)
-//        view.addSubview(titleText)
+        firstButton .addTarget(self, action: #selector(firstButtonAction ), for: .touchUpInside)
+        secondButton.addTarget(self, action: #selector(secondButtonAction), for: .touchUpInside)
+
         addChildControllers()
     }
     

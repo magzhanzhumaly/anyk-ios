@@ -8,7 +8,9 @@
 import UIKit
 
 class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-//    \"\"
+
+    var mortgageName = "72025"
+    
     let dataArray = ["72025",
                      "Баспана ХИТ",
                      "Жилищный заем \"Баспана\"",
@@ -69,8 +71,6 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         label.lineBreakMode = .byWordWrapping;
         label.font = UIFont.systemFont(ofSize: 12.0)
 
-//        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
-
         label.numberOfLines = 0;
         label.text = dataArray[row]
         label.sizeToFit()
@@ -78,74 +78,10 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return label;
     }
     
-    // BACKGROUND VIEWS (TEMPORARY)
-    var myView0: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.1
-        myView.alpha = 0.0
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        mortgageName = dataArray[row]
+    }
 
-        return myView
-    }()
-
-    var myView1: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.2
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView2: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.3
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView3: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/2 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.4
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView4: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*2/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.5
-        myView.alpha = 0 // TO DELETE
-
-        return myView
-    }()
-    
-    var myView5: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*5/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        
-        myView.alpha = 0.6
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
     
     var lbl: UILabel = {
         let h = UIScreen.main.bounds.height - 88
@@ -159,8 +95,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                                 blue: 86/255.0,
                                 alpha: 1)
         lbl.textAlignment = .center
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
 
@@ -170,7 +105,6 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
         let UIPicker = UIPickerView(frame: CGRect(x: 0, y: h*5/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
         
-//        UIPicker.lines
         return UIPicker
     }()
     
@@ -185,20 +119,21 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                                       green: 112/255.0,
                                       blue: 86/255.0,
                                       alpha: 1)
-//        btn.setTitleColor(UIColor(red: 211/255.0,
-//                                  green: 112/255.0,
-//                                  blue: 86/255.0,
-//                                  alpha: 1), for: .normal)
         btn.titleLabel?.numberOfLines = 3
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
         btn.configuration?.titleAlignment = .center
-//          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        btn.addTarget(SearchViewController.self, action: #selector(buttonAction), for: .touchUpInside)
 
         return btn
     }()
 
-
+    @objc func buttonAction(sender: UIButton!) {
+        let newDestinationVC = SingleMortgageViewController()
+        newDestinationVC.mortgageName = mortgageName
+        
+        self.navigationController?.pushViewController(newDestinationVC, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,13 +141,6 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         view.addSubview(lbl)
         view.addSubview(btn)
 
-        
-        view.addSubview(myView0)
-        view.addSubview(myView1)
-        view.addSubview(myView2)
-        view.addSubview(myView3)
-        view.addSubview(myView4)
-        view.addSubview(myView5)
         
         UIPicker.delegate = self as UIPickerViewDelegate
         UIPicker.dataSource = self as UIPickerViewDataSource

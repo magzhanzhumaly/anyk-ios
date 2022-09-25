@@ -9,75 +9,6 @@ import UIKit
 
 class MortgageViewController: UIViewController {
     
-    // BACKGROUND VIEWS (TEMPORARY)
-    var myView0: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.1
-        myView.alpha = 0.0
-
-        return myView
-    }()
-
-    var myView1: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.2
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView2: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.3
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView3: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/2 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.4
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView4: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*2/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.5
-        myView.alpha = 0 // TO DELETE
-
-        return myView
-    }()
-    
-    var myView5: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*5/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        
-        myView.alpha = 0.6
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    
     var titleText: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
@@ -103,8 +34,7 @@ class MortgageViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -113,7 +43,6 @@ class MortgageViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 7*h/18 + 88, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -124,7 +53,6 @@ class MortgageViewController: UIViewController {
         txtField.keyboardType = UIKeyboardType.default
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-//        txtField.delegate = self
 
         return txtField
     }()
@@ -141,8 +69,7 @@ class MortgageViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -178,8 +105,7 @@ class MortgageViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -188,7 +114,6 @@ class MortgageViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 5*h/9 + 88, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0 лет"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -215,8 +140,7 @@ class MortgageViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -225,7 +149,6 @@ class MortgageViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: 5*h/9 + 88, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -257,7 +180,6 @@ class MortgageViewController: UIViewController {
                                   alpha: 1), for: .normal)
         btn.titleLabel?.textAlignment = .left
         btn.configuration?.titleAlignment = .trailing
-//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         return btn
         
@@ -276,7 +198,6 @@ class MortgageViewController: UIViewController {
                                       green: 112/255.0,
                                       blue: 86/255.0,
                                       alpha: 1)
-//          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         return btn
     }()
@@ -289,28 +210,8 @@ class MortgageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        view.addSubview(firstText)
-//        view.addSubview(logoImg)
-//
-//        view.addSubview(secondText)
-//        view.addSubview(txtField)
-//        view.addSubview(firstButton)
-//        view.addSubview(thirdText)
-//        view.addSubview(fourthText)
-//        view.addSubview(secondButton)
-//        view.addSubview(fifthText)
-//        view.addSubview(thirdButton)
-//        view.addSubview(sixthText)
-//        view.addSubview(fourthButton)
 
-
-//
-//
-        
         view.addSubview(titleText)
-//        view.addSubview(subTitleText)
-        
         
         view.addSubview(txtField1txt)
         view.addSubview(txtField1)
@@ -327,12 +228,5 @@ class MortgageViewController: UIViewController {
         view.addSubview(firstButton)
         view.addSubview(secondButton)
 
-        
-        view.addSubview(myView0)
-        view.addSubview(myView1)
-        view.addSubview(myView2)
-        view.addSubview(myView3)
-        view.addSubview(myView4)
-        view.addSubview(myView5)
     }
 }

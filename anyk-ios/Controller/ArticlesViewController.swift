@@ -14,17 +14,14 @@ class ArticlesViewController: UIViewController {
         let control = UISegmentedControl(items: segmentItems)
         control.frame = CGRect(x: 10, y: 88, width: (UIScreen.main.bounds.width - 20), height: 40)
         control.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
-        //        control.text
         control.selectedSegmentIndex = 1
 
-        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
         return control
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(segControl)
-        // Do any additional setup after loading the view.
     }
     
     
@@ -88,8 +85,7 @@ class ArticlesViewController: UIViewController {
                 lbl.numberOfLines = 1
                 lbl.textColor = .black
                 lbl.textAlignment = .left
-        //        lbl.backgroundColor = .black
-        //        lbl.alpha = 0.5
+                
                 return lbl
             }()
             view.addSubview(txt)
@@ -103,8 +99,7 @@ class ArticlesViewController: UIViewController {
                 lbl.numberOfLines = 1
                 lbl.textColor = .black
                 lbl.textAlignment = .left
-        //        lbl.backgroundColor = .black
-        //        lbl.alpha = 0.5
+        
                 return lbl
             }()
             view.addSubview(txt)
@@ -112,16 +107,6 @@ class ArticlesViewController: UIViewController {
             break
         }
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension UISegmentedControl {

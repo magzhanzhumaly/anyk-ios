@@ -41,8 +41,7 @@ class HelpViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -51,7 +50,6 @@ class HelpViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 5*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "Введите ваше имя"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -62,7 +60,6 @@ class HelpViewController: UIViewController {
         txtField.keyboardType = UIKeyboardType.default
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-//        txtField.delegate = self
 
         return txtField
     }()
@@ -78,8 +75,7 @@ class HelpViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -88,7 +84,6 @@ class HelpViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: h/4 + 88, width: UIScreen.main.bounds.width - 40, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "Введите ваш E-mail"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -113,8 +108,7 @@ class HelpViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -123,7 +117,6 @@ class HelpViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 13*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "Введите ваш номер телефона"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -148,8 +141,7 @@ class HelpViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -169,29 +161,11 @@ class HelpViewController: UIViewController {
         btn.showsMenuAsPrimaryAction = true
         btn.changesSelectionAsPrimaryAction = true
         btn.setTitle("Выберите тип сообщения", for: .normal)
-//        btn.contentHorizontalAlignment = .left
-//        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
 
-//        btn.contentHorizontalAlignment =
         btn.setTitleColor(.black, for: .normal)
-        
-//        btn.backgroundColor = .gray
         btn.layer.cornerRadius = 6
-        
         btn.layer.borderWidth = 1
-
         btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-//        txtField.backgroundColor = .black
-//        txtField.placeholder = "Введите ваш номер телефона"
-//        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-//        txtField.textColor = .black
-//        txtField.textAlignment = .left
-//
-//        txtField.borderStyle = UITextField.BorderStyle.roundedRect
-//        txtField.autocorrectionType = UITextAutocorrectionType.no
-//        txtField.keyboardType = UIKeyboardType.default
-//        txtField.returnKeyType = UIReturnKeyType.done
-//        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
         return btn
     }()
@@ -205,8 +179,7 @@ class HelpViewController: UIViewController {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
 
@@ -215,7 +188,6 @@ class HelpViewController: UIViewController {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 21*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/4))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "Введите ваше сообщение в свободной форме"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -226,7 +198,6 @@ class HelpViewController: UIViewController {
         txtField.autocorrectionType = UITextAutocorrectionType.no
         txtField.keyboardType = UIKeyboardType.default
         txtField.returnKeyType = UIReturnKeyType.done
-//        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         txtField.contentVerticalAlignment = .top
 
         return txtField
@@ -246,26 +217,28 @@ class HelpViewController: UIViewController {
                                       green: 112/255.0,
                                       blue: 86/255.0,
                                       alpha: 1)
-//          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
         return btn
     }()
     
-    
+    @objc func secondButtonAction(sender: UIButton!) {
+        secondButton.backgroundColor = .green
+        secondButton.setTitle("Отправлено", for: .normal)
+
+        let timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { timer in
+            self.secondButton.backgroundColor = UIColor(red: 211/255.0,
+                                          green: 112/255.0,
+                                          blue: 86/255.0,
+                                          alpha: 1)
+            self.secondButton.setTitle("Отправить", for: .normal)
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // TAP GESTURE TO DISMISSKEYBOARD
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-
-        // ADD THIS SOMEWHERE IN THE CODE TOO
-//        @objc func dismissKeyboard() {
-//            //Causes the view (or one of its embedded text fields) to resign the first responder status.
-//            view.endEditing(true)
-//        }
         
         view.addSubview(scrollView)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
@@ -284,17 +257,16 @@ class HelpViewController: UIViewController {
         scrollView.addSubview(secondButton)
         scrollView.addSubview(txtField4)
         
+        secondButton.addTarget(self, action: #selector(secondButtonAction), for: .touchUpInside)
     }
     
     @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
     func setPopupButton() {
         let optionClosure = {(action : UIAction) in
             print(action.title)}
-//        monPopupButton
     }
 }
 

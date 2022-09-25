@@ -15,7 +15,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
     private let loginController = LoginViewController()
     private let searchController = SearchViewController()
-    private let mainPageController = MainPageViewController()
+//    private let mainPageController = MainPageViewController()
     private let mortgageController = MortgageViewController()
     private let articlesController = ArticlesViewController()
     private let residentialComplexesController = ResidentialComplexesViewController()
@@ -954,7 +954,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     private func addChildControllers() {
         addChild(loginController)
         addChild(searchController)
-        addChild(mainPageController)
         addChild(mortgageController)
         addChild(articlesController)
         addChild(residentialComplexesController)
@@ -964,7 +963,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
      
         view.addSubview(loginController.view)
         view.addSubview(searchController.view)
-        view.addSubview(mainPageController.view)
         view.addSubview(mortgageController.view)
         view.addSubview(articlesController.view)
         view.addSubview(residentialComplexesController.view)
@@ -974,7 +972,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         loginController.view.frame = view.bounds
         searchController.view.frame = view.bounds
-        mainPageController.view.frame = view.bounds
         mortgageController.view.frame = view.bounds
         articlesController.view.frame = view.bounds
         residentialComplexesController.view.frame = view.bounds
@@ -984,7 +981,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         loginController.didMove(toParent: self)
         searchController.didMove(toParent: self)
-        mainPageController.didMove(toParent: self)
         mortgageController.didMove(toParent: self)
         articlesController.didMove(toParent: self)
         residentialComplexesController.didMove(toParent: self)
@@ -996,7 +992,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 //        mainPageView.isHidden = true
         loginController.view.isHidden = true
         searchController.view.isHidden = true
-        mainPageController.view.isHidden = true
         mortgageController.view.isHidden = true
         articlesController.view.isHidden = true
         residentialComplexesController.view.isHidden = true
@@ -1021,7 +1016,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = false
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
@@ -1035,7 +1029,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = false
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
@@ -1049,7 +1042,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
@@ -1063,7 +1055,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = false
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
@@ -1077,7 +1068,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = false
             residentialComplexesController.view.isHidden = true
@@ -1091,7 +1081,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = false
@@ -1105,7 +1094,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
@@ -1119,7 +1107,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
@@ -1133,7 +1120,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mainPageController.view.isHidden = true
             mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true

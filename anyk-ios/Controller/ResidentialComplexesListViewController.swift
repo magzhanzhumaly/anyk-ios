@@ -18,7 +18,6 @@ class ResidentialComplexesListViewController: UIViewController {
         print("residential complexes list view controller")
         print("chosen city is \(selectedCity)")
         
-        // Do any additional setup after loading the view.
     }
     
 }

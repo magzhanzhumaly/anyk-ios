@@ -25,21 +25,21 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
     @IBOutlet var mainPageView: UIView!
     
-//    @IBOutlet var containerView: UIView!
+    var segCtrl1Choice: Int = 0
+    var segCtrl2Choice: Int = 0
+    var segCtrl3Choice: Int = 0
+    var segCtrl4Choice: Int = 0
+    
 
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100))
         return scrollView
     }()
-//    view.addSubview(scrollView)
-
     
-    var segCtrl1Choice: Int = 0
-    var segCtrl2Choice: Int = 0
-    var segCtrl3Choice: Int = 0
-    var segCtrl4Choice: Int = 0
+    
     let h = UIScreen.main.bounds.height - 88
 
+    
     var titleText: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
@@ -77,8 +77,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -87,7 +86,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 7*h/18, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -98,7 +96,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         txtField.keyboardType = UIKeyboardType.default
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-//        txtField.delegate = self
 
         return txtField
     }()
@@ -115,8 +112,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -125,7 +121,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let txtField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: 7*h/18, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -152,8 +147,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -162,7 +156,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 5*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0 лет"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -189,8 +182,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -199,7 +191,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let txtField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: 5*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
 
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -264,8 +255,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 3
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
 
@@ -277,10 +267,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let control = UISegmentedControl(items: segmentItems)
         control.frame = CGRect(x: 20, y: 25*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
         control.addTarget(self, action: #selector(segmentControl1(_:)), for: .valueChanged)
-        //        control.text
         control.selectedSegmentIndex = 0
 
-        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
         return control
     }()
 
@@ -307,8 +295,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
 
@@ -320,10 +307,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let control = UISegmentedControl(items: segmentItems)
         control.frame = CGRect(x: 20, y: 29*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
         control.addTarget(self, action: #selector(segmentControl2(_:)), for: .valueChanged)
-        //        control.text
         control.selectedSegmentIndex = 0
 
-        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
         return control
     }()
 
@@ -336,17 +321,14 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
     var txtField6_1: UITextField = {
         let h = UIScreen.main.bounds.height - 88
 
-        let txtField = UITextField(frame: CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
-)
-//        txtField.backgroundColor = .black
+        let txtField = UITextField(frame: CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18))
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -370,8 +352,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -380,7 +361,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
 )
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -404,8 +384,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -414,7 +393,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
 )
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textColor = .black
@@ -614,8 +592,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+        
         return lbl
     }()
 
@@ -627,10 +604,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let control = UISegmentedControl(items: segmentItems)
         control.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
         control.addTarget(self, action: #selector(segmentControl3(_:)), for: .valueChanged)
-        //        control.text
         control.selectedSegmentIndex = 0
 
-        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
         return control
     }()
 
@@ -656,8 +631,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
 
@@ -669,10 +643,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let control = UISegmentedControl(items: segmentItems)
         control.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
         control.addTarget(self, action: #selector(segmentControl4(_:)), for: .valueChanged)
-        //        control.text
         control.selectedSegmentIndex = 0
 
-        //        UISegmentedControl.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 2
         return control
     }()
     
@@ -688,8 +660,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -721,8 +692,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+
         return lbl
     }()
     
@@ -754,8 +724,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.numberOfLines = 1
         lbl.textColor = .black
         lbl.textAlignment = .left
-//        lbl.backgroundColor = .gray
-//        lbl.alpha = 0.5
+        
         return lbl
     }()
     
@@ -784,19 +753,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             segCtrl4Choice = 0
-            
-
-//            txt7.frame = CGRect(x: 20, y: 8*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
-//            segControl3.frame = CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
-//
-//            txt8.frame = CGRect(x: 20, y: h, width: UIScreen.main.bounds.width - 40, height: h/36)
-//            segControl4.frame = CGRect(x: 20, y: 37*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
-//
-//            firstButton.frame = CGRect(x: 0, y: 10*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
-//            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 10*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
-//
-//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
-//
             txt8_1.removeFromSuperview()
             txtField8_1.removeFromSuperview()
 
@@ -806,8 +762,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             txt8_3.removeFromSuperview()
             txtField8_3.removeFromSuperview()
             
-            
-            // GGGGG
             if segCtrl2Choice == 1 {  // if seg2 is open
                 
                 firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
@@ -854,31 +808,10 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
        
                 firstButton.frame = CGRect(x: 0, y: 64*h/36, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
                 secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 64*h/36 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
-//
+
                 scrollView.contentSize = CGSize(width: view.frame.size.width, height: 20*h/9)
             }
-                // when seg2 options are NOT opened
-           
-//            txt7.frame = CGRect(x: 20, y: 11*h/9, width: UIScreen.main.bounds.width - 40, height: h/36)
-//            segControl3.frame = CGRect(x: 20, y: 15*h/12, width: UIScreen.main.bounds.width - 40, height: h/18)
-//
-//            txt8.frame = CGRect(x: 20, y: 4*h/3, width: UIScreen.main.bounds.width - 40, height: h/36)
-//            segControl4.frame = CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18)
-//
-//            firstButton.frame = CGRect(x: 0, y: 13*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/9)
-//            secondButton.frame = CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 13*h/9 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20)
-//
-//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 5*h/3)
-//
-//            scrollView.addSubview(txt6_1)
-//            scrollView.addSubview(txtField6_1)
-//
-//            scrollView.addSubview(txt6_2)
-//            scrollView.addSubview(txtField6_2)
-//
-//            scrollView.addSubview(txt6_3)
-//            scrollView.addSubview(txtField6_3)
-
+            
         default:
             segCtrl4Choice = 0
             
@@ -915,10 +848,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             scrollView.addSubview(txt8)
             scrollView.addSubview(segControl4)
-
-    //        let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/2 + 40, y: 2*h/3 + 10, width: (UIScreen.main.bounds.width - 120)/2, height: h/9 - 20))
-
-
+            
             isExtended = true
         } else {   // when closing
             scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
@@ -934,45 +864,37 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             txt7.removeFromSuperview()
             segControl3.removeFromSuperview()
 
-//            txt5.removeFromSuperview()
-//            segControl1.removeFromSuperview()
-            
-            
-            if segCtrl2Choice == 1 {
-                
-            }
-            
-            if segCtrl4Choice == 1 {
-                
-            }
-            
-            
             isExtended = false
 
         }
     }
     
     @objc func secondButtonAction(sender: UIButton!) {
-        print("secondButton tapped")
-        let h = Int(UIScreen.main.bounds.height) - 88
-        let w = Int(UIScreen.main.bounds.width)
-
-        let wb = (w - 120)/2
-        let hb = h/9 - 20
-        let x = Int.random(in: 0..<(w - wb))
-        let y = Int.random(in: 0..<(h - hb))
-        
-//        let randomDouble = Double.random(in: 2.71828...3.14159)
-//        let randomBool = Bool.random()
-
-//        secondButton.frame = CGRect(x: x, y: y, width: wb, height: hb)
-        
-        let detailVC = MortgageListViewController()
-        navigationController?.pushViewController(detailVC,animated:true)
-
+        self.performSegue(withIdentifier: "mortgageListSegue", sender: self)
     }
 
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mortgageListSegue" {
+            let destinationVC = segue.destination as! MortgageListViewController
+
+            destinationVC.textField1 = txtField1.text!
+            destinationVC.textField2 = txtField2.text!
+            destinationVC.textField3 = txtField3.text!
+            destinationVC.textField4 = txtField4.text!
+            destinationVC.textField6_1 = txtField6_1.text!
+            destinationVC.textField6_2 = txtField6_2.text!
+            destinationVC.textField6_3 = txtField6_3.text!
+            destinationVC.textField8_1 = txtField8_1.text!
+            destinationVC.textField8_2 = txtField8_2.text!
+            destinationVC.textField8_3 = txtField8_3.text!
+
+            destinationVC.segCtrl1Choice = segCtrl1Choice
+            destinationVC.segCtrl2Choice = segCtrl2Choice
+            destinationVC.segCtrl3Choice = segCtrl3Choice
+            destinationVC.segCtrl4Choice = segCtrl4Choice
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -980,19 +902,16 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let menu = MenuController(with: SideMenuItem.allCases)
         
         menu.delegate = self
-        print("UIScreen.main.bounds.height")
-        print(UIScreen.main.bounds.height)
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         
         SideMenuManager.default.leftMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         
         mainPageView.addSubview(scrollView)
-//        scrollView.backgroundColor = .gray
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
 
+        txtField1.delegate = self
         
-//        containerView.isHidden = true
         scrollView.addSubview(titleText)
         scrollView.addSubview(subTitleText)
         
@@ -1012,14 +931,19 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         scrollView.addSubview(firstButton)
         scrollView.addSubview(secondButton)
         
-
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
         
         firstButton .addTarget(self, action: #selector(firstButtonAction ), for: .touchUpInside)
         secondButton.addTarget(self, action: #selector(secondButtonAction), for: .touchUpInside)
 
         addChildControllers()
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     private func addChildControllers() {
@@ -1221,186 +1145,12 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//case login = "Вход"
-//case search = "Поиск"
-//case mainPage = "Главная"
-//case mortgage = "Ипотека"
-//case articles = "Статьи"
-//case residentialComplexes = "Жилые Комплексы"
-//case community = "Сообщество"
-//case aboutUs = "О нас"
-//case help = "Помощь"
 }
 
+extension ContainerViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
 
-/*
- import UIKit
- 
- class ViewController: UIViewController {
- 
- 
- @IBOutlet var menuTableView: UITableView!
- @IBOutlet var mainPageView: UIView!
- @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
- 
- @IBOutlet var loginView: UIView!
- 
- var menu = false  // if the menu is shown or not
- let screen = UIScreen.main.bounds // shortcut to make the code slimmer
- var home = CGAffineTransform() // this is how we set the initial position of the homescreen
- 
- var options: [option] = [
- 
- option(title: "Вход",
- segue: "ВходSegue"), // 1
- 
- option(title: "Поиск",
- segue: "ПоискSegue"), // 2
- 
- option(title: "Главная",
- segue: "ГлавнаяSegue"), // 3
- 
- option(title: "Ипотека",
- segue: "ИпотекаSegue"), // 4
- 
- option(title: "Статьи",
- segue: "СтатьиSegue"), // 5
- 
- option(title: "Жилые Комплексы",
- segue: "ЖКSegue"), // 6
- 
- option(title: "Сообщество",
- segue: "СообществоSegue"), // 7
- 
- option(title: "О нас",
- segue: "ОНасSegue"), // 8
- 
- option(title: "Помощь",
- segue: "ПомощьSegue"), // 9
- 
- ]
- 
- struct option {
- var title = String()
- var segue = String()
- }
- 
- override func viewDidLoad() {
- super.viewDidLoad()
- 
- menuTableView.delegate = self
- menuTableView.dataSource = self
- menuTableView.backgroundColor = .clear
- 
- mainPageView.isHidden = false
- loginView.isHidden = true
- 
- 
- home = mainPageView.transform // this will set the initial position of the container view
- }
- 
- func showMenu() {
- self.mainPageView.layer.cornerRadius = 40
- //        self.viewBG.layer.cornerRadius = self.containerView.layer.cornerRadius
- 
- let x = screen.width * 0.8
- let originalTransform = self.mainPageView.transform
- let scaledTransform = originalTransform.scaledBy(x: 0.8, y: 0.8)
- let scaledAndTranslatedTransform = scaledTransform.translatedBy(x: x, y: 0)
- UIView.animate(withDuration: 0.7) {
- self.mainPageView.transform = scaledAndTranslatedTransform
- }
- }
- 
- @IBAction func hamburgerTapped(_ sender: UIBarButtonItem) {
- self.view.bringSubviewToFront(menuTableView)
- if menu == false {
- showMenu()
- menu = true
- }
- }
- 
- @IBAction func showMenu(_ sender: UISwipeGestureRecognizer) {
- if menu == false && swipeGesture.direction == .right {
- showMenu()
- menu = true
- }
- //        } else if menu == true && swipeGesture.direction == .left {
- //            hideMenu()
- //            menu = false
- //        } // here changes made
- }
- 
- func hideMenu() {
- UIView.animate(withDuration: 0.7) {
- self.mainPageView.transform = self.home
- self.mainPageView.layer.cornerRadius = 0
- self.mainPageView.layer.cornerRadius = self.mainPageView.layer.cornerRadius
- }
- }
- 
- @IBAction func hideMenu(_ sender: Any) {
- if menu == true {
- hideMenu()
- menu = false
- }
- }
- }
- 
- extension ViewController:UITableViewDelegate, UITableViewDataSource {
- func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
- return options.count
- }
- 
- func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
- let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! tableViewCell
- 
- cell.backgroundColor = .clear
- cell.descriptionLabel.text = options[indexPath.row].title
- cell.descriptionLabel.textColor = .white // Subject ot change
- 
- return cell
- }
- 
- func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
- if let indexPath = tableView.indexPathForSelectedRow {
- 
- let currentCell = (tableView.cellForRow(at: indexPath) ?? UITableViewCell()) as UITableViewCell
- 
- currentCell.alpha = 0.5
- UIView.animate(withDuration: 1) {
- currentCell.alpha = 1
- }
- 
- 
- if options[indexPath.row].title == "Главная" {
- mainPageView.isHidden = false
- loginView.isHidden = true
- } else {
- mainPageView.isHidden = true
- loginView.isHidden = false
- }
- 
- //         self.parent?.performSegue(withIdentifier: options[indexPath.row].segue, sender: self)
- }
- }
- 
- 
- 
- }
- 
- class tableViewCell: UITableViewCell {
- 
- @IBOutlet var descriptionLabel: UILabel!
- }
- */
+        return true
+    }
+}

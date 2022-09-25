@@ -35,13 +35,30 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mainPageView" destination="IE4-hu-Vlv" id="73d-L8-ZlA"/>
+                        <outlet property="mainPageView" destination="IE4-hu-Vlv" id="Zli-cC-6zW"/>
                         <segue destination="GIq-mP-wdL" kind="show" identifier="mortgageListSegue" id="Xd0-NR-Uvn"/>
+                        <segue destination="xdc-hU-Slj" kind="show" identifier="residentialComplexesListSegue" id="N2Z-G6-wK1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZa-xo-AjM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1138" y="970"/>
+            <point key="canvasLocation" x="-972" y="1027"/>
+        </scene>
+        <!--Residential Complexes List View Controller-->
+        <scene sceneID="WHM-2Z-GLV">
+            <objects>
+                <viewController id="xdc-hU-Slj" customClass="ResidentialComplexesListViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JSD-ht-ZeA">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rSh-V4-BvJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2pu-WS-h5X"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dD2-gP-IQ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="154" y="1027"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OYc-f3-igS">
@@ -59,33 +76,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nnu-dH-GbI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2202" y="970"/>
-        </scene>
-        <!--Login View Controller-->
-        <scene sceneID="niE-LP-ox4">
-            <objects>
-                <viewController id="pq2-lm-ZAa" customClass="LoginViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Qvb-Bq-a88">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4b-1O-Q6H">
-                                <rect key="frame" x="0.0" y="86" width="388" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="HKg-Wu-c9C"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="yHx-BG-2uG"/>
-                    <connections>
-                        <outlet property="loginVCView" destination="Qvb-Bq-a88" id="2uW-W8-AVH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nl2-aG-Frj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1431" y="372"/>
+            <point key="canvasLocation" x="-2080" y="1027"/>
         </scene>
         <!--Mortgage List View Controller-->
         <scene sceneID="8wk-14-Lgf">
@@ -118,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAR-th-X0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="245" y="923"/>
+            <point key="canvasLocation" x="206" y="43"/>
         </scene>
     </scenes>
     <resources>

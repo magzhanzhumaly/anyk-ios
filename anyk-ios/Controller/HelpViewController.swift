@@ -9,75 +9,13 @@ import UIKit
 
 class HelpViewController: UIViewController {
     
-    // BACKGROUND VIEWS (TEMPORARY)
-    var myView0: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.1
-        myView.alpha = 0.0
+    let h = UIScreen.main.bounds.height - 88
 
-        return myView
+    var scrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 88))
+        
+        return scrollView
     }()
-
-    var myView1: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.2
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView2: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.3
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView3: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/2 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.4
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView4: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*2/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.5
-        myView.alpha = 0 // TO DELETE
-
-        return myView
-    }()
-    
-    var myView5: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*5/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        
-        myView.alpha = 0.6
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    
     
     
     
@@ -88,14 +26,10 @@ class HelpViewController: UIViewController {
         lbl.text = "Обратная связь"
         lbl.font = .systemFont(ofSize: 30, weight: UIFont.Weight.medium)
         lbl.numberOfLines = 2
-//        lbl.backgroundColor = .gray
         lbl.textColor = .black
         lbl.textAlignment = .center
         return lbl
     }()
-    
-    
-    // TEXTFIELDS
     
     // TextField 1
     var txtField1txt: UILabel = {
@@ -316,72 +250,58 @@ class HelpViewController: UIViewController {
 
         return btn
     }()
-
-
-    
-    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.addSubview(firstText)
-//        view.addSubview(logoImg)
-//
-//        view.addSubview(secondText)
-//        view.addSubview(txtField)
-//        view.addSubview(firstButton)
-//        view.addSubview(thirdText)
-//        view.addSubview(fourthText)
-//        view.addSubview(secondButton)
-//        view.addSubview(fifthText)
-//        view.addSubview(thirdButton)
-//        view.addSubview(sixthText)
-//        view.addSubview(fourthButton)
-
-
-//
-//
         
-        view.addSubview(titleText)
-//        view.addSubview(subTitleText)
-        
-        
-        view.addSubview(txtField1txt)
-        view.addSubview(txtField1)
+        // TAP GESTURE TO DISMISSKEYBOARD
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
-        view.addSubview(txtField2txt)
-        view.addSubview(txtField2)
+        // ADD THIS SOMEWHERE IN THE CODE TOO
+//        @objc func dismissKeyboard() {
+//            //Causes the view (or one of its embedded text fields) to resign the first responder status.
+//            view.endEditing(true)
+//        }
         
-        view.addSubview(txtField3txt)
-        view.addSubview(txtField3)
-
-        view.addSubview(txt4)
-        view.addSubview(txt5)
-
-        view.addSubview(myPopupButton)
-        
-//        view.addSubview(firstButton)
-        view.addSubview(secondButton)
-        view.addSubview(txtField4)
-
+        view.addSubview(scrollView)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
 
         
-        view.addSubview(myView0)
-        view.addSubview(myView1)
-        view.addSubview(myView2)
-        view.addSubview(myView3)
-        view.addSubview(myView4)
-        view.addSubview(myView5)
+        scrollView.addSubview(titleText)
+        scrollView.addSubview(txtField1txt)
+        scrollView.addSubview(txtField1)
+        scrollView.addSubview(txtField2txt)
+        scrollView.addSubview(txtField2)
+        scrollView.addSubview(txtField3txt)
+        scrollView.addSubview(txtField3)
+        scrollView.addSubview(txt4)
+        scrollView.addSubview(txt5)
+        scrollView.addSubview(myPopupButton)
+        scrollView.addSubview(secondButton)
+        scrollView.addSubview(txtField4)
         
-
-        
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func setPopupButton() {
         let optionClosure = {(action : UIAction) in
             print(action.title)}
 //        monPopupButton
+    }
+}
+
+extension HelpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+
+        return true
     }
 }

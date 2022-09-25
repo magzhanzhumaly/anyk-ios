@@ -8,6 +8,8 @@
 import UIKit
 
 class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    var selectedCity = "Все города"
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -21,7 +23,11 @@ class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate
         return row
     }
     
-
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCity = dataArray[row]
+//        print("The selected row value is : \(selectedCity)")
+    }
+    
     let dataArray = ["Все города",
                      "Нур-Султан (Астана)",
                      "Алматы",
@@ -56,8 +62,7 @@ class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate
                                 blue: 86/255.0,
                                 alpha: 1)
         lbl.textAlignment = .center
-//        lbl.backgroundColor = .black
-//        lbl.alpha = 0.5
+
         return lbl
     }()
 
@@ -66,7 +71,6 @@ class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate
 
         let UIPicker = UIPickerView(frame: CGRect(x: 0, y: h*5/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
         
-//        UIPicker.lines
         return UIPicker
     }()
 
@@ -80,42 +84,32 @@ class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate
                                       green: 112/255.0,
                                       blue: 86/255.0,
                                       alpha: 1)
-//        btn.setTitleColor(UIColor(red: 211/255.0,
-//                                  green: 112/255.0,
-//                                  blue: 86/255.0,
-//                                  alpha: 1), for: .normal)
         btn.titleLabel?.numberOfLines = 3
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
         btn.configuration?.titleAlignment = .center
-//          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        btn.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         return btn
     }()
 
-
+    @objc func buttonAction(sender: UIButton!) {
+        let newDestinationVC = ResidentialComplexesListViewController()
+        newDestinationVC.selectedCity = selectedCity
+        
+        self.navigationController?.pushViewController(newDestinationVC, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(lbl)
         view.addSubview(btn)
+        
         UIPicker.delegate = self as UIPickerViewDelegate
         UIPicker.dataSource = self as UIPickerViewDataSource
+        
         self.view.addSubview(UIPicker)
         UIPicker.center = self.view.center
-
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

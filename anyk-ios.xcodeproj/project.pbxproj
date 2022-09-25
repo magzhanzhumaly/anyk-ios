@@ -20,6 +20,7 @@
 		5619C36E28CA1A3900E86D94 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */; };
 		5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */; };
 		5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C37128CA1A4D00E86D94 /* HelpViewController.swift */; };
+		5650B7E928E05FF000E403FE /* ResidentialComplexesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */; };
 		569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8A28C288D800992C8B /* AppDelegate.swift */; };
 		569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8C28C288D800992C8B /* SceneDelegate.swift */; };
 		569C7D8F28C288D800992C8B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8E28C288D800992C8B /* ContainerViewController.swift */; };
@@ -67,6 +68,7 @@
 		5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		5619C37128CA1A4D00E86D94 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentialComplexesListViewController.swift; sourceTree = "<group>"; };
 		569C7D8728C288D800992C8B /* anyk-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "anyk-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569C7D8A28C288D800992C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		569C7D8C28C288D800992C8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */,
 				5619C37128CA1A4D00E86D94 /* HelpViewController.swift */,
 				56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */,
+				5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				5619C35C28CA101D00E86D94 /* InfoViewController.swift in Sources */,
 				5619C36628CA1A1400E86D94 /* MainPageViewController.swift in Sources */,
 				5619C35E28CA104E00E86D94 /* SettingsViewController.swift in Sources */,
+				5650B7E928E05FF000E403FE /* ResidentialComplexesListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

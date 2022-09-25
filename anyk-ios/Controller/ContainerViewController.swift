@@ -893,6 +893,12 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             destinationVC.segCtrl3Choice = segCtrl3Choice
             destinationVC.segCtrl4Choice = segCtrl4Choice
         }
+        
+        if segue.identifier == "residentialComplexesListSegue" {
+            let destinationVC = segue.destination as! ResidentialComplexesListViewController
+            print("I was here")
+            destinationVC.selectedCity = self.txtField2.text!
+        }
     }
 
     override func viewDidLoad() {
@@ -942,7 +948,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     }
     
     @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
@@ -1012,8 +1017,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         switch named {
         case .login:
-
-//            containerView.isHidden = false
             mainPageView.isHidden = true
             
             loginController.view.isHidden = false
@@ -1043,7 +1046,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         case .mainPage:
             mainPageView.isHidden = false
-//            containerView.isHidden = true
+            
             loginController.view.isHidden = true
             searchController.view.isHidden = true
             mainPageController.view.isHidden = true
@@ -1057,9 +1060,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
         case .mortgage:
             mainPageView.isHidden = true
-
-//            settingsController.view.isHidden = true
-//            infoController.view.isHidden = true
             
             loginController.view.isHidden = true
             searchController.view.isHidden = true

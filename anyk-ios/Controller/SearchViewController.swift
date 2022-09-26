@@ -123,7 +123,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
         btn.configuration?.titleAlignment = .center
-        btn.addTarget(SearchViewController.self, action: #selector(buttonAction), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         return btn
     }()
@@ -146,6 +146,5 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         UIPicker.dataSource = self as UIPickerViewDataSource
         self.view.addSubview(UIPicker)
         UIPicker.center = self.view.center
-
     }
 }

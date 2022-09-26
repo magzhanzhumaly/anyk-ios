@@ -8,8 +8,6 @@
 import UIKit
 
 class MortgageListViewController: UIViewController {
-
-    var a = 0;
     
     var textField1 = ""
     var textField2 = ""
@@ -31,6 +29,8 @@ class MortgageListViewController: UIViewController {
         super.viewDidLoad()
         print("hayuhai")
         view.backgroundColor = .white
+        
+        title = "Ипотеки"
         
         print("textField1 = \(textField1)")
         print("textField2 = \(textField2)")

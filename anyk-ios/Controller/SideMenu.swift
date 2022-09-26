@@ -24,7 +24,6 @@ enum SideMenuItem: String, CaseIterable {
 }
 
 class MenuController: UITableViewController {
-    
     public var delegate: MenuControllerDelegate?
     
     private let menuItems: [SideMenuItem]
@@ -48,7 +47,6 @@ class MenuController: UITableViewController {
         tableView.backgroundColor = color
         view.backgroundColor = color
     }
-    // Table
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
@@ -65,9 +63,7 @@ class MenuController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // Relay to delegate about menu item selection
         let selectedItem = menuItems[indexPath.row]
         delegate?.didSelectMenuItem(named: selectedItem)
     }
-    
 }

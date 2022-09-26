@@ -137,18 +137,18 @@
 		5658148F28C28D5300D0368A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5619C35928CA0FF500E86D94 /* SideMenu.swift */,
-				569C7D8E28C288D800992C8B /* ContainerViewController.swift */,
-				5619C36128CA1A0400E86D94 /* LoginViewController.swift */,
-				5619C36328CA1A0B00E86D94 /* SearchViewController.swift */,
-				5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */,
-				5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */,
-				5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */,
-				5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */,
 				5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */,
+				5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */,
+				5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */,
+				569C7D8E28C288D800992C8B /* ContainerViewController.swift */,
 				5619C37128CA1A4D00E86D94 /* HelpViewController.swift */,
+				5619C36128CA1A0400E86D94 /* LoginViewController.swift */,
 				56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */,
+				5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */,
 				5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */,
+				5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */,
+				5619C36328CA1A0B00E86D94 /* SearchViewController.swift */,
+				5619C35928CA0FF500E86D94 /* SideMenu.swift */,
 				56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */,
 			);
 			path = Controller;

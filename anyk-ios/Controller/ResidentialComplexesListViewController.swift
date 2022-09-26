@@ -14,6 +14,8 @@ class ResidentialComplexesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = selectedCity
+        
         view.backgroundColor = .white
         print("residential complexes list view controller")
         print("chosen city is \(selectedCity)")

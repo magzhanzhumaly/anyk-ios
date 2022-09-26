@@ -13,6 +13,8 @@ class SingleMortgageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Ипотека"
+        
         view.backgroundColor = .white
         print("SingleMortgageViewController")
         print("mortgage name = \(mortgageName)")

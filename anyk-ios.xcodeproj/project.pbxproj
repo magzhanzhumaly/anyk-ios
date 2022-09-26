@@ -27,6 +27,9 @@
 		569C7DA228C288DB00992C8B /* anyk_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7DA128C288DB00992C8B /* anyk_iosTests.swift */; };
 		569C7DAC28C288DB00992C8B /* anyk_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7DAB28C288DB00992C8B /* anyk_iosUITests.swift */; };
 		569C7DAE28C288DB00992C8B /* anyk_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7DAD28C288DB00992C8B /* anyk_iosUITestsLaunchTests.swift */; };
+		56AB7BEE28E1ACAC00C59B65 /* MortgageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BED28E1ACAC00C59B65 /* MortgageData.swift */; };
+		56AB7BF028E1ACBA00C59B65 /* MortgageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */; };
+		56AB7BF228E1ACC300C59B65 /* MortgageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */; };
 		56CC972628CD2674001D655D /* Main 2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CC972528CD2674001D655D /* Main 2.storyboard */; };
 		56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */; };
 		56E5D6D028D9CD0E0035CED6 /* MortgageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */; };
@@ -77,6 +80,9 @@
 		569C7DA728C288DB00992C8B /* anyk-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "anyk-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569C7DAB28C288DB00992C8B /* anyk_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = anyk_iosUITests.swift; sourceTree = "<group>"; };
 		569C7DAD28C288DB00992C8B /* anyk_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = anyk_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		56AB7BED28E1ACAC00C59B65 /* MortgageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageData.swift; sourceTree = "<group>"; };
+		56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageModel.swift; sourceTree = "<group>"; };
+		56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageManager.swift; sourceTree = "<group>"; };
 		56CC972528CD2674001D655D /* Main 2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main 2.storyboard"; path = "../../../../Desktop/sort later/Main 2.storyboard"; sourceTree = "<group>"; };
 		56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMortgageViewController.swift; sourceTree = "<group>"; };
 		56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageListViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 		5658148D28C28D4800D0368A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				56AB7BED28E1ACAC00C59B65 /* MortgageData.swift */,
+				56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */,
+				56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -478,11 +487,14 @@
 				5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */,
 				5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */,
 				569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */,
+				56AB7BF028E1ACBA00C59B65 /* MortgageModel.swift in Sources */,
+				56AB7BF228E1ACC300C59B65 /* MortgageManager.swift in Sources */,
 				5619C36828CA1A1C00E86D94 /* MortgageViewController.swift in Sources */,
 				56E5D6D028D9CD0E0035CED6 /* MortgageListViewController.swift in Sources */,
 				5619C36C28CA1A3000E86D94 /* ResidentialComplexesViewController.swift in Sources */,
 				569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */,
 				5619C35A28CA0FF500E86D94 /* SideMenu.swift in Sources */,
+				56AB7BEE28E1ACAC00C59B65 /* MortgageData.swift in Sources */,
 				5619C36E28CA1A3900E86D94 /* CommunityViewController.swift in Sources */,
 				5650B7E928E05FF000E403FE /* ResidentialComplexesListViewController.swift in Sources */,
 			);

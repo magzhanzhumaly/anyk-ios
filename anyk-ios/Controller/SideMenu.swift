@@ -15,7 +15,6 @@ enum SideMenuItem: String, CaseIterable {
     case login = "Вход"
     case search = "Поиск"
     case mainPage = "Главная"
-    case mortgage = "Ипотека"
     case articles = "Статьи"
     case residentialComplexes = "Жилые Комплексы"
     case community = "Сообщество"

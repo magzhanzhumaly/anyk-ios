@@ -104,10 +104,29 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="q8Y-uf-tCf"/>
+                    <connections>
+                        <segue destination="rTz-bA-kAQ" kind="show" identifier="showMortgageDetails" id="nhF-uH-xPb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAR-th-X0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="206" y="43"/>
+        </scene>
+        <!--Mortgage Details View Controller-->
+        <scene sceneID="Q4O-Nt-79d">
+            <objects>
+                <viewController id="rTz-bA-kAQ" customClass="MortgageDetailsViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qtb-xg-ucG">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="VJ2-p1-lZi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yzi-dL-7Hu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hzf-yP-a2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1234" y="43"/>
         </scene>
     </scenes>
     <resources>

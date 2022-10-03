@@ -16,8 +16,11 @@ struct MortgageData: Codable {
     let properties: [String]
     let firstStageRate: Double
     let maxCredit: Int
-    let registrationFee: Double
-    let ageOfBorrower: [Int]
+    let registrationFeeText: String
+    let feePercent: Double
+    let feeInitial: Int
+    let ageOfBorrower: [String]
     let continuousWorkExperience: String
-    let whereToApply: String
+    let whereToApply: [String]
+    let details: [String]
 }

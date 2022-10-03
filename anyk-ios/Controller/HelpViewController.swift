@@ -224,12 +224,21 @@ class HelpViewController: UIViewController {
         secondButton.backgroundColor = .green
         secondButton.setTitle("Отправлено", for: .normal)
 
+        /*
+        if let txtField1.text != "" && txtField2.text != "" && txtField3.text != "" && txtField4.text != "" {
+            
+        } else {
+            
+        }
+        */
+        
         let timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { timer in
             self.secondButton.backgroundColor = UIColor(red: 211/255.0,
                                           green: 112/255.0,
                                           blue: 86/255.0,
                                           alpha: 1)
             self.secondButton.setTitle("Отправить", for: .normal)
+            
         }
     }
 
@@ -258,6 +267,11 @@ class HelpViewController: UIViewController {
         scrollView.addSubview(txtField4)
         
         secondButton.addTarget(self, action: #selector(secondButtonAction), for: .touchUpInside)
+        
+        txtField1.delegate = self
+        txtField2.delegate = self
+        txtField3.delegate = self
+        txtField4.delegate = self
     }
     
     @objc func dismissKeyboard() {

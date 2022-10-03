@@ -11,12 +11,12 @@
 		5619C35A28CA0FF500E86D94 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C35928CA0FF500E86D94 /* SideMenu.swift */; };
 		5619C36228CA1A0400E86D94 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36128CA1A0400E86D94 /* LoginViewController.swift */; };
 		5619C36428CA1A0B00E86D94 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36328CA1A0B00E86D94 /* SearchViewController.swift */; };
-		5619C36828CA1A1C00E86D94 /* MortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */; };
 		5619C36A28CA1A2300E86D94 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */; };
 		5619C36C28CA1A3000E86D94 /* ResidentialComplexesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */; };
 		5619C36E28CA1A3900E86D94 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */; };
 		5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */; };
 		5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619C37128CA1A4D00E86D94 /* HelpViewController.swift */; };
+		562C9FFC28E7899100B7E830 /* MortgageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */; };
 		5650B7E928E05FF000E403FE /* ResidentialComplexesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */; };
 		569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8A28C288D800992C8B /* AppDelegate.swift */; };
 		569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8C28C288D800992C8B /* SceneDelegate.swift */; };
@@ -31,6 +31,7 @@
 		56AB7BF028E1ACBA00C59B65 /* MortgageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */; };
 		56AB7BF228E1ACC300C59B65 /* MortgageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */; };
 		56CC972628CD2674001D655D /* Main 2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CC972528CD2674001D655D /* Main 2.storyboard */; };
+		56D34C8828E9FBA500E0CE8F /* MortgageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */; };
 		56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */; };
 		56E5D6D028D9CD0E0035CED6 /* MortgageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */; };
 		BE62D0F6BC85AA49F4670B72 /* Pods_anyk_ios_anyk_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56DF6831AE5F23915A74B51 /* Pods_anyk_ios_anyk_iosUITests.framework */; };
@@ -60,12 +61,12 @@
 		5619C35928CA0FF500E86D94 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		5619C36128CA1A0400E86D94 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5619C36328CA1A0B00E86D94 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageViewController.swift; sourceTree = "<group>"; };
 		5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
 		5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentialComplexesViewController.swift; sourceTree = "<group>"; };
 		5619C36D28CA1A3900E86D94 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		5619C37128CA1A4D00E86D94 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageTableViewCell.swift; sourceTree = "<group>"; };
 		5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentialComplexesListViewController.swift; sourceTree = "<group>"; };
 		569C7D8728C288D800992C8B /* anyk-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "anyk-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569C7D8A28C288D800992C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 		56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageModel.swift; sourceTree = "<group>"; };
 		56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageManager.swift; sourceTree = "<group>"; };
 		56CC972528CD2674001D655D /* Main 2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main 2.storyboard"; path = "../../../../Desktop/sort later/Main 2.storyboard"; sourceTree = "<group>"; };
+		56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageDetailsViewController.swift; sourceTree = "<group>"; };
 		56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMortgageViewController.swift; sourceTree = "<group>"; };
 		56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageListViewController.swift; sourceTree = "<group>"; };
 		988EE4272AADD3DA405E51E1 /* Pods-anyk-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anyk-ios.debug.xcconfig"; path = "Target Support Files/Pods-anyk-ios/Pods-anyk-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,12 +155,13 @@
 				5619C37128CA1A4D00E86D94 /* HelpViewController.swift */,
 				5619C36128CA1A0400E86D94 /* LoginViewController.swift */,
 				56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */,
-				5619C36728CA1A1C00E86D94 /* MortgageViewController.swift */,
 				5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */,
 				5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */,
 				5619C36328CA1A0B00E86D94 /* SearchViewController.swift */,
 				5619C35928CA0FF500E86D94 /* SideMenu.swift */,
 				56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */,
+				562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */,
+				56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -482,14 +485,15 @@
 				5619C36A28CA1A2300E86D94 /* ArticlesViewController.swift in Sources */,
 				5619C36228CA1A0400E86D94 /* LoginViewController.swift in Sources */,
 				569C7D8F28C288D800992C8B /* ContainerViewController.swift in Sources */,
+				562C9FFC28E7899100B7E830 /* MortgageTableViewCell.swift in Sources */,
 				5619C36428CA1A0B00E86D94 /* SearchViewController.swift in Sources */,
+				56D34C8828E9FBA500E0CE8F /* MortgageDetailsViewController.swift in Sources */,
 				56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */,
 				5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */,
 				5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */,
 				569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */,
 				56AB7BF028E1ACBA00C59B65 /* MortgageModel.swift in Sources */,
 				56AB7BF228E1ACC300C59B65 /* MortgageManager.swift in Sources */,
-				5619C36828CA1A1C00E86D94 /* MortgageViewController.swift in Sources */,
 				56E5D6D028D9CD0E0035CED6 /* MortgageListViewController.swift in Sources */,
 				5619C36C28CA1A3000E86D94 /* ResidentialComplexesViewController.swift in Sources */,
 				569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */,

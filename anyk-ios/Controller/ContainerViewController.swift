@@ -15,8 +15,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
     private let loginController = LoginViewController()
     private let searchController = SearchViewController()
-//    private let mainPageController = MainPageViewController()
-    private let mortgageController = MortgageViewController()
     private let articlesController = ArticlesViewController()
     private let residentialComplexesController = ResidentialComplexesViewController()
     private let communityController = CommunityViewController()
@@ -29,17 +27,14 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     var segCtrl2Choice: Int = 0
     var segCtrl3Choice: Int = 0
     var segCtrl4Choice: Int = 0
-    
 
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100))
         return scrollView
     }()
-    
-    
+        
     let h = UIScreen.main.bounds.height - 88
 
-    
     var titleText: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
@@ -859,10 +854,27 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             segControl1.removeFromSuperview()
             
             txt6.removeFromSuperview()
+            txt6_1.removeFromSuperview()
+            txt6_2.removeFromSuperview()
+            txt6_3.removeFromSuperview()
+            
+            txtField6_1.removeFromSuperview()
+            txtField6_2.removeFromSuperview()
+            txtField6_3.removeFromSuperview()
+
             segControl2.removeFromSuperview()
 
             txt7.removeFromSuperview()
             segControl3.removeFromSuperview()
+           
+            txt8.removeFromSuperview()
+            txt8_1.removeFromSuperview()
+            txt8_2.removeFromSuperview()
+            txt8_3.removeFromSuperview()
+
+            txtField8_1.removeFromSuperview()
+            txtField8_2.removeFromSuperview()
+            txtField8_3.removeFromSuperview()
 
             isExtended = false
 
@@ -917,7 +929,16 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
 
         txtField1.delegate = self
-        
+        txtField2.delegate = self
+        txtField3.delegate = self
+        txtField4.delegate = self
+        txtField6_1.delegate = self
+        txtField6_2.delegate = self
+        txtField6_3.delegate = self
+        txtField8_1.delegate = self
+        txtField8_2.delegate = self
+        txtField8_3.delegate = self
+
         scrollView.addSubview(titleText)
         scrollView.addSubview(subTitleText)
         
@@ -954,7 +975,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     private func addChildControllers() {
         addChild(loginController)
         addChild(searchController)
-        addChild(mortgageController)
         addChild(articlesController)
         addChild(residentialComplexesController)
         addChild(communityController)
@@ -963,7 +983,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
      
         view.addSubview(loginController.view)
         view.addSubview(searchController.view)
-        view.addSubview(mortgageController.view)
         view.addSubview(articlesController.view)
         view.addSubview(residentialComplexesController.view)
         view.addSubview(communityController.view)
@@ -972,7 +991,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         loginController.view.frame = view.bounds
         searchController.view.frame = view.bounds
-        mortgageController.view.frame = view.bounds
         articlesController.view.frame = view.bounds
         residentialComplexesController.view.frame = view.bounds
         communityController.view.frame = view.bounds
@@ -981,7 +999,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         loginController.didMove(toParent: self)
         searchController.didMove(toParent: self)
-        mortgageController.didMove(toParent: self)
         articlesController.didMove(toParent: self)
         residentialComplexesController.didMove(toParent: self)
         communityController.didMove(toParent: self)
@@ -992,7 +1009,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 //        mainPageView.isHidden = true
         loginController.view.isHidden = true
         searchController.view.isHidden = true
-        mortgageController.view.isHidden = true
         articlesController.view.isHidden = true
         residentialComplexesController.view.isHidden = true
         communityController.view.isHidden = true
@@ -1016,7 +1032,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = false
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = true
@@ -1029,7 +1044,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = false
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = true
@@ -1042,20 +1056,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
-            articlesController.view.isHidden = true
-            residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
-            aboutUsController.view.isHidden = true
-            helpController.view.isHidden = true
-            
-            
-        case .mortgage:
-            mainPageView.isHidden = true
-            
-            loginController.view.isHidden = true
-            searchController.view.isHidden = true
-            mortgageController.view.isHidden = false
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = true
@@ -1068,7 +1068,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = false
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = true
@@ -1081,7 +1080,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = false
             communityController.view.isHidden = true
@@ -1094,7 +1092,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = false
@@ -1107,7 +1104,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = true
@@ -1120,7 +1116,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
             loginController.view.isHidden = true
             searchController.view.isHidden = true
-            mortgageController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
             communityController.view.isHidden = true
@@ -1136,7 +1131,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 extension ContainerViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
-
+        print("textFieldShouldReturn")
         return true
     }
 }

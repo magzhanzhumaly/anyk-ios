@@ -9,16 +9,24 @@ import Foundation
 
 struct MortgageModel: Equatable {
     let id: Int
+    let name: String
     let AEIR: Double // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
+    let firstStageRate: Double
+    let ageOfBorrower: [String]
     let initialFee: String
+    let maxCredit: Int
+    let continuousWorkExperience: String
+    
     let minTerm: Int
     let maxTerm: Int
+    
+    let feePercent: Double
+    let feeInitial: Double
+    
     let properties: [String]
-    let firstStageRate: Double
-    let maxCredit: Int
-    let registrationFee: Double
-    let ageOfBorrower: [Int]
-    let continuousWorkExperience: String
-    let whereToApply: String
+    let whereToApply: [String]
+    let details: [String]
+    let detailsColors: [String]
+    let detailsFull: String
+    let imageName: String
 }
-

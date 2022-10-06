@@ -42,6 +42,98 @@ class MortgageDetailsViewController: UIViewController {
         
         return scrollView
     }()
+   
+    
+    
+    
+    // TextField 1
+    var txtField1: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+//        let txtField = UITextField(frame: CGRect(x: 20, y: 7*h/18, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+
+        let txtField = UITextField()
+        
+        txtField.placeholder = "0₸"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.numberPad
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    var myButton: UIButton = {
+        let btn = UIButton()
+        btn.titleLabel?.textAlignment = .center
+        btn.configuration?.titleAlignment = .center
+        return btn
+    }()
+    
+    // TextField 2
+    var txtField2txt: UILabel = {
+        let h = UIScreen.main.bounds.height - 88
+
+//        let lbl = UILabel(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: h/3, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+        let lbl = UILabel()
+        lbl.text = "Первоначальный взнос"
+        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        lbl.numberOfLines = 1
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+
+        return lbl
+    }()
+    
+    var txtField2: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField()
+        txtField.placeholder = "0₸"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.numberPad
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+
+    
+    
+    // TextField 3
+    var txtField3: UITextField = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let txtField = UITextField()
+        txtField.placeholder = "0 лет"
+        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+        txtField.textColor = .black
+        txtField.textAlignment = .left
+        
+        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+        txtField.autocorrectionType = UITextAutocorrectionType.no
+        txtField.keyboardType = UIKeyboardType.numberPad
+        txtField.returnKeyType = UIReturnKeyType.done
+        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+
+        return txtField
+    }()
+    
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +141,15 @@ class MortgageDetailsViewController: UIViewController {
         print(id)
         print(name)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        txtField1.delegate = self
+        txtField2.delegate = self
+        txtField3.delegate = self
+
         
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,7 +161,7 @@ class MortgageDetailsViewController: UIViewController {
         
         scrollView.addSubview(nameLabel)
         nameLabel.text = name
-        nameLabel.backgroundColor = .gray
+//        nameLabel.backgroundColor = .gray
         tempHeight = nameLabel.intrinsicContentSize.height*2
         
         nameLabel.frame = CGRect(x: 10, y: 10, width: w, height: tempHeight)
@@ -79,7 +177,6 @@ class MortgageDetailsViewController: UIViewController {
         detailsFullLabel.text = detailsFull
         
         tempHeight = CGFloat((detailsFullLabel.text!.count / 45))*detailsFullLabel.intrinsicContentSize.height
-        detailsFullLabel.backgroundColor = .lightGray
         detailsFullLabel.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
         
         lowestY += tempHeight + 20
@@ -416,23 +513,218 @@ class MortgageDetailsViewController: UIViewController {
         
         lowestY += tempHeight + 10
 
-//        CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
-//
-//        CGSize expectedLabelSize = [yourString sizeWithFont:yourLabel.font constrainedToSize:maximumLabelSize lineBreakMode:yourLabel.lineBreakMode];
+        
+        
+        
+        
+        
+        // Calculator
+        let calcView = UIView()
+        
+        calcView.layer.cornerRadius = 20;
+        calcView.layer.masksToBounds = true;
+        
+        
+        let orng = UIColor(red: 211/255.0,
+                           green: 112/255.0,
+                           blue: 86/255.0,
+                           alpha: 1)
 
-        //adjust the label the the new height.
-//        CGRect newFrame = yourLabel.frame;
-//        newFrame.size.height = expectedLabelSize.height;
-//        yourLabel.frame = newFrame;
+        calcView.layer.borderWidth = 1
+        calcView.layer.borderColor = orng.cgColor
+        scrollView.addSubview(calcView)
+        
+        tempHeight = h/18
+        var hh = lowestY
+        var hhh = lowestY
+        
+        var txtField1txt: UILabel = {
+            let lbl = UILabel(frame: CGRect(x: 5, y: 15, width: w - 5, height: tempHeight/2))
+            
+//            let lbl = UILabel()
+            
+            lbl.text = "Стоимость жилья"
+            lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            lbl.numberOfLines = 1
+            lbl.textColor = .black
+            lbl.textAlignment = .left
 
-//        secondDetail.textColor = colorDict[self.detailsColors[1]]?[0]
-//        secondDetail.backgroundColor = colorDict[self.detailsColors[1]]?[1]
-//
-//        secondDetail.frame = CGRect(x: 10,
-//                                    y: 25 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10,
-//                                    width: Int(secondDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(secondDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-//                                    height: Int(secondDetail.intrinsicContentSize.height) + 10)
+            return lbl
+        }()
+        
+        lowestY = tempHeight/2 + 15
+        
+        calcView.addSubview(txtField1txt)
 
+        txtField1.frame = CGRect(x: 6, y: lowestY, width: w, height: tempHeight)
+        calcView.addSubview(txtField1)
 
+        lowestY += tempHeight + 10
+
+        var txtField2txt: UILabel = {
+            let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w - 5, height: tempHeight/2))
+            lbl.text = "Первоначальный взнос"
+            lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            lbl.numberOfLines = 1
+            lbl.textColor = .black
+            lbl.textAlignment = .left
+
+            return lbl
+        }()
+        
+        lowestY += tempHeight/2
+        calcView.addSubview(txtField2txt)
+        
+        txtField2.frame = CGRect(x: 6, y: lowestY, width: w, height: tempHeight)
+        calcView.addSubview(txtField2)
+
+        lowestY += tempHeight + 10
+
+        
+
+        var txtField3txt: UILabel = {
+            let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w - 5, height: tempHeight/2))
+            lbl.text = "Срок займа"
+            lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            lbl.numberOfLines = 1
+            lbl.textColor = .black
+            lbl.textAlignment = .left
+
+            return lbl
+        }()
+        
+        lowestY += tempHeight / 2
+        calcView.addSubview(txtField3txt)
+        
+        txtField3.frame = CGRect(x: 6, y: lowestY, width: w, height: tempHeight)
+        calcView.addSubview(txtField3)
+
+        lowestY += tempHeight + 20
+
+        tempHeight = h/18
+        
+        myButton = UIButton(frame: CGRect(x: 5, y: lowestY, width: w - 5, height: tempHeight))
+        myButton.setTitleColor(.white, for: .normal)
+        myButton.backgroundColor = UIColor(red: 211/255.0,
+                                      green: 112/255.0,
+                                      blue: 86/255.0,
+                                      alpha: 1)
+
+        myButton.setTitle("РАССЧИТАТЬ", for: .normal)
+
+        myButton.layer.cornerRadius = 5;
+        myButton.layer.masksToBounds = true;
+
+        calcView.addSubview(myButton)
+        
+        
+        lowestY += tempHeight + 5
+
+        
+        hh += lowestY
+        
+        calcView.frame = CGRect(x: 4, y: hhh, width: w + 12, height: lowestY + 20)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 350)
+        myButton .addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        lowestY = hh
+
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
+//        myButton.backgroundColor = .lightGray
+        
+        let myInt1 = Double(txtField1.text ?? "0") ?? 0
+        let myInt2 = Double(txtField2.text ?? "0") ?? 0
+        let myInt3 = Double(txtField3.text ?? "0") ?? 0
+
+        
+        if (myInt1 < 100000 || myInt1 > 175000000) || (myInt2 < myInt1 / 5 || myInt2 > myInt1 * 0.99) || (myInt3 < Double(minTerm) || myInt3 > Double(maxTerm)) {
+            
+            myButton.backgroundColor = .red
+            /*
+            if let txtField1.text != "" && txtField2.text != "" && txtField3.text != "" && txtField4.text != "" {
+                
+            } else {
+                
+            }
+            */
+            
+            if myInt1 < 100000 {
+                myButton.setTitle("Сумма займа от 100 000 ₸", for: .normal)
+            } else if myInt1 > 175000000 {
+                myButton.setTitle("Сумма займа до 175 000 000 ₸", for: .normal)
+            } else {
+                if myInt2 < myInt1 / 5 {
+                    myButton.setTitle("Первоначальный взнос от \(myInt1 / 5) ₸", for: .normal)
+                } else if myInt2 > myInt1 * 0.99 {
+                    myButton.setTitle("Первоначальный взнос до \(myInt1 * 0.99) ₸", for: .normal)
+                }
+            }
+            
+            if myInt3 < Double(minTerm) {
+                myButton.setTitle("Срок займа от \(minTerm) лет", for: .normal)
+            } else if myInt3 > Double(maxTerm) {
+                myButton.setTitle("Срок займа до \(maxTerm) лет", for: .normal)
+            }
+            
+            let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+                self.myButton.backgroundColor = UIColor(red: 211/255.0,
+                                              green: 112/255.0,
+                                              blue: 86/255.0,
+                                              alpha: 1)
+                self.myButton.setTitle("РАССЧИТАТЬ", for: .normal)
+            }
+
+        } else {  // case .success
+            
+            if whereToApply != ["Жилстройсбербанк"] {
+                
+                // case 1
+                print("case 1")
+            } else {
+                
+                if minTerm == 6 {
+                    
+                    // case 2
+                    
+                    print("case 2")
+                } else {
+                    
+                    // case 3
+                    print("case 3")
+                }
+                
+            }
+            
+            // segue 1 - default w/ 3 labels.   Calc1VC
+            // segue 2 - zhilstroisberbank default CalcZSSBdefVC
+            // segue 3 - zhilstroisberbank w/ 3 stages CalcZSSB3StagesVC
+            
+        }
+      
+    }
+    
+//    @objc func secondButtonAction(sender: UIButton!) {
+//        self.performSegue(withIdentifier: "mortgageListSegue", sender: self)
+//    }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "calculations1" {
+//            let destinationVC = segue.destination as! MortgageListViewController
+//        }
+//        if segue.identifier == "calculations2" {
+//        }
+//        if segue.identifier == "calculations3" {
+//        }
+//    }
+
+}
+
+extension MortgageDetailsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        print("textFieldShouldReturn")
+        return true
     }
 }

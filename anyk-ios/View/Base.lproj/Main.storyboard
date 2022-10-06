@@ -106,11 +106,44 @@
                     <navigationItem key="navigationItem" id="q8Y-uf-tCf"/>
                     <connections>
                         <segue destination="rTz-bA-kAQ" kind="show" identifier="showMortgageDetails" id="nhF-uH-xPb"/>
+                        <segue destination="DzZ-kp-RNN" kind="show" identifier="showRentalHousingDetails" id="AP7-Zx-AGN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAR-th-X0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="206" y="43"/>
+        </scene>
+        <!--Rental Housing View Controller-->
+        <scene sceneID="qkD-DC-UKc">
+            <objects>
+                <viewController id="DzZ-kp-RNN" customClass="RentalHousingViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JhP-hm-URs">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gFt-kw-jJs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4q6-uc-Q3R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fdM-J0-s6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1236" y="-697"/>
+        </scene>
+        <!--Calculations1 View Controller-->
+        <scene sceneID="LcM-ac-EtB">
+            <objects>
+                <viewController id="VQM-Cd-ay6" customClass="Calculations1ViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gBW-ZL-BTW">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="M5G-lV-imX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rag-ZK-jjl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T08-Gs-EJJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2285" y="-697"/>
         </scene>
         <!--Mortgage Details View Controller-->
         <scene sceneID="Q4O-Nt-79d">
@@ -123,10 +156,47 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="yzi-dL-7Hu"/>
+                    <connections>
+                        <segue destination="VQM-Cd-ay6" kind="show" identifier="calculations1" id="Efp-CO-2G1"/>
+                        <segue destination="8OL-vd-tXM" kind="show" identifier="calculations2" id="gZ6-rY-2NY"/>
+                        <segue destination="ide-WA-fGz" kind="show" identifier="calculations3" id="fIR-IE-NNC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzf-yP-a2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="43"/>
+            <point key="canvasLocation" x="1235" y="43"/>
+        </scene>
+        <!--Calculations2 View Controller-->
+        <scene sceneID="OXv-Iy-fWI">
+            <objects>
+                <viewController id="8OL-vd-tXM" customClass="Calculations2ViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KTR-KA-Od3">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PxO-OS-gVY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ttO-8V-4s2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQk-1g-Q7a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2286" y="43"/>
+        </scene>
+        <!--Calculations3 View Controller-->
+        <scene sceneID="ZBQ-wm-qLT">
+            <objects>
+                <viewController id="ide-WA-fGz" customClass="Calculations3ViewController" customModule="anyk_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z2M-aL-Ojv">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JBX-Sn-aQk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Hy-7Z-Wy8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HKS-y3-R5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2285" y="748"/>
         </scene>
     </scenes>
     <resources>

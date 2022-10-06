@@ -30,6 +30,10 @@
 		56AB7BEE28E1ACAC00C59B65 /* MortgageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BED28E1ACAC00C59B65 /* MortgageData.swift */; };
 		56AB7BF028E1ACBA00C59B65 /* MortgageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */; };
 		56AB7BF228E1ACC300C59B65 /* MortgageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */; };
+		56B5E2AC28EEF2E8007A2892 /* RentalHousingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2AB28EEF2E8007A2892 /* RentalHousingViewController.swift */; };
+		56B5E2AE28EEF33D007A2892 /* Calculations1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2AD28EEF33D007A2892 /* Calculations1ViewController.swift */; };
+		56B5E2B028EEF348007A2892 /* Calculations2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2AF28EEF348007A2892 /* Calculations2ViewController.swift */; };
+		56B5E2B228EEF351007A2892 /* Calculations3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2B128EEF351007A2892 /* Calculations3ViewController.swift */; };
 		56CC972628CD2674001D655D /* Main 2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CC972528CD2674001D655D /* Main 2.storyboard */; };
 		56D34C8828E9FBA500E0CE8F /* MortgageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */; };
 		56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */; };
@@ -84,6 +88,10 @@
 		56AB7BED28E1ACAC00C59B65 /* MortgageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageData.swift; sourceTree = "<group>"; };
 		56AB7BEF28E1ACBA00C59B65 /* MortgageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageModel.swift; sourceTree = "<group>"; };
 		56AB7BF128E1ACC300C59B65 /* MortgageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageManager.swift; sourceTree = "<group>"; };
+		56B5E2AB28EEF2E8007A2892 /* RentalHousingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentalHousingViewController.swift; sourceTree = "<group>"; };
+		56B5E2AD28EEF33D007A2892 /* Calculations1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations1ViewController.swift; sourceTree = "<group>"; };
+		56B5E2AF28EEF348007A2892 /* Calculations2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations2ViewController.swift; sourceTree = "<group>"; };
+		56B5E2B128EEF351007A2892 /* Calculations3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations3ViewController.swift; sourceTree = "<group>"; };
 		56CC972528CD2674001D655D /* Main 2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main 2.storyboard"; path = "../../../../Desktop/sort later/Main 2.storyboard"; sourceTree = "<group>"; };
 		56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageDetailsViewController.swift; sourceTree = "<group>"; };
 		56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMortgageViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +170,10 @@
 				56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */,
 				562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */,
 				56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */,
+				56B5E2AB28EEF2E8007A2892 /* RentalHousingViewController.swift */,
+				56B5E2AD28EEF33D007A2892 /* Calculations1ViewController.swift */,
+				56B5E2AF28EEF348007A2892 /* Calculations2ViewController.swift */,
+				56B5E2B128EEF351007A2892 /* Calculations3ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -489,11 +501,15 @@
 				5619C36428CA1A0B00E86D94 /* SearchViewController.swift in Sources */,
 				56D34C8828E9FBA500E0CE8F /* MortgageDetailsViewController.swift in Sources */,
 				56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */,
+				56B5E2AE28EEF33D007A2892 /* Calculations1ViewController.swift in Sources */,
 				5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */,
+				56B5E2B028EEF348007A2892 /* Calculations2ViewController.swift in Sources */,
 				5619C37028CA1A4200E86D94 /* AboutUsViewController.swift in Sources */,
 				569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */,
+				56B5E2AC28EEF2E8007A2892 /* RentalHousingViewController.swift in Sources */,
 				56AB7BF028E1ACBA00C59B65 /* MortgageModel.swift in Sources */,
 				56AB7BF228E1ACC300C59B65 /* MortgageManager.swift in Sources */,
+				56B5E2B228EEF351007A2892 /* Calculations3ViewController.swift in Sources */,
 				56E5D6D028D9CD0E0035CED6 /* MortgageListViewController.swift in Sources */,
 				5619C36C28CA1A3000E86D94 /* ResidentialComplexesViewController.swift in Sources */,
 				569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */,

@@ -232,7 +232,7 @@ class HelpViewController: UIViewController {
         }
         */
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
             self.secondButton.backgroundColor = UIColor(red: 211/255.0,
                                           green: 112/255.0,
                                           blue: 86/255.0,

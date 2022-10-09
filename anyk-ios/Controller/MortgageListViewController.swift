@@ -25,6 +25,8 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
     var segCtrl3Choice: Int = 0
     var segCtrl4Choice: Int = 0
     
+    var sec1height = 20
+    
     private var id = -1
     private var name = ""
     private var AEIR = 0.0 // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
@@ -48,39 +50,75 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
     private var imageName = ""
 
     private let mortgageManager = MortgageManager()
-
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(MortgageTableViewCell.self, forCellReuseIdentifier: MortgageTableViewCell.identifier)  // registered MortageTableViewCell.self
         
         return tableView
     }()
+
+    private var data = [[MortgageModel]]()
     
-    private var data = [MortgageModel]()
+    private let headerLabel1 = UILabel()
+    private let headerLabel2 = UILabel()
+    private let button1 = UIButton()
     
+    private let button2: UIButton = {
+        let h = UIScreen.main.bounds.height - 88
+
+        let optionClosure = {(action : UIAction) in
+            print(action.title)
+        }
+
+        let btn = UIButton()
+        btn.menu = UIMenu(children : [
+            UIAction(title: "общей переплате ▼", state: .on, handler: optionClosure),
+            UIAction(title: "ежемесячному платежу ▼", handler: optionClosure),
+            UIAction(title: "процентной ставке (ГЭСВ) ▼", handler: optionClosure),
+            UIAction(title: "первоначальному взносу ▼", handler: optionClosure)])
+
+        btn.showsMenuAsPrimaryAction = true
+        btn.changesSelectionAsPrimaryAction = true
+//        btn.setTitle("общей переплате ▼", for: .normal)
+
+        btn.setTitleColor(.black, for: .normal)
+        return btn
+    }()
+    
+    func setPopupButton() {
+        let optionClosure = {(action : UIAction) in
+            print(action.title)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hayuhai")
         view.backgroundColor = .white
         
+        data.append([MortgageModel]())
+        data.append([MortgageModel]())
+        data.append([MortgageModel]())
+
         title = "Ипотеки"
+          
         
-        print("textField1 = \(textField1)")
-        print("textField2 = \(textField2)")
-        print("textField3 = \(textField3)")
-        print("textField4 = \(textField4)")
-        print("textField6_1 = \(textField6_1)")
-        print("textField6_2 = \(textField6_2)")
-        print("textField6_3 = \(textField6_3)")
-        print("textField8_1 = \(textField8_1)")
-        print("textField8_2 = \(textField8_2)")
-        print("textField8_3 = \(textField8_3)")
+//        print("textField1 = \(textField1)")
+//        print("textField2 = \(textField2)")
+//        print("textField3 = \(textField3)")
+//        print("textField4 = \(textField4)")
+//        print("textField6_1 = \(textField6_1)")
+//        print("textField6_2 = \(textField6_2)")
+//        print("textField6_3 = \(textField6_3)")
+//        print("textField8_1 = \(textField8_1)")
+//        print("textField8_2 = \(textField8_2)")
+//        print("textField8_3 = \(textField8_3)")
 
 
-        print("segCtrl1Choice = \(segCtrl1Choice)")
-        print("segCtrl2Choice = \(segCtrl2Choice)")
-        print("segCtrl3Choice = \(segCtrl3Choice)")
-        print("segCtrl4Choice = \(segCtrl4Choice)")
+//        print("segCtrl1Choice = \(segCtrl1Choice)")
+//        print("segCtrl2Choice = \(segCtrl2Choice)")
+//        print("segCtrl3Choice = \(segCtrl3Choice)")
+//        print("segCtrl4Choice = \(segCtrl4Choice)")
         
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -90,10 +128,40 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-        mortgageManager.fetchData(pagination: false, completion: { [weak self] result in
+        
+        var hdrLbl1cnt = 0
+        var hdrLbl2cnt = 0
+
+        mortgageManager.fetchData(textField1: textField1, textField2: textField2, textField3: textField3, textField4: textField4, textField6_1: textField6_1, textField6_2: textField6_2, textField6_3: textField6_3, textField8_1: textField8_1, textField8_2: textField8_2, textField8_3: textField8_3, segCtrl1Choice: segCtrl1Choice, segCtrl2Choice: segCtrl2Choice, segCtrl3Choice: segCtrl3Choice, segCtrl4Choice: segCtrl4Choice, completion: { [weak self] result in
             switch result {
             case .success(let data):
-                self?.data.append(contentsOf: data)
+                self?.data[0].append(contentsOf: data)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(_):
+                break
+            }
+            hdrLbl1cnt = (self?.data[0].count)!
+        })
+        
+        mortgageManager.fetchLeftOutData(completion: { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.data[1].append(contentsOf: data)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(_):
+                break
+            }
+            hdrLbl2cnt = (self?.data[1].count)!
+        })
+        
+        mortgageManager.fetchRentals(completion: { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.data[2].append(contentsOf: data)
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
@@ -101,10 +169,106 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
                 break
             }
         })
+        
+
+        
+        headerLabel1.text = "Под ваши условия подходят 0 программ"
+        headerLabel2.text = "К Вашим условиям не подошли "
+
+        var lowestY = 0
+        var tempHeight = 0
+        
+        let w = view.frame.size.width
+        
+        let header = UIView()
+        
+        
+        tempHeight = Int(headerLabel1.intrinsicContentSize.height + 10)
+        headerLabel1.font = .systemFont(ofSize: 16, weight: UIFont.Weight.medium)
+        headerLabel1.frame = CGRect(x: 10, y: 10, width: Int(w) - 20, height: tempHeight)
+        headerLabel1.textAlignment = .left
+        header.addSubview(headerLabel1)
+        
+        
+        headerLabel2.font = .systemFont(ofSize: 12, weight: UIFont.Weight.light)
+        lowestY = 20 + tempHeight
+
+        headerLabel1.text = "Под ваши условия подходят \(hdrLbl1cnt) программ"
+
+        if hdrLbl2cnt == 0 {
+            self.headerLabel2.text = "К Вашим условиям не подошли 0 программ "
+        } else {
+            if hdrLbl2cnt == 1 {
+                self.headerLabel2.text = "К Вашим условиям не подошла 1 программа. "
+                
+            } else {
+                self.headerLabel2.text = "К Вашим условиям не подошли \(hdrLbl2cnt) программы. "
+            }
+            
+            self.button1.setTitle("Перейти", for: .normal)
+            self.button1.titleLabel?.font =  .systemFont(ofSize: 12, weight: UIFont.Weight.light)
+            self.button1.frame = CGRect(x: self.headerLabel2.intrinsicContentSize.width + 10,
+                                        y: CGFloat(lowestY),
+                                        width: self.button1.titleLabel?.intrinsicContentSize.width ?? 40,
+                                        height: self.button1.titleLabel?.intrinsicContentSize.height ?? 10)
+            self.button1.addTarget(self, action: #selector(self.button1Action), for: .touchUpInside)
+            self.button1.setTitleColor(UIColor(named: "AccentColor"), for: .normal)
+            header.addSubview(self.button1)
+        }
+
+        tempHeight = Int(headerLabel2.intrinsicContentSize.height)
+        headerLabel2.frame = CGRect(x: 10, y: lowestY, width: Int(w) - 20, height: tempHeight)
+        headerLabel2.textAlignment = .left
+        header.addSubview(headerLabel2)
+
+        tableView.tableHeaderView = header
+        
+        lowestY += 10 + tempHeight
+        
+        
+        let headerLabel3 = UILabel()
+        headerLabel3.text = "Сортировать по: "
+        headerLabel3.textColor = .gray
+        
+        tempHeight = Int(headerLabel3.intrinsicContentSize.height)
+        headerLabel3.font = .systemFont(ofSize: 12, weight: UIFont.Weight.light)
+        headerLabel3.frame = CGRect(x: 10, y: lowestY, width: Int(w) - 20, height: tempHeight)
+        headerLabel3.textAlignment = .left
+        header.addSubview(headerLabel3)
+        
+        button2.frame = CGRect(x: headerLabel3.intrinsicContentSize.width + 10,
+                               y: CGFloat(lowestY),
+                               width: 160,
+                               height: button2.titleLabel?.intrinsicContentSize.height ?? 10)
+        button2.titleLabel?.textAlignment = .left
+        button2.titleLabel?.font =  .systemFont(ofSize: 12, weight: UIFont.Weight.light)
+        
+        lowestY += tempHeight
+        header.addSubview(button2)
+        header.frame = CGRect(x: 0, y: 0, width: Int(w), height: lowestY + 10)
+    }
+    
+    @objc func button1Action(sender: UIButton!) {
+        
+        for i in 0..<data[0].count {
+            var ret = 234
+            
+            if data[0][i].details.count == 1 {
+                ret = 234
+            } else if data[0][i].details.count == 2 {
+                ret = 263
+            } else if data[0][i].details.count == 3 {
+                ret = 292
+            }
+            sec1height += ret
+        }
+        
+        self.tableView.contentOffset.y = CGFloat(self.sec1height)
+        sec1height = 20
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return data[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,26 +276,95 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
         
-        cell.configure(id: data[indexPath.row].id, name: data[indexPath.row].name, AEIR: data[indexPath.row].AEIR, firstStageRate: data[indexPath.row].firstStageRate, ageOfBorrower: data[indexPath.row].ageOfBorrower, initialFee: data[indexPath.row].initialFee, maxCredit: data[indexPath.row].maxCredit, continuousWorkExperience: data[indexPath.row].continuousWorkExperience, minTerm: data[indexPath.row].minTerm, maxTerm: data[indexPath.row].maxTerm, feePercent: data[indexPath.row].feePercent, feeInitial: data[indexPath.row].feeInitial, properties: data[indexPath.row].properties, whereToApply: data[indexPath.row].whereToApply, details: data[indexPath.row].details, detailsColors: data[indexPath.row].detailsColors, detailsFull: data[indexPath.row].detailsFull, imageName: data[indexPath.row].imageName)
+        cell.configure(id: data[indexPath.section][indexPath.row].pos, name: data[indexPath.section][indexPath.row].name, AEIR: data[indexPath.section][indexPath.row].AEIR, firstStageRate: data[indexPath.section][indexPath.row].firstStageRate, ageOfBorrower: data[indexPath.section][indexPath.row].ageOfBorrower, initialFee: data[indexPath.section][indexPath.row].initialFee, maxCredit: data[indexPath.section][indexPath.row].maxCredit, continuousWorkExperience: data[indexPath.section][indexPath.row].continuousWorkExperience, minTerm: data[indexPath.section][indexPath.row].minTerm, maxTerm: data[indexPath.section][indexPath.row].maxTerm, feePercent: data[indexPath.section][indexPath.row].feePercent, feeInitial: data[indexPath.section][indexPath.row].feeInitial, properties: data[indexPath.section][indexPath.row].properties, whereToApply: data[indexPath.section][indexPath.row].whereToApply, details: data[indexPath.section][indexPath.row].details, detailsColors: data[indexPath.section][indexPath.row].detailsColors, detailsFull: data[indexPath.section][indexPath.row].detailsFull, imageName: data[indexPath.section][indexPath.row].imageName)
         
         cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if data[indexPath.row].details.count == 1 {
-            return 234
-        } else if data[indexPath.row].details.count == 2 {
-            return 263
-        } else if data[indexPath.row].details.count == 3 {
-            return 292
+        
+        var ret: CGFloat
+        if data[indexPath.section][indexPath.row].AEIR < 0 {
+            
+            if data[indexPath.section][indexPath.row].pos == 47 {
+                ret = 360
+            } else if data[indexPath.section][indexPath.row].pos == 48 {
+                ret = 332
+            } else {
+                ret = 350
+            }
+            
+            
+//            ret = ret + CGFloat(whereToApply.count) * 14
+            return ret
+            
         } else {
-            return 234
+            
+            if data[indexPath.section][indexPath.row].details.count == 1 {
+                ret = 234
+            } else if data[indexPath.section][indexPath.row].details.count == 2 {
+                ret = 263
+            } else if data[indexPath.section][indexPath.row].details.count == 3 {
+                ret = 292
+            } else {
+                ret = 234
+            }
+            
+            return ret
         }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            if data[1].count > 0 {
+                return 100
+            } else {
+                return 0
+            }
+        } else if section == 2 {
+            return 100
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if data[1].count > 0 {
+            if section == 1 {
+                let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+                //            view.backgroundColor = .red
+                let lbl = UILabel(frame: CGRect(x: 10, y: 20, width: view.frame.width - 20, height: 40))
+                
+                lbl.font = .systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+                lbl.numberOfLines = 2
+                lbl.textAlignment = .center
+                lbl.text = "Ничего не подошло? Есть еще \(data[1].count) программы, которые могут быть вам интересны"
+                view.addSubview(lbl)
+                return view
+            }
+        }
+                
+        if section == 2 {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+            let lbl = UILabel(frame: CGRect(x: 10, y: 15, width: view.frame.width - 20, height: 40))
+            
+            lbl.font = .systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+            lbl.numberOfLines = 2
+            lbl.textAlignment = .center
+            lbl.text = "Арендное жилье"
+            view.addSubview(lbl)
+            return view
+        }
+        return UIView()
     }
     /*
     private func createSpinnerFooter() -> UIView {
@@ -199,9 +432,12 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
         self.detailsColors = detailsColors
         self.detailsFull = detailsFull
         self.imageName = imageName
-        
-        self.performSegue(withIdentifier: "showMortgageDetails", sender: self)
-        
+
+        if AEIR < 0 {
+            self.performSegue(withIdentifier: "showRentalHousingDetails", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "showMortgageDetails", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -226,6 +462,12 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
             destinationVC.detailsColors = detailsColors
             destinationVC.detailsFull = detailsFull
             destinationVC.imageName = imageName
+        }
+        if segue.identifier == "showRentalHousingDetails" {
+            let destinationVC = segue.destination as! RentalHousingViewController
+            
+            print("ageofborrower = \(self.ageOfBorrower)")
+            destinationVC.txt = self.ageOfBorrower
         }
     }
 }

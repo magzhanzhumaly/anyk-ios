@@ -42,7 +42,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Подберите ипотечную программу для себя"
         lbl.font = .systemFont(ofSize: 30, weight: UIFont.Weight.heavy)
         lbl.numberOfLines = 2
-        lbl.textColor = .black
         lbl.textAlignment = .center
         return lbl
     }()
@@ -54,7 +53,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "заполните параметры и наш алгоритм рассчитает наиболее выгодные для Вас программы"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 3
-        lbl.textColor = .black
         lbl.textAlignment = .center
         return lbl
     }()
@@ -70,7 +68,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Стоимость жилья"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -83,12 +80,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -105,7 +101,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Первоначальный взнос"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -118,12 +113,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -140,7 +134,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Срок до"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -153,12 +146,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         txtField.placeholder = "0 лет"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -175,7 +167,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Первоначальный взнос"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -188,12 +179,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -248,7 +238,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Тип жилья"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 3
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -288,7 +277,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Можете подтвердить доход?"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -314,7 +302,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Доход"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -326,12 +313,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let txtField = UITextField(frame: CGRect(x: 20, y: 11*h/12, width: UIScreen.main.bounds.width - 40, height: h/18))
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -345,7 +331,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Расходы"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -358,12 +343,12 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 )
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
+
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -377,7 +362,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Количество детей до 18 лет"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -390,12 +374,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 )
         txtField.placeholder = "0"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -585,7 +568,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Наличие жилья"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
         
         return lbl
@@ -624,7 +606,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Есть депозит в ЖССБ"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -653,7 +634,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Дата открытия депозита"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -666,12 +646,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 //        txtField.backgroundColor = .black
         txtField.placeholder = "ДД/ММ/ГГ"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -685,7 +664,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Вознаграждение за прошлый период"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -698,12 +676,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 //        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -717,7 +694,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         lbl.text = "Вознаграждение за текущий период"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
         
         return lbl
@@ -727,15 +703,13 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let h = UIScreen.main.bounds.height - 88
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 49*h/36, width: UIScreen.main.bounds.width - 40, height: h/18))
-//        txtField.backgroundColor = .black
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = .numberPad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -913,9 +887,14 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print("Viewdidappear")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        view.endEditing(true)
+
         sideMenu?.leftSide = true
         let menu = MenuController(with: SideMenuItem.allCases)
         
@@ -1023,9 +1002,9 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     
     func didSelectMenuItem(named: SideMenuItem) {
         sideMenu?.dismiss(animated: true, completion: nil)
-        
         title = named.rawValue
-        
+        view.endEditing(true)
+
         switch named {
         case .login:
             mainPageView.isHidden = true

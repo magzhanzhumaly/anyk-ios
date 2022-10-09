@@ -34,7 +34,6 @@
 		56B5E2AE28EEF33D007A2892 /* Calculations1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2AD28EEF33D007A2892 /* Calculations1ViewController.swift */; };
 		56B5E2B028EEF348007A2892 /* Calculations2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2AF28EEF348007A2892 /* Calculations2ViewController.swift */; };
 		56B5E2B228EEF351007A2892 /* Calculations3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5E2B128EEF351007A2892 /* Calculations3ViewController.swift */; };
-		56CC972628CD2674001D655D /* Main 2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CC972528CD2674001D655D /* Main 2.storyboard */; };
 		56D34C8828E9FBA500E0CE8F /* MortgageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */; };
 		56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */; };
 		56E5D6D028D9CD0E0035CED6 /* MortgageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */; };
@@ -92,7 +91,6 @@
 		56B5E2AD28EEF33D007A2892 /* Calculations1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations1ViewController.swift; sourceTree = "<group>"; };
 		56B5E2AF28EEF348007A2892 /* Calculations2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations2ViewController.swift; sourceTree = "<group>"; };
 		56B5E2B128EEF351007A2892 /* Calculations3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations3ViewController.swift; sourceTree = "<group>"; };
-		56CC972528CD2674001D655D /* Main 2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main 2.storyboard"; path = "../../../../Desktop/sort later/Main 2.storyboard"; sourceTree = "<group>"; };
 		56D34C8728E9FBA500E0CE8F /* MortgageDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageDetailsViewController.swift; sourceTree = "<group>"; };
 		56E0C59628E0F6D400C5C241 /* SingleMortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMortgageViewController.swift; sourceTree = "<group>"; };
 		56E5D6CF28D9CD0E0035CED6 /* MortgageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageListViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				569C7D9528C288DB00992C8B /* LaunchScreen.storyboard */,
-				56CC972528CD2674001D655D /* Main 2.storyboard */,
 				569C7D9028C288D800992C8B /* Main.storyboard */,
 			);
 			path = View;
@@ -366,7 +363,6 @@
 				569C7D9728C288DB00992C8B /* LaunchScreen.storyboard in Resources */,
 				569C7D9428C288DB00992C8B /* Assets.xcassets in Resources */,
 				569C7D9228C288D800992C8B /* Main.storyboard in Resources */,
-				56CC972628CD2674001D655D /* Main 2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,9 +697,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -732,9 +726,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

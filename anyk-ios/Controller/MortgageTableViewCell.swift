@@ -70,7 +70,9 @@ class MortgageTableViewCell: UITableViewCell {
                                                     UIColor(red: 68/255.0,
                                                             green: 153/255.0,
                                                             blue: 154/255.0,
-                                                            alpha: 0.1)]]
+                                                            alpha: 0.1)],
+                                          "orangish" : [UIColor.black,
+                                                        UIColor(named: "AccentColor")!]]
     
     private var id = -1
     private var name = ""
@@ -94,6 +96,16 @@ class MortgageTableViewCell: UITableViewCell {
     private var detailsFull = ""
     private var imageName = ""
     
+    private let txt1 = UILabel()
+    
+    private let txt2 = UILabel()
+    private let txt3 = UILabel()
+    private let txt4 = UILabel()
+    
+    private let txt2val = UILabel()
+    private let txt3val = UILabel()
+    private let txt4val = UILabel()
+
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "cat1")
@@ -104,7 +116,7 @@ class MortgageTableViewCell: UITableViewCell {
     
     private let titleText: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+//        label.textColor = .black
         label.font = .systemFont(ofSize: 15, weight: .medium)
         label.numberOfLines = 3
         
@@ -285,17 +297,14 @@ class MortgageTableViewCell: UITableViewCell {
         self.myImageView.image = UIImage(named: imageName)
         self.detailCount = details.count
         self.firstDetail.text = details[0]
-        print("firstDetail.text = \(firstDetail.text)")
         if detailCount == 2 {
             self.secondDetail.text = details[1]
         }
         if detailCount == 3 {
             self.secondDetail.text = details[1]
             self.thirdDetail.text = details[2]
-            print("self.secondDetail.text = \(details[1])")
-            print("self.thirdDetail.text = \(details[2])")
-            
         }
+        
         self.text1val.text = "\(AEIR)%"
         if initialFee.count > 2 {
             self.text2val.text = "\(initialFee.prefix(3))"
@@ -316,136 +325,261 @@ class MortgageTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         let imageSize = 40
-        
-        //        let switchSize = _switch.sizeThatFits(contentView.frame.size)
-        
-        print("contentView.frame.size.height = \(contentView.frame.size.height)")
-        
-        myImageView.frame = CGRect(x: 10,
-                                   y: 10,
-                                   width: imageSize,
-                                   height: imageSize)
-        
-        titleText.frame = CGRect(x: 20 + imageSize,
-                                 y: 10,
-                                 width: Int(contentView.frame.size.width) - 20 - imageSize - 10,
-                                 height: imageSize)
-        
-        
-        print("self.detailsColors[0] = \(self.detailsColors[0])")
-        firstDetail.textColor = colorDict[self.detailsColors[0]]?[0]
-        firstDetail.backgroundColor = colorDict[self.detailsColors[0]]?[1]
-        
-        var lowestY = 0
-        
-        if details.count == 1 {
-            firstDetail.frame = CGRect(x: 10,
-                                       y: 20 + imageSize,
-                                       width: Int(firstDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(firstDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-                                       height: Int(firstDetail.intrinsicContentSize.height) + 10)
-            
-            lowestY = 30 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10
+
+        if AEIR < 0 {
             secondDetail.removeFromSuperview()
             thirdDetail.removeFromSuperview()
-        } else if details.count == 2 {
+            
+            text1.removeFromSuperview()
+            text2.removeFromSuperview()
+            text3.removeFromSuperview()
+            text4.removeFromSuperview()
+            
+            text1val.removeFromSuperview()
+            text2val.removeFromSuperview()
+            text3val.removeFromSuperview()
+            text4val.removeFromSuperview()
+            
+            firstDetail.textColor = UIColor.label // here
+            colorDict[self.detailsColors[0]]?[0]
+            firstDetail.backgroundColor = .clear
+            firstDetail.layer.cornerRadius = 5
+            firstDetail.layer.borderWidth = 1
+            firstDetail.layer.borderColor = CGColor(red: 211/255.0, green: 112/255.0, blue: 86/255.0, alpha: 1)
+
+            var lowestY: CGFloat
+            lowestY = 0
+            var tempHeight = Int(firstDetail.intrinsicContentSize.height) + 10
+            var width = Int(contentView.frame.size.width) - 20
+
             firstDetail.frame = CGRect(x: 10,
                                        y: 20 + imageSize,
                                        width: Int(firstDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(firstDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-                                       height: Int(firstDetail.intrinsicContentSize.height) + 10)
+                                       height: tempHeight)
+            
+            lowestY = CGFloat(30 + imageSize + tempHeight)
+            
+            
+//            txt1.text = whereToApply[0]
+            txt1.text = whereToApply.reduce("", { runningString, value in
+                runningString + value + "\n"
+                
+            })
+            txt1.font = .systemFont(ofSize: 12, weight: UIFont.Weight.light)
+            txt1.numberOfLines = 0
+            tempHeight = Int(txt1.intrinsicContentSize.height + 20)
+            txt1.frame = CGRect(x: 10, y: lowestY, width: contentView.frame.size.width - 20, height: CGFloat(tempHeight))
+            lowestY += CGFloat(tempHeight)
+            
+            contentView.addSubview(txt1)
+            
+            txt2.text = "Стоимость (крупные города)"
+            txt3.text = "Стоимость (регионы)"
+            txt4.text = "Стоимость аренды"
+            
+            txt2.textColor = .gray
+            txt3.textColor = .gray
+            txt4.textColor = .gray
 
-            contentView.addSubview(secondDetail)
-            
-            secondDetail.textColor = colorDict[self.detailsColors[1]]?[0]
-            secondDetail.backgroundColor = colorDict[self.detailsColors[1]]?[1]
-            
-            secondDetail.frame = CGRect(x: 10,
-                                        y: 25 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10,
-                                        width: Int(secondDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(secondDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-                                        height: Int(secondDetail.intrinsicContentSize.height) + 10)
-            
-            lowestY = 55 + imageSize + Int(firstDetail.intrinsicContentSize.height) + Int(secondDetail.intrinsicContentSize.height)
-            thirdDetail.removeFromSuperview()
-        } else if details.count == 3 {
-            firstDetail.frame = CGRect(x: 10,
-                                       y: 20 + imageSize,
-                                       width: Int(firstDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(firstDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-                                       height: Int(firstDetail.intrinsicContentSize.height) + 10)
+            txt2.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            txt3.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            txt4.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
 
+            
+            txt2val.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            txt3val.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+            txt4val.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+
+            txt2val.text = properties[0]
+            txt3val.text = properties[1]
+            txt4val.text = properties[2]
+
+            tempHeight = Int(txt2.intrinsicContentSize.height)
+            txt2.frame = CGRect(x: 10, y: lowestY, width: CGFloat(width), height: txt2.intrinsicContentSize.height)
+            lowestY += CGFloat(tempHeight + 5)
+            tempHeight = Int(txt2.intrinsicContentSize.height)
+            txt2val.frame = CGRect(x: 10, y: lowestY, width: CGFloat(width), height: txt2val.intrinsicContentSize.height)
+            lowestY += CGFloat(tempHeight + 5)
+            tempHeight = Int(txt2.intrinsicContentSize.height)
+            txt3.frame = CGRect(x: 10, y: lowestY, width: CGFloat(width), height: txt2.intrinsicContentSize.height)
+            lowestY += CGFloat(tempHeight + 5)
+            tempHeight = Int(txt2.intrinsicContentSize.height)
+            txt3val.frame = CGRect(x: 10, y: lowestY, width: CGFloat(width), height: txt2.intrinsicContentSize.height)
+            lowestY += CGFloat(tempHeight + 5)
+            tempHeight = Int(txt2.intrinsicContentSize.height)
+            txt4.frame = CGRect(x: 10, y: lowestY, width: CGFloat(width), height: txt2.intrinsicContentSize.height)
+            lowestY += CGFloat(tempHeight + 5)
+            tempHeight = Int(txt2.intrinsicContentSize.height)
+            txt4val.frame = CGRect(x: 10, y: lowestY, width: CGFloat(width), height: txt2.intrinsicContentSize.height)
+            lowestY += CGFloat(tempHeight + 10)
+            
+            moreButton.frame = CGRect(x: 10,
+                                      y: lowestY,
+                                      width: CGFloat(width), height: 40)
+
+            lowestY += 50
+            
+            contentView.addSubview(txt2)
+            contentView.addSubview(txt2val)
+            contentView.addSubview(txt3)
+            contentView.addSubview(txt3val)
+            contentView.addSubview(txt4)
+            contentView.addSubview(txt4val)
+            
+        } else {
+            
+            txt1.removeFromSuperview()
+            txt2.removeFromSuperview()
+            txt3.removeFromSuperview()
+            txt4.removeFromSuperview()
+            
+            txt2val.removeFromSuperview()
+            txt3val.removeFromSuperview()
+            txt4val.removeFromSuperview()
+
+            
             contentView.addSubview(secondDetail)
             contentView.addSubview(thirdDetail)
             
-            secondDetail.textColor = colorDict[self.detailsColors[1]]?[0]
-            secondDetail.backgroundColor = colorDict[self.detailsColors[1]]?[1]
+            contentView.addSubview(text1)
+            contentView.addSubview(text2)
+            contentView.addSubview(text3)
+            contentView.addSubview(text4)
+            
+            contentView.addSubview(text1val)
+            contentView.addSubview(text2val)
+            contentView.addSubview(text3val)
+            contentView.addSubview(text4val)
+
 
             
-            thirdDetail.textColor = colorDict[self.detailsColors[2]]?[0]
-            thirdDetail.backgroundColor = colorDict[self.detailsColors[2]]?[1]
-
+            //        let switchSize = _switch.sizeThatFits(contentView.frame.size)
             
-            secondDetail.frame = CGRect(x: 10,
-                                        y: 25 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10,
-                                        width: Int(secondDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(secondDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-                                        height: Int(secondDetail.intrinsicContentSize.height) + 10)
+            myImageView.frame = CGRect(x: 10,
+                                       y: 10,
+                                       width: imageSize,
+                                       height: imageSize)
+            
+            titleText.frame = CGRect(x: 20 + imageSize,
+                                     y: 10,
+                                     width: Int(contentView.frame.size.width) - 20 - imageSize - 10,
+                                     height: imageSize)
             
             
+            firstDetail.textColor = colorDict[self.detailsColors[0]]?[0]
+            firstDetail.backgroundColor = colorDict[self.detailsColors[0]]?[1]
             
-            thirdDetail.frame = CGRect(x: 10,
-                                       y: 30 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10 + Int(secondDetail.intrinsicContentSize.height) + 10,
-                                       width: Int(thirdDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(thirdDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
-                                       height: Int(thirdDetail.intrinsicContentSize.height) + 10)
+            var lowestY = 0
             
-            lowestY = 70 + imageSize + Int(firstDetail.intrinsicContentSize.height) + Int(secondDetail.intrinsicContentSize.height) + Int(thirdDetail.intrinsicContentSize.height)
+            if details.count == 1 {
+                firstDetail.frame = CGRect(x: 10,
+                                           y: 20 + imageSize,
+                                           width: Int(firstDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(firstDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
+                                           height: Int(firstDetail.intrinsicContentSize.height) + 10)
+                
+                lowestY = 30 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10
+                secondDetail.removeFromSuperview()
+                thirdDetail.removeFromSuperview()
+            } else if details.count == 2 {
+                firstDetail.frame = CGRect(x: 10,
+                                           y: 20 + imageSize,
+                                           width: Int(firstDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(firstDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
+                                           height: Int(firstDetail.intrinsicContentSize.height) + 10)
+                
+                contentView.addSubview(secondDetail)
+                
+                secondDetail.textColor = colorDict[self.detailsColors[1]]?[0]
+                secondDetail.backgroundColor = colorDict[self.detailsColors[1]]?[1]
+                
+                secondDetail.frame = CGRect(x: 10,
+                                            y: 25 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10,
+                                            width: Int(secondDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(secondDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
+                                            height: Int(secondDetail.intrinsicContentSize.height) + 10)
+                
+                lowestY = 55 + imageSize + Int(firstDetail.intrinsicContentSize.height) + Int(secondDetail.intrinsicContentSize.height)
+                thirdDetail.removeFromSuperview()
+            } else if details.count == 3 {
+                firstDetail.frame = CGRect(x: 10,
+                                           y: 20 + imageSize,
+                                           width: Int(firstDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(firstDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
+                                           height: Int(firstDetail.intrinsicContentSize.height) + 10)
+                
+                contentView.addSubview(secondDetail)
+                contentView.addSubview(thirdDetail)
+                
+                secondDetail.textColor = colorDict[self.detailsColors[1]]?[0]
+                secondDetail.backgroundColor = colorDict[self.detailsColors[1]]?[1]
+                
+                
+                thirdDetail.textColor = colorDict[self.detailsColors[2]]?[0]
+                thirdDetail.backgroundColor = colorDict[self.detailsColors[2]]?[1]
+                
+                
+                secondDetail.frame = CGRect(x: 10,
+                                            y: 25 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10,
+                                            width: Int(secondDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(secondDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
+                                            height: Int(secondDetail.intrinsicContentSize.height) + 10)
+                
+                
+                
+                thirdDetail.frame = CGRect(x: 10,
+                                           y: 30 + imageSize + Int(firstDetail.intrinsicContentSize.height) + 10 + Int(secondDetail.intrinsicContentSize.height) + 10,
+                                           width: Int(thirdDetail.intrinsicContentSize.width) < Int(contentView.frame.size.width) - 20 ? Int(thirdDetail.intrinsicContentSize.width) + 10 : Int(contentView.frame.size.width) - 20,
+                                           height: Int(thirdDetail.intrinsicContentSize.height) + 10)
+                
+                lowestY = 70 + imageSize + Int(firstDetail.intrinsicContentSize.height) + Int(secondDetail.intrinsicContentSize.height) + Int(thirdDetail.intrinsicContentSize.height)
+            }
+            
+            var width = (Int(contentView.frame.size.width) - 20)/4
+            
+            text1.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: width,
+                                 height: 35)
+            
+            text2.frame = CGRect(x: 10 + width,
+                                 y: lowestY,
+                                 width: width,
+                                 height: 35)
+            
+            text3.frame = CGRect(x: 10 + width*2,
+                                 y: lowestY,
+                                 width: width,
+                                 height: 35)
+            
+            text4.frame = CGRect(x: 10 + width*3,
+                                 y: lowestY,
+                                 width: width,
+                                 height: 35)
+            
+            lowestY += 45
+            
+            text1val.frame = CGRect(x: 10,
+                                    y: lowestY,
+                                    width: width,
+                                    height: 35)
+            text2val.frame = CGRect(x: 10 + width,
+                                    y: lowestY,
+                                    width: width,
+                                    height: 35)
+            
+            text3val.frame = CGRect(x: 10 + width*2,
+                                    y: lowestY,
+                                    width: width,
+                                    height: 35)
+            
+            text4val.frame = CGRect(x: 10 + width*3,
+                                    y: lowestY,
+                                    width: width,
+                                    height: 35)
+            
+            lowestY += 45
+            
+            var contWidth = Int(contentView.frame.size.width)
+            
+            moreButton.frame = CGRect(x: 10,
+                                      y: lowestY,
+                                      width: contWidth - 20, height: 40)
         }
-        
-        var width = (Int(contentView.frame.size.width) - 20)/4
-        
-        text1.frame = CGRect(x: 10,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-
-        text2.frame = CGRect(x: 10 + width,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-        
-        text3.frame = CGRect(x: 10 + width*2,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-        
-        text4.frame = CGRect(x: 10 + width*3,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-        
-        lowestY += 45
-        
-        text1val.frame = CGRect(x: 10,
-                                y: lowestY,
-                                width: width,
-                                height: 35)
-        text2val.frame = CGRect(x: 10 + width,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-        
-        text3val.frame = CGRect(x: 10 + width*2,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-        
-        text4val.frame = CGRect(x: 10 + width*3,
-                             y: lowestY,
-                             width: width,
-                             height: 35)
-        
-        lowestY += 45
-        
-        var contWidth = Int(contentView.frame.size.width)
-
-        moreButton.frame = CGRect(x: 10,
-                                  y: lowestY,
-                                  width: contWidth - 20, height: 40)
     }
 }

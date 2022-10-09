@@ -11,6 +11,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     var mortgageName = "72025"
     
+    private let mortgageManager = MortgageManager()
+    
+//    mortgageManager.fetchData(completion: <#T##(Result<[MortgageModel], Error>) -> Void#>)
     let dataArray = ["72025",
                      "Баспана ХИТ",
                      "Жилищный заем \"Баспана\"",

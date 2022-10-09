@@ -681,18 +681,24 @@ class MortgageDetailsViewController: UIViewController {
             if whereToApply != ["Жилстройсбербанк"] {
                 
                 // case 1
+                self.performSegue(withIdentifier: "calculations1", sender: self)
+
                 print("case 1")
             } else {
                 
                 if minTerm == 6 {
                     
                     // case 2
+                    self.performSegue(withIdentifier: "calculations2", sender: self)
                     
                     print("case 2")
                 } else {
                     
                     // case 3
+                    self.performSegue(withIdentifier: "calculations3", sender: self)
+
                     print("case 3")
+                    
                 }
                 
             }
@@ -705,19 +711,15 @@ class MortgageDetailsViewController: UIViewController {
       
     }
     
-//    @objc func secondButtonAction(sender: UIButton!) {
-//        self.performSegue(withIdentifier: "mortgageListSegue", sender: self)
-//    }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "calculations1" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "calculations1" {
 //            let destinationVC = segue.destination as! MortgageListViewController
-//        }
-//        if segue.identifier == "calculations2" {
-//        }
-//        if segue.identifier == "calculations3" {
-//        }
-//    }
+        }
+        if segue.identifier == "calculations2" {
+        }
+        if segue.identifier == "calculations3" {
+        }
+    }
 
 }
 

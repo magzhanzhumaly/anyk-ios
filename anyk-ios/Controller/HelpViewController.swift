@@ -274,6 +274,11 @@ class HelpViewController: UIViewController {
         txtField4.delegate = self
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

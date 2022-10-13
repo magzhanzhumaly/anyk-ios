@@ -72,29 +72,43 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         }
 
         let btn = UIButton()
-        btn.menu = UIMenu(children : [
+                
+        return btn
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let optionClosure = {(action : UIAction) in
+            print(action.title)
+            if action.title == "общей переплате ▼" || action.title == "ежемесячному платежу ▼" {
+                self.data[0].sort {
+                    $0.pos < $1.pos
+                }
+            } else if action.title == "процентной ставке (ГЭСВ) ▼"{
+                self.data[0].sort {
+                    $0.AEIR < $1.AEIR
+                }
+            } else if action.title == "первоначальному взносу ▼" {
+                self.data[0].sort {
+                    (Int($0.initialFee.prefix(2)) ?? 0) < (Int($1.initialFee.prefix(2)) ?? 0)
+                }
+            }
+            self.tableView.reloadData()
+        }
+
+        button2.menu = UIMenu(children : [
             UIAction(title: "общей переплате ▼", state: .on, handler: optionClosure),
             UIAction(title: "ежемесячному платежу ▼", handler: optionClosure),
             UIAction(title: "процентной ставке (ГЭСВ) ▼", handler: optionClosure),
             UIAction(title: "первоначальному взносу ▼", handler: optionClosure)])
 
-        btn.showsMenuAsPrimaryAction = true
-        btn.changesSelectionAsPrimaryAction = true
-//        btn.setTitle("общей переплате ▼", for: .normal)
+        button2.showsMenuAsPrimaryAction = true
+        button2.changesSelectionAsPrimaryAction = true
 
-        btn.setTitleColor(.black, for: .normal)
-        return btn
-    }()
-    
-    func setPopupButton() {
-        let optionClosure = {(action : UIAction) in
-            print(action.title)
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
+//        view.backgroundColor = UIColor(named: "BackgroundColor")
+        tableView.backgroundColor = UIColor(named: "BackgroundColor")
         
         data.append([MortgageModel]())
         data.append([MortgageModel]())
@@ -103,22 +117,22 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         title = "Ипотеки"
           
         
-//        print("textField1 = \(textField1)")
-//        print("textField2 = \(textField2)")
-//        print("textField3 = \(textField3)")
-//        print("textField4 = \(textField4)")
-//        print("textField6_1 = \(textField6_1)")
-//        print("textField6_2 = \(textField6_2)")
-//        print("textField6_3 = \(textField6_3)")
-//        print("textField8_1 = \(textField8_1)")
-//        print("textField8_2 = \(textField8_2)")
-//        print("textField8_3 = \(textField8_3)")
+        print("textField1 = \(textField1)")
+        print("textField2 = \(textField2)")
+        print("textField3 = \(textField3)")
+        print("textField4 = \(textField4)")
+        print("textField6_1 = \(textField6_1)")
+        print("textField6_2 = \(textField6_2)")
+        print("textField6_3 = \(textField6_3)")
+        print("textField8_1 = \(textField8_1)")
+        print("textField8_2 = \(textField8_2)")
+        print("textField8_3 = \(textField8_3)")
 
 
-//        print("segCtrl1Choice = \(segCtrl1Choice)")
-//        print("segCtrl2Choice = \(segCtrl2Choice)")
-//        print("segCtrl3Choice = \(segCtrl3Choice)")
-//        print("segCtrl4Choice = \(segCtrl4Choice)")
+        print("segCtrl1Choice = \(segCtrl1Choice)")
+        print("segCtrl2Choice = \(segCtrl2Choice)")
+        print("segCtrl3Choice = \(segCtrl3Choice)")
+        print("segCtrl4Choice = \(segCtrl4Choice)")
         
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -471,42 +485,3 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
         }
     }
 }
-
-/*
-    let newDestinationVC = ResidentialComplexesListViewController()
-    newDestinationVC.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
-    super.inputViewController?.navigationController(newDestinationVC, animated: true)
-    //        self.navigationController?.pushViewController(newDestinationVC, animated: true)
-
-    //        self.performSegue(withIdentifier: "mortgageListSegue", sender: self)
-    }
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "mortgageListSegue" {
-        let destinationVC = segue.destination as! MortgageDetailsViewController
-        
-        destinationVC.textField1 = txtField1.text!
-        destinationVC.textField2 = txtField2.text!
-        destinationVC.textField3 = txtField3.text!
-        destinationVC.textField4 = txtField4.text!
-        destinationVC.textField6_1 = txtField6_1.text!
-        destinationVC.textField6_2 = txtField6_2.text!
-        destinationVC.textField6_3 = txtField6_3.text!
-        destinationVC.textField8_1 = txtField8_1.text!
-        destinationVC.textField8_2 = txtField8_2.text!
-        destinationVC.textField8_3 = txtField8_3.text!
-        
-        destinationVC.segCtrl1Choice = segCtrl1Choice
-        destinationVC.segCtrl2Choice = segCtrl2Choice
-        destinationVC.segCtrl3Choice = segCtrl3Choice
-        destinationVC.segCtrl4Choice = segCtrl4Choice
-    }
-    
-    if segue.identifier == "residentialComplexesListSegue" {
-        let destinationVC = segue.destination as! ResidentialComplexesListViewController
-        print("I was here")
-        destinationVC.selectedCity = self.txtField2.text!
-    }
-}
-
-
-*/

@@ -9,6 +9,9 @@ target 'anyk-ios' do
   # Pods for anyk-ios
 pod 'SideMenu'
 
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
+
   target 'anyk-iosTests' do
     inherit! :search_paths
     # Pods for testing

@@ -28,6 +28,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     var segCtrl3Choice: Int = 0
     var segCtrl4Choice: Int = 0
 
+    var par4 = "Не выбрано"
+    
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100))
         return scrollView
@@ -35,6 +37,9 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
     let h = UIScreen.main.bounds.height - 88
 
+    
+    private let datePicker = UIDatePicker()
+    
     var titleText: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
@@ -164,33 +169,48 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let h = UIScreen.main.bounds.height - 88
 
         let lbl = UILabel(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: h/2, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
-        lbl.text = "Первоначальный взнос"
+        lbl.text = "Я состою в очереди на жилье как"
+        lbl.numberOfLines = 2
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        lbl.numberOfLines = 1
         lbl.textAlignment = .left
 
         return lbl
     }()
     
-    var txtField4: UITextField = {
+    var txtField4: UIButton = {
+        
         let h = UIScreen.main.bounds.height - 88
 
-        let txtField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: 5*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+//        let txtField = UITextField(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: 5*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+        let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/2 + 10, y: 5*h/9, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+        btn.setTitle("Не выбрано", for: .normal)
+        btn.setTitleColor(.label, for: .normal)
 
-        txtField.placeholder = "0₸"
-        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textAlignment = .left
+        btn.layer.cornerRadius = 6
+        btn.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        btn.titleLabel?.numberOfLines = 2
+        btn.layer.borderWidth = 1
+        btn.backgroundColor = .systemBackground
         
-        txtField.borderStyle = UITextField.BorderStyle.roundedRect
-        txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = .numberPad
-        txtField.returnKeyType = UIReturnKeyType.done
-        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-
-        return txtField
+        btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        return btn
     }()
     
+//    @objc func segmentControl3(_ segmentedControl: UISegmentedControl) {
+//        switch (segmentedControl.selectedSegmentIndex) {
+//        case 0:
+//            segCtrl3Choice = 0
+//        case 1:
+//            segCtrl3Choice = 1
+//        case 2:
+//            segCtrl3Choice = 2
+//        default:
+//            segCtrl3Choice = 0
+//        }
+//    }
     
+
 
     // Buttons
     var firstButton: UIButton = {
@@ -866,7 +886,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             destinationVC.textField1 = txtField1.text!
             destinationVC.textField2 = txtField2.text!
             destinationVC.textField3 = txtField3.text!
-            destinationVC.textField4 = txtField4.text!
+            destinationVC.textField4 = par4
             destinationVC.textField6_1 = txtField6_1.text!
             destinationVC.textField6_2 = txtField6_2.text!
             destinationVC.textField6_3 = txtField6_3.text!
@@ -894,6 +914,24 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        view.endEditing(true)
+        
+        createDatePicker()
+        let optionClosure = {(action : UIAction) in
+            print(action.title)
+            self.par4 = action.title
+            self.txtField4.setTitle(action.title, for: .normal)
+        }
+
+        txtField4.menu = UIMenu(children : [
+            UIAction(title: "Не выбрано", state: .on, handler: optionClosure),
+            UIAction(title: "Не состою в очереди", handler: optionClosure),
+            UIAction(title: "Военный", handler: optionClosure),
+            UIAction(title: "Неполная семья", handler: optionClosure),
+            UIAction(title: "Многодетная семья", handler: optionClosure),
+            UIAction(title: "Семья с ребёнком инвалидом", handler: optionClosure)])
+        txtField4.showsMenuAsPrimaryAction = true
+        txtField4.changesSelectionAsPrimaryAction = true
+        
 
         sideMenu?.leftSide = true
         let menu = MenuController(with: SideMenuItem.allCases)
@@ -910,7 +948,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         txtField1.delegate = self
         txtField2.delegate = self
         txtField3.delegate = self
-        txtField4.delegate = self
         txtField6_1.delegate = self
         txtField6_2.delegate = self
         txtField6_3.delegate = self
@@ -945,6 +982,42 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         secondButton.addTarget(self, action: #selector(secondButtonAction), for: .touchUpInside)
 
         addChildControllers()
+    }
+    
+    func createDatePicker() {
+        
+//        txtField8_1.textAlignment = .center
+        
+        // toolbar
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        // bar button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolBar.setItems([doneBtn], animated: true)
+        // assign toolbar
+        txtField8_1.inputAccessoryView = toolBar
+        
+        // assign date picker to the text field
+        txtField8_1.inputView = datePicker
+        
+        // date picker mode
+        datePicker.datePickerMode = .date
+        
+        
+//        let date = Date()
+//        datePicker.datePickerMode = .date
+//        datePicker.addTarget(self, action: #selector(donePressed), for: UIControl.Event.valueChanged)
+        datePicker.frame.size = CGSize(width: 0, height: 250)
+    }
+    
+    @objc func donePressed() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+//        formatter.timeStyle = .none
+        
+        txtField8_1.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
     @objc func dismissKeyboard() {

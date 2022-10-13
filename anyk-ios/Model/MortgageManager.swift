@@ -82,7 +82,7 @@ class MortgageManager  {
                       
                       properties: ["Первичное жилье (квартира и дом)", "Покупка вторичного жилья"],
                       whereToApply: ["Altynbank"],
-                      details: ["с частичным подтверждением дохода"],
+                      details: ["с частичным подтверждением доходов"],
                       detailsColors: [ColorName.orange.rawValue],
                       detailsFull: "с частичным подтверждением\nКредиты на покупку недвижимости в городах Алматы, Нур-Султан(в радиусе 30 км) от города, Атырау и Актау с возможностью частичного подтверждения доходов",
                       imageName: ImageName.altynBank.rawValue),
@@ -826,7 +826,7 @@ class MortgageManager  {
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
                       initialFee: "50% - 100%",
-                      maxCredit: 0,
+                      maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
                       minTerm: 6, maxTerm: 25,
@@ -846,7 +846,7 @@ class MortgageManager  {
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
                       initialFee: "50% - 100%",
-                      maxCredit: 0,
+                      maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
                       minTerm: 6, maxTerm: 25,
@@ -866,7 +866,7 @@ class MortgageManager  {
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
                       initialFee: "20% - 49%",
-                      maxCredit: 0,
+                      maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
                       minTerm: 3, maxTerm: 19,
@@ -880,13 +880,13 @@ class MortgageManager  {
                       imageName: ImageName.nurlyZher.rawValue),
 
         MortgageModel(pos: 40,
-                      name: "\"Стандартный\" заем для \"Нұрлы жер\"",
+                      name: "Жилищный заем по программе \"Нұрлы жер\"",
                       AEIR: 5.2,
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
                       initialFee: "50% - 100%",
-                      maxCredit: 0,
+                      maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
                       minTerm: 6, maxTerm: 25,
@@ -1176,18 +1176,104 @@ class MortgageManager  {
             if textField1 != "" {
                 bool2 = txtfld2 * feePercent >= $0.maxCredit * feePercent
             }
- 
-            if !(bool1 && bool2) {
-                leftOutData.append($0)
+            
+            var bool3 = $0.maxTerm > Int(textField3) ?? 0
+
+            var bool4 = true
+            if textField4 == "Не состою в очереди" {
+                for s in $0.details {
+                    if s.contains("очередн") || s.contains("военн") || s.contains("семьи") || s.contains("военн") {
+                        bool4 = false
+                    }
+                }
+            } else if textField4 == "Военный" {
+//                for s in $0.details {        too consuming
+//                    if s.contains("семьи") {
+//                        bool4 = false
+//                    }
+//                }
+
+                if $0.pos == 45 {
+                    bool4 = false
+                }
+            } else if textField4 == "Неполная семья" || textField4 == "Многодетная семья" || textField4 == "Семья с ребёнком инвалидом" {
+                for s in $0.details {
+                    if s.contains("военн") {
+                        bool4 = false
+                    }
+                }
             }
             
-            return bool1 && bool2
-//            return $0.maxCredit >= Int(textField1) ?? 0 && txtfld2 * feePercent > $0.maxCredit * feePercent
             
-            var new = myOriginalData.sorted(by: { $0.pos < $1.pos })
-
-
+            
+            var bool5 = true
+            if segCtrl1Choice == 1 {
+                if !$0.properties.contains("Первичное жилье (квартира и дом)") {
+                    bool5 = false
+                }
+            } else if segCtrl1Choice == 2 {
+                if !$0.properties.contains("Покупка вторичного жилья") {
+                    bool5 = false
+                }
+            }
+            
+           
+            
+            var bool6 = true
+            if segCtrl2Choice == 1 {
+                // NOT CLEAR HOW THEY AFFECT THE SEARCH: THEY DON'T AFFECT IT IN THE WEBSITE
+//                textField6_1
+//                textField6_2
+//                textField6_3
+            } else if segCtrl2Choice == 2 {
+                if $0.details.contains("с частичным подтверждением доходов") || $0.details.contains("без подтверждения дохода") || $0.pos == 34 {
+                    bool6 = false
+                }
+            }
+            
+            
+            
+            var bool7 = true
+            if segCtrl3Choice == 1 {
+                if $0.name == "5-10-20" || $0.name == "72025" || $0.name.contains("отбасы") {
+                    bool7 = false
+                }
+                
+                for s in $0.details {
+                    if s.contains("военн") || s.contains("отбасы") {
+                        bool7 = false
+                    }
+                }
+            }
+            
+            
+            
+            var bool8 = true
+            if segCtrl4Choice == 1 {
+                
+            }
+            
+            var finalBool = bool1 && bool2 && bool3 && bool4 && bool5 && bool6 && bool7 && bool8
+            if !finalBool {
+                leftOutData.append($0)
+            }
+            return finalBool
+            
+//            var new = myOriginalData.sorted(by: { $0.pos < $1.pos })
+            
         })
+        
+//        Не выбрано", handler: opti
+//        Не состою в очереди", stat
+//        Военный", handler: optionC
+//        Неполная семья", handler: 
+//        Многодетная семья", handle
+//        Семья с ребёнком инвалидом
+        
+        
+        
+        
+        
         
 //        DispatchQueue.global().asyncAfter(deadline: .now() + (pagination ? 0 : 0), execute: {
 

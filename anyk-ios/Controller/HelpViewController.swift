@@ -151,7 +151,7 @@ class HelpViewController: UIViewController {
         let optionClosure = {(action : UIAction) in
             print(action.title)}
 
-        let btn = UIButton(frame: CGRect(x: 20, y: 17*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/18))
+        let btn = UIButton(frame: CGRect(x: 20, y: 17*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/12))
         btn.menu = UIMenu(children : [
             UIAction(title: "Предложения по работе платформы", state: .on, handler: optionClosure),
             UIAction(title: "Сообщить об ошибке на онлайн-платформе", handler: optionClosure),
@@ -160,20 +160,24 @@ class HelpViewController: UIViewController {
 
         btn.showsMenuAsPrimaryAction = true
         btn.changesSelectionAsPrimaryAction = true
+        btn.titleLabel?.numberOfLines = 2
+        btn.titleLabel?.textAlignment = .center
+        btn.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         btn.setTitle("Выберите тип сообщения", for: .normal)
+        btn.setTitleColor(.label, for: .normal)
 
-        btn.setTitleColor(.black, for: .normal)
         btn.layer.cornerRadius = 6
         btn.layer.borderWidth = 1
         btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
 
+        
         return btn
     }()
 
     var txt5: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
-        let lbl = UILabel(frame: CGRect(x: 20, y: 19*h/36 + 88, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
+        let lbl = UILabel(frame: CGRect(x: 20, y: 20*h/36 + 88, width: (UIScreen.main.bounds.width - 60)/2, height: h/18))
         lbl.text = "Сообщение"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
@@ -186,7 +190,7 @@ class HelpViewController: UIViewController {
     var txtField4: UITextField = {
         let h = UIScreen.main.bounds.height - 88
 
-        let txtField = UITextField(frame: CGRect(x: 20, y: 21*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/4))
+        let txtField = UITextField(frame: CGRect(x: 20, y: 22*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/4))
 
         txtField.placeholder = "Введите ваше сообщение в свободной форме"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
@@ -207,7 +211,7 @@ class HelpViewController: UIViewController {
     var secondButton: UIButton = {
         let h = UIScreen.main.bounds.height - 88
 
-        let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/3, y: 5*h/6 + 88 + 20, width: UIScreen.main.bounds.width/3, height: h/18))
+        let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/3, y: 31*h/36 + 88 + 20, width: UIScreen.main.bounds.width/3, height: h/18))
         btn.setTitle("Отправить", for: .normal)
         btn.titleLabel?.numberOfLines = 3
         btn.layer.cornerRadius = 20
@@ -250,6 +254,7 @@ class HelpViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
         view.addSubview(scrollView)
+        
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
 
         

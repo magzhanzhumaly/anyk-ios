@@ -317,13 +317,22 @@ class MortgageTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {  // important
         super.prepareForReuse()
-        titleText.text = nil
-        myImageView.image = nil
+//        titleText.text = nil
+//        myImageView.image = nil
+//        firstDetail.textColor = nil
+//        firstDetail.backgroundColor = nil
+//        firstDetail.text = nil
+        firstDetail.layer.cornerRadius = 0
+        firstDetail.layer.borderWidth = 0
+//        firstDetail.layer.borderColor = nil
     }
         
     override func layoutSubviews() {  // this method is called when the view is gonna ask how are you gonna layout all the subviews
         super.layoutSubviews()
-        
+//        prepareForReuse()
+        firstDetail.layer.cornerRadius = 0
+        firstDetail.layer.borderWidth = 0
+
         let imageSize = 40
 
         if AEIR < 0 {

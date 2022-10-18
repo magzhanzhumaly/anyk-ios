@@ -1257,11 +1257,15 @@ class MortgageManager  {
             if !finalBool {
                 leftOutData.append($0)
             }
+            
+            
             return finalBool
             
 //            var new = myOriginalData.sorted(by: { $0.pos < $1.pos })
             
         })
+        
+        array = array.sorted(by: { $0.pos < $1.pos })
         
 //        Не выбрано", handler: opti
 //        Не состою в очереди", stat

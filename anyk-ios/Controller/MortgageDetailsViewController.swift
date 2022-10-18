@@ -11,9 +11,18 @@ class MortgageDetailsViewController: UIViewController {
     let h = UIScreen.main.bounds.height - 88
 
     let w = UIScreen.main.bounds.width - 20
-    var tempHeight: CGFloat = 0.0
     
+    var popUpOption = "срок 1-го этапа 3 года, срок 2-го этапа 6 лет"
+    
+    var myButtonDefaultY: CGFloat = 0
+    var tempHeight: CGFloat = 0.0
     var lowestY: CGFloat = 0.0
+    var hhh = 0
+    var hh: CGFloat = 0
+    var hiddenSegmentY: CGFloat = 0
+    var zssbNoSegmentY: CGFloat = 0
+    var calcViewDefaultHeight: CGFloat = 0
+    let datePicker = UIDatePicker()
     
     var id = -1
     var name = ""
@@ -43,9 +52,33 @@ class MortgageDetailsViewController: UIViewController {
         return scrollView
     }()
    
+    var chosenSegment = 0
     
+    let calcView = UIView()
     
+    var termPopUpButton: UIButton = {
     
+        let h = UIScreen.main.bounds.height - 88
+
+        let btn = UIButton()
+        
+        btn.setTitle("срок 1-го этапа 3 года, срок 2-го этапа 6 лет", for: .normal)
+        btn.setTitleColor(.label, for: .normal)
+
+        btn.layer.cornerRadius = 6
+        btn.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+//                    btn.titleLabel?.numberOfLines = 2
+        btn.layer.borderWidth = 1
+        btn.backgroundColor = .systemBackground
+//        btn.titleLabel?.textAlignment = .left
+        
+//        btn.contentHorizontalAlignment = .left
+        
+        btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+
+        return btn
+    }()
+
     // TextField 1
     var txtField1: UITextField = {
         let h = UIScreen.main.bounds.height - 88
@@ -56,7 +89,7 @@ class MortgageDetailsViewController: UIViewController {
         
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
+//        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -84,7 +117,7 @@ class MortgageDetailsViewController: UIViewController {
         lbl.text = "Первоначальный взнос"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
+//        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -96,7 +129,7 @@ class MortgageDetailsViewController: UIViewController {
         let txtField = UITextField()
         txtField.placeholder = "0₸"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
+//        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -117,7 +150,7 @@ class MortgageDetailsViewController: UIViewController {
         let txtField = UITextField()
         txtField.placeholder = "0 лет"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
+//        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -129,6 +162,28 @@ class MortgageDetailsViewController: UIViewController {
         return txtField
     }()
     
+    var txtField1_1: UITextField = {
+        let txtField = UITextField()
+        return txtField
+    }()
+    
+    var txtField1_1txt = UILabel()
+    
+    var txtField1_2 = UITextField()
+    var txtField1_2txt = UILabel()
+
+    var txtField1_3 = UITextField()
+    var txtField1_3txt = UILabel()
+
+    
+    var txtField2_1 = UITextField()
+    var txtField2_1txt = UILabel()
+    var txtField2_2 = UITextField()
+    var txtField2_2txt = UILabel()
+    var txtField2_3 = UITextField()
+    var txtField2_3txt = UILabel()
+
+    var jaiText = UILabel()
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -137,9 +192,37 @@ class MortgageDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createDatePicker()
+        
         title = "Ипотека"
         print(id)
         print(name)
+        
+        txtField1.delegate = self
+        txtField2.delegate = self
+        txtField3.delegate = self
+        txtField1_1.delegate = self
+        txtField1_2.delegate = self
+        txtField1_3.delegate = self
+        
+        let optionClosure = {(action : UIAction) in
+            print(action.title)
+            self.popUpOption = action.title
+//            self.termPopUpButton.setTitle(action.title, for: .normal)
+        }
+
+        termPopUpButton.menu = UIMenu(children : [
+            UIAction(title: "срок 1-го этапа 3 года, срок 2-го этапа 6 лет", state: .on, handler: optionClosure),
+            UIAction(title: "срок 1-го этапа 4 года, срок 2-го этапа 7 лет", handler: optionClosure),
+            UIAction(title: "срок 1-го этапа 5 года, срок 2-го этапа 8 лет", handler: optionClosure),
+            UIAction(title: "срок 1-го этапа 6 года, срок 2-го этапа 9 лет", handler: optionClosure),
+            UIAction(title: "срок 1-го этапа 7 года, срок 2-го этапа 10 лет", handler: optionClosure),
+            UIAction(title: "срок 1-го этапа 8 года, срок 2-го этапа 11 лет", handler: optionClosure)])
+        termPopUpButton.showsMenuAsPrimaryAction = true
+        termPopUpButton.changesSelectionAsPrimaryAction = true
+        
+
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -151,6 +234,7 @@ class MortgageDetailsViewController: UIViewController {
         
         view.addSubview(scrollView)
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -407,8 +491,6 @@ class MortgageDetailsViewController: UIViewController {
         
         scrollView.addSubview(feeValue)
         
-//        print("feepercent = \(feePercent), feeinitial = \(feeInitial)")
-
         if feePercent != 0 {
             if feeInitial <= 0.05 {
                 feeValue.text = "\(feePercent)% от суммы займа"
@@ -514,39 +596,31 @@ class MortgageDetailsViewController: UIViewController {
         lowestY += tempHeight + 10
 
         
-        
-        
-        
-        
         // Calculator
-        let calcView = UIView()
         
         calcView.layer.cornerRadius = 20;
         calcView.layer.masksToBounds = true;
         
         
-        let orng = UIColor(red: 211/255.0,
-                           green: 112/255.0,
-                           blue: 86/255.0,
-                           alpha: 1)
+        let orng = UIColor(named: "AccentColor")
 
         calcView.layer.borderWidth = 1
-        calcView.layer.borderColor = orng.cgColor
+        calcView.layer.borderColor = orng?.cgColor
         scrollView.addSubview(calcView)
         
         tempHeight = h/18
-        var hh = lowestY
-        var hhh = lowestY
+        hh = lowestY
+        hhh = Int(lowestY)
         
         var txtField1txt: UILabel = {
-            let lbl = UILabel(frame: CGRect(x: 5, y: 15, width: w - 5, height: tempHeight/2))
+            let lbl = UILabel(frame: CGRect(x: 5, y: 15, width: w, height: tempHeight/2))
             
 //            let lbl = UILabel()
             
             lbl.text = "Стоимость жилья"
             lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
             lbl.numberOfLines = 1
-            lbl.textColor = .black
+//            lbl.textColor = .black
             lbl.textAlignment = .left
 
             return lbl
@@ -562,11 +636,11 @@ class MortgageDetailsViewController: UIViewController {
         lowestY += tempHeight + 10
 
         var txtField2txt: UILabel = {
-            let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w - 5, height: tempHeight/2))
+            let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
             lbl.text = "Первоначальный взнос"
             lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
             lbl.numberOfLines = 1
-            lbl.textColor = .black
+//            lbl.textColor = .black
             lbl.textAlignment = .left
 
             return lbl
@@ -583,11 +657,11 @@ class MortgageDetailsViewController: UIViewController {
         
 
         var txtField3txt: UILabel = {
-            let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w - 5, height: tempHeight/2))
+            let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
             lbl.text = "Срок займа"
             lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
             lbl.numberOfLines = 1
-            lbl.textColor = .black
+//            lbl.textColor = .black
             lbl.textAlignment = .left
 
             return lbl
@@ -596,19 +670,225 @@ class MortgageDetailsViewController: UIViewController {
         lowestY += tempHeight / 2
         calcView.addSubview(txtField3txt)
         
-        txtField3.frame = CGRect(x: 6, y: lowestY, width: w, height: tempHeight)
-        calcView.addSubview(txtField3)
+        // special cases
+        if whereToApply == ["Жилстройсбербанк"] || name == "\"5-10-20\"" {
+            
+            if initialFee.contains("49%") {
+                
+                // 2 textFields + popup button
+                termPopUpButton.frame = CGRect(x: 5, y: lowestY, width: w, height: tempHeight)
+                lowestY += 10 + tempHeight
+                myButton.frame = CGRect(x: 5, y: lowestY, width: w, height: tempHeight)
+                calcView.addSubview(termPopUpButton)
+                
+            } else {
+                
+                
+                // 3 textFields + button
+                
+                txtField3.frame = CGRect(x: 6, y: lowestY, width: w, height: tempHeight)
+                calcView.addSubview(txtField3)
+                lowestY += 20 + tempHeight
+                
+                
 
-        lowestY += tempHeight + 20
+                var txtField4txt = {
+                    let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
+                    lbl.text = "У меня есть депозит в ЖССБ"
+                    lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+                    lbl.numberOfLines = 1
+//                    lbl.textColor = .black
+                    lbl.textAlignment = .left
 
+                    return lbl
+                }()
+                
+                lowestY += tempHeight / 2
+                calcView.addSubview(txtField4txt)
+                
+
+                
+                
+                // add segment
+                var segControl: UISegmentedControl = {
+                    let segmentItems = ["нет", "да"]
+                    let control = UISegmentedControl(items: segmentItems)
+                    control.frame = CGRect(x: 10, y: lowestY, width: (UIScreen.main.bounds.width - 20), height: 40)
+                    control.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
+                    control.selectedSegmentIndex = 0
+
+                    return control
+                }()
+                
+                segControl.frame = CGRect(x: 5, y: lowestY, width: w, height: tempHeight)
+                calcView.addSubview(segControl)
+                lowestY += 40 + 20
+                
+                hiddenSegmentY = lowestY
+
+                
+                
+                
+                
+                if feePercent != 0 {
+                    
+                    // 3 textFields + button + 3 more textFields
+                    // add 3 more txtfields
+                    
+                    lowestY += 10
+                    
+                    jaiText = {
+                        let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
+                        lbl.text = "Параметры кредита по новому счету"
+                        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+//                        lbl.textColor = .lightGray
+                        lbl.textAlignment = .left
+                        
+                        return lbl
+                    }()
+                    
+                    calcView.addSubview(jaiText)
+                    
+                    lowestY += 10 + tempHeight/2
+
+                    txtField2_1txt = {
+                        let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
+                        lbl.text = "Сумма займа"
+                        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        //                lbl.numberOfLines = 1
+                        lbl.textColor = .lightGray
+                        lbl.textAlignment = .left
+                        
+                        return lbl
+                    }()
+                    
+                    lowestY += 10 + tempHeight/2
+                                
+                    txtField2_1 = {
+                        let h = UIScreen.main.bounds.height - 88
+                        
+                        let txtField = UITextField(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight))
+                        
+                        txtField.placeholder = "0₸"
+                        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+                        txtField.backgroundColor = .black
+                        txtField.textAlignment = .left
+                        
+                        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+                        txtField.autocorrectionType = UITextAutocorrectionType.no
+                        txtField.keyboardType = UIKeyboardType.numberPad
+                        txtField.returnKeyType = UIReturnKeyType.done
+                        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                        
+                        return txtField
+                    }()
+                    
+                    lowestY += 10 + tempHeight
+
+                    txtField2_2txt = {
+                        let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
+                        lbl.text = "Первоначальный взнос"
+                        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        //                lbl.numberOfLines = 1
+                        lbl.textColor = .lightGray
+                        lbl.textAlignment = .left
+                        
+                        return lbl
+                    }()
+                    
+                    lowestY += 10 + tempHeight/2
+                                
+                    txtField2_2 = {
+                        let h = UIScreen.main.bounds.height - 88
+                        
+                        let txtField = UITextField(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight))
+                        
+                        txtField.placeholder = "0₸"
+                        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+                        txtField.backgroundColor = .black
+                        txtField.textAlignment = .left
+                        
+                        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+                        txtField.autocorrectionType = UITextAutocorrectionType.no
+                        txtField.keyboardType = UIKeyboardType.numberPad
+                        txtField.returnKeyType = UIReturnKeyType.done
+                        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                        
+                        return txtField
+                    }()
+                    
+                    lowestY += 10 + tempHeight
+
+                    txtField2_3txt = {
+                        let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
+                        lbl.text = "Срок займа"
+                        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        //                lbl.numberOfLines = 1
+                        //            lbl.textColor = .black
+                        lbl.textAlignment = .left
+                        
+                        return lbl
+                    }()
+                    
+                    lowestY += 10 + tempHeight/2
+                                
+                    txtField2_3 = {
+                        let h = UIScreen.main.bounds.height - 88
+                        
+                        let txtField = UITextField(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight))
+                        
+                        txtField.placeholder = "0 лет"
+                        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+                        txtField.backgroundColor = .black
+                        txtField.textAlignment = .left
+                        
+                        txtField.borderStyle = UITextField.BorderStyle.roundedRect
+                        txtField.autocorrectionType = UITextAutocorrectionType.no
+                        txtField.keyboardType = UIKeyboardType.numberPad
+                        txtField.returnKeyType = UIReturnKeyType.done
+                        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                        
+                        return txtField
+                    }()
+                    
+                    lowestY += 20 + tempHeight
+
+                    
+                    calcView.addSubview(txtField2_1txt)
+                    calcView.addSubview(txtField2_1)
+
+                    calcView.addSubview(txtField2_2txt)
+                    calcView.addSubview(txtField2_2)
+
+                    calcView.addSubview(txtField2_3txt)
+                    calcView.addSubview(txtField2_3)
+
+
+                }
+                
+            }
+            
+        }
+        
+        // normal case
+        else {
+            
+            txtField3.frame = CGRect(x: 6, y: lowestY, width: w, height: tempHeight)
+            calcView.addSubview(txtField3)
+            lowestY += tempHeight + 20
+            hiddenSegmentY = lowestY
+        }
+
+        
+                
         tempHeight = h/18
         
-        myButton = UIButton(frame: CGRect(x: 5, y: lowestY, width: w - 5, height: tempHeight))
+        
+        myButtonDefaultY = lowestY
+        
+        myButton = UIButton(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight))
         myButton.setTitleColor(.white, for: .normal)
-        myButton.backgroundColor = UIColor(red: 211/255.0,
-                                      green: 112/255.0,
-                                      blue: 86/255.0,
-                                      alpha: 1)
+        myButton.backgroundColor = UIColor(named: "AccentColor")
 
         myButton.setTitle("РАССЧИТАТЬ", for: .normal)
 
@@ -616,19 +896,253 @@ class MortgageDetailsViewController: UIViewController {
         myButton.layer.masksToBounds = true;
 
         calcView.addSubview(myButton)
-        
+
         
         lowestY += tempHeight + 5
 
-        
         hh += lowestY
+ 
         
-        calcView.frame = CGRect(x: 4, y: hhh, width: w + 12, height: lowestY + 20)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 350)
+        calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: lowestY + 20)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 250)
         myButton .addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
+        calcViewDefaultHeight = lowestY + 20
+        
         lowestY = hh
+        
+    }
+    
+    @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
+        
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+//            txtField1.isHidden = true
+            txtField1_1.removeFromSuperview()
+            txtField1_1txt.removeFromSuperview()
+            txtField1_2.removeFromSuperview()
+            txtField1_2txt.removeFromSuperview()
+            txtField1_3.removeFromSuperview()
+            txtField1_3txt.removeFromSuperview()
 
+            calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: calcViewDefaultHeight)
+            myButton.frame = CGRect(x: 5, y: myButtonDefaultY, width: w, height: tempHeight)
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 250)
+
+            
+            if feePercent != 0 {
+                
+                var tempY = hiddenSegmentY + 10
+                jaiText.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_1txt.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_1.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight)
+                tempY += tempHeight + 10
+                
+                txtField2_2txt.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_2.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight)
+                tempY += tempHeight + 10
+                
+                txtField2_3txt.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_3.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight)
+                tempY += tempHeight + 20
+                
+                calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: tempY + 40 + 20)
+                
+            } else {
+                
+                var tempY = zssbNoSegmentY
+                
+                jaiText.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_1txt.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_1.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight)
+                tempY += tempHeight + 10
+                
+                txtField2_2txt.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_2.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight)
+                tempY += tempHeight + 10
+                
+                txtField2_3txt.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight/2)
+                tempY += tempHeight/2 + 10
+                
+                txtField2_3.frame = CGRect(x: 5, y: tempY, width: w, height: tempHeight)
+                tempY += tempHeight + 20
+                
+                calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: tempY + 40 + 40 + 20)
+
+            }
+                        
+        case 1:
+            
+            var localLowestY: CGFloat = 0
+            txtField1_1txt = {
+                let lbl = UILabel(frame: CGRect(x: 5, y: hiddenSegmentY, width: w, height: tempHeight/2))
+                lbl.text = "Дата открытия депозита"
+                lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+                lbl.textAlignment = .left
+                
+                return lbl
+            }()
+            
+            localLowestY = hiddenSegmentY + 10 + tempHeight/2
+            
+            calcView.addSubview(txtField1_1txt)
+            
+            let h = UIScreen.main.bounds.height - 88
+                
+            txtField1_1 = UITextField(frame: CGRect(x: 5, y: localLowestY, width: w, height: tempHeight))
+                
+            txtField1_1.placeholder = "ДД/ММ/ГГ"
+            txtField1_1.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+            txtField1_1.textAlignment = .left
+                
+            txtField1_1.borderStyle = UITextField.BorderStyle.roundedRect
+            txtField1_1.autocorrectionType = UITextAutocorrectionType.no
+            txtField1_1.keyboardType = UIKeyboardType.numberPad
+            txtField1_1.returnKeyType = UIReturnKeyType.done
+            txtField1_1.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+            
+            createDatePicker()
+
+            calcView.addSubview(txtField1_1)
+            localLowestY += tempHeight + 10
+            
+            txtField1_2txt = {
+                let lbl = UILabel(frame: CGRect(x: 5, y: localLowestY, width: w, height: tempHeight/2))
+                lbl.text = "Вознаграждение за прошлый период"
+                lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+//                lbl.numberOfLines = 1
+                //            lbl.textColor = .black
+                lbl.textAlignment = .left
+                
+                return lbl
+            }()
+            
+            localLowestY += 10 + tempHeight/2
+                        
+            txtField1_2 = {
+                let h = UIScreen.main.bounds.height - 88
+                
+                let txtField = UITextField(frame: CGRect(x: 5, y: localLowestY, width: w, height: tempHeight))
+                
+                txtField.placeholder = "0₸"
+                txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+                txtField.backgroundColor = .black
+                txtField.textAlignment = .left
+                
+                txtField.borderStyle = UITextField.BorderStyle.roundedRect
+                txtField.autocorrectionType = UITextAutocorrectionType.no
+                txtField.keyboardType = UIKeyboardType.numberPad
+                txtField.returnKeyType = UIReturnKeyType.done
+                txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                
+                return txtField
+            }()
+            
+            localLowestY += 10 + tempHeight
+            
+            txtField1_3txt = {
+                let lbl = UILabel(frame: CGRect(x: 5, y: localLowestY, width: w, height: tempHeight/2))
+                lbl.text = "Вознаграждение за текущий период"
+                lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+                lbl.textAlignment = .left
+                
+                return lbl
+            }()
+            
+            localLowestY += 10 + tempHeight/2
+                        
+            txtField1_3 = {
+                let h = UIScreen.main.bounds.height - 88
+                
+                let txtField = UITextField(frame: CGRect(x: 5, y: localLowestY, width: w, height: tempHeight))
+                
+                txtField.placeholder = "0₸"
+                txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
+                txtField.backgroundColor = .black
+                txtField.textAlignment = .left
+                
+                txtField.borderStyle = UITextField.BorderStyle.roundedRect
+                txtField.autocorrectionType = UITextAutocorrectionType.no
+                txtField.keyboardType = UIKeyboardType.numberPad
+                txtField.returnKeyType = UIReturnKeyType.done
+                txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                
+                return txtField
+            }()
+            
+            localLowestY += tempHeight + 20
+            
+            calcView.addSubview(txtField1_2)
+            calcView.addSubview(txtField1_2txt)
+            calcView.addSubview(txtField1_3)
+            calcView.addSubview(txtField1_3txt)
+
+            
+            if feePercent != 0 {
+                zssbNoSegmentY = localLowestY
+                
+                jaiText.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight/2)
+                localLowestY += tempHeight + 10
+                
+                txtField2_1txt.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight/2)
+                localLowestY += tempHeight/2 + 10
+                
+                txtField2_1.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight)
+                localLowestY += tempHeight + 10
+                
+                txtField2_2txt.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight/2)
+                localLowestY += tempHeight/2 + 10
+                
+                txtField2_2.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight)
+                localLowestY += tempHeight + 10
+                
+                txtField2_3txt.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight/2)
+                localLowestY += tempHeight/2 + 10
+                
+                txtField2_3.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight)
+                localLowestY += tempHeight + 20
+                
+                
+                
+                
+                myButton.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight)
+                
+                localLowestY += tempHeight + 20
+                
+                calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: localLowestY)
+                                
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 500)
+                
+            } else {
+                
+                myButton.frame = CGRect(x: 5, y: localLowestY, width: w, height: tempHeight)
+                
+                localLowestY += tempHeight + 20
+                
+                calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: localLowestY)
+                
+                scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 500)
+
+            }
+            
+        default:
+            break
+        }
+                
     }
     
     @objc func buttonAction(sender: UIButton!) {
@@ -669,12 +1183,10 @@ class MortgageDetailsViewController: UIViewController {
             }
             
             let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
-                self.myButton.backgroundColor = UIColor(red: 211/255.0,
-                                              green: 112/255.0,
-                                              blue: 86/255.0,
-                                              alpha: 1)
+                self.myButton.backgroundColor = UIColor(named: "AccentColor")
                 self.myButton.setTitle("РАССЧИТАТЬ", for: .normal)
             }
+            
 
         } else {  // case .success
             
@@ -721,6 +1233,39 @@ class MortgageDetailsViewController: UIViewController {
         }
     }
 
+    
+    
+    func createDatePicker() {
+
+        // toolbar
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        // bar button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolBar.setItems([doneBtn], animated: true)
+        
+        // assign toolbar
+        txtField1_1.inputAccessoryView = toolBar
+        
+        // assign date picker to the text field
+        txtField1_1.inputView = datePicker
+        
+        // date picker mode
+        datePicker.datePickerMode = .date
+        
+        datePicker.frame.size = CGSize(width: 0, height: 250)
+    }
+    
+    @objc func donePressed() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        txtField1_1.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    // TODO: Deal with the datepicker
 }
 
 extension MortgageDetailsViewController: UITextFieldDelegate {

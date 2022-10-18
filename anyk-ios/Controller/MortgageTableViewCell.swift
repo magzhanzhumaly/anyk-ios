@@ -223,17 +223,14 @@ class MortgageTableViewCell: UITableViewCell {
     
     private let moreButton: UIButton = {
         let btn = UIButton()
-        let orng = UIColor(red: 211/255.0,
-                           green: 112/255.0,
-                           blue: 86/255.0,
-                           alpha: 1)
+        let orng = UIColor(named: "AccentColor")
         
         btn.setTitle("ПОДРОБНЕЕ", for: .normal)
         btn.setTitleColor(orng, for: .normal)
         btn.backgroundColor = .clear
         btn.layer.cornerRadius = 5
         btn.layer.borderWidth = 1
-        btn.layer.borderColor = orng.cgColor
+        btn.layer.borderColor = orng?.cgColor
         btn.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         return btn

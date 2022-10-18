@@ -26,10 +26,7 @@ class MenuController: UITableViewController {
     public var delegate: MenuControllerDelegate?
     
     private let menuItems: [SideMenuItem]
-    private let color = UIColor(red: 211/255.0,
-                                green: 112/255.0,
-                                blue: 86/255.0,
-                                alpha: 1)
+    private let color = UIColor(named: "AccentColor")
     
     init(with menuItems: [SideMenuItem]) {
         self.menuItems = menuItems

@@ -57,10 +57,7 @@ class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate
         lbl.text = "Выберите город"
         lbl.font = .systemFont(ofSize: 30, weight: UIFont.Weight.heavy)
         lbl.numberOfLines = 1
-        lbl.textColor = UIColor(red: 211/255.0,
-                                green: 112/255.0,
-                                blue: 86/255.0,
-                                alpha: 1)
+        lbl.textColor = UIColor(named: "AccentColor")
         lbl.textAlignment = .center
 
         return lbl
@@ -80,10 +77,7 @@ class ResidentialComplexesViewController: UIViewController, UIPickerViewDelegate
         
         let btn = UIButton(frame: CGRect(x: w, y: 5*h/9 + 88, width: w, height: h/18))
         btn.setTitle("Искать", for: .normal)
-        btn.backgroundColor = UIColor(red: 211/255.0,
-                                      green: 112/255.0,
-                                      blue: 86/255.0,
-                                      alpha: 1)
+        btn.backgroundColor = UIColor(named: "AccentColor")
         btn.titleLabel?.numberOfLines = 3
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center

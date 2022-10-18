@@ -217,10 +217,7 @@ class HelpViewController: UIViewController {
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
         btn.configuration?.titleAlignment = .center
-        btn.backgroundColor = UIColor(red: 211/255.0,
-                                      green: 112/255.0,
-                                      blue: 86/255.0,
-                                      alpha: 1)
+        btn.backgroundColor = UIColor(named: "AccentColor")
         return btn
     }()
     
@@ -237,10 +234,7 @@ class HelpViewController: UIViewController {
         */
         
         let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
-            self.secondButton.backgroundColor = UIColor(red: 211/255.0,
-                                          green: 112/255.0,
-                                          blue: 86/255.0,
-                                          alpha: 1)
+            self.secondButton.backgroundColor = UIColor(named: "AccentColor")
             self.secondButton.setTitle("Отправить", for: .normal)
             
         }

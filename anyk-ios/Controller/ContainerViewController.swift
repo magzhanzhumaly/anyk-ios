@@ -192,7 +192,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         btn.layer.borderWidth = 1
         btn.backgroundColor = .systemBackground
         
-        btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         
         return btn
     }()
@@ -221,10 +221,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         btn.setTitle("БОЛЬШЕ ПАРАМЕТРОВ", for: .normal)
         
         btn.titleLabel?.numberOfLines = 3
-        btn.setTitleColor(UIColor(red: 211/255.0,
-                                  green: 112/255.0,
-                                  blue: 86/255.0,
-                                  alpha: 1), for: .normal)
+        btn.setTitleColor(UIColor(named: "AccentColor"), for: .normal)
         btn.titleLabel?.textAlignment = .left
         btn.configuration?.titleAlignment = .trailing
         return btn
@@ -242,10 +239,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         btn.layer.cornerRadius = 20
         btn.titleLabel?.textAlignment = .center
         btn.configuration?.titleAlignment = .center
-        btn.backgroundColor = UIColor(red: 211/255.0,
-                                      green: 112/255.0,
-                                      blue: 86/255.0,
-                                      alpha: 1)
+        btn.backgroundColor = UIColor(named: "AccentColor")
         return btn
     }()
 
@@ -663,7 +657,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         let h = UIScreen.main.bounds.height - 88
 
         let txtField = UITextField(frame: CGRect(x: 20, y: 41*h/36, width: UIScreen.main.bounds.width - 40, height: h/18))
-//        txtField.backgroundColor = .black
+
         txtField.placeholder = "ДД/ММ/ГГ"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textAlignment = .left
@@ -916,10 +910,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 //        view.endEditing(true)
         
         createDatePicker()
+        
         let optionClosure = {(action : UIAction) in
             print(action.title)
             self.par4 = action.title
-            self.txtField4.setTitle(action.title, for: .normal)
+//            self.txtField4.setTitle(action.title, for: .normal)
         }
 
         txtField4.menu = UIMenu(children : [
@@ -985,9 +980,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     }
     
     func createDatePicker() {
-        
-//        txtField8_1.textAlignment = .center
-        
+
         // toolbar
         let toolBar = UIToolbar()
         toolBar.sizeToFit()

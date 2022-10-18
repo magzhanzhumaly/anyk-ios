@@ -80,6 +80,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         let optionClosure = {(action : UIAction) in
+//            self.button2.setTitle(action.title, for: .normal)
             print(action.title)
             if action.title == "общей переплате ▼" || action.title == "ежемесячному платежу ▼" {
                 self.data[0].sort {
@@ -252,10 +253,11 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         
         button2.frame = CGRect(x: headerLabel3.intrinsicContentSize.width + 10,
                                y: CGFloat(lowestY),
-                               width: 160,
+                               width: 180,
                                height: button2.titleLabel?.intrinsicContentSize.height ?? 10)
-        button2.titleLabel?.textAlignment = .left
+        button2.contentHorizontalAlignment = .left
         button2.titleLabel?.font =  .systemFont(ofSize: 12, weight: UIFont.Weight.light)
+        button2.setTitleColor(.label, for: .normal)
         
         lowestY += tempHeight
         header.addSubview(button2)

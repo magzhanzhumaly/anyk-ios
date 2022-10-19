@@ -45,7 +45,7 @@ class MortgageManager  {
     var leftOutData = [MortgageModel]()
     
     var myOriginalData = [
-        MortgageModel(pos: 1,
+        MortgageModel(pos: -2,
                       name: "Ипотека от Altynbank",
                       AEIR: 13.75,
                       firstStageRate: 13.75,
@@ -371,7 +371,7 @@ class MortgageManager  {
                       detailsFull: "с подтверждением дохода без первоначального взноса\nИпотека от Halykbank с подтверждением дохода без первоначального взноса",
                       imageName: ImageName.halykBank.rawValue),
 
-        MortgageModel(pos: 16,
+        MortgageModel(pos: 0, // booyababybowdown
                       name: "\"Женил\" от \"Жилстройсбербанка и BI Group\"",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -900,7 +900,7 @@ class MortgageManager  {
                       imageName: ImageName.nurlyZher.rawValue),
 
 
-        MortgageModel(pos: 41,
+        MortgageModel(pos: -1,  // booyababybowdown
                       name: "\"Женил 2\" для военных",
                       AEIR: 6,
                       firstStageRate: 6,
@@ -1000,7 +1000,7 @@ class MortgageManager  {
                       detailsFull: "для лиц, состоящих в очереди на жилье как многодетная семья, неполная семья или семья, воспитывающая детей-инвалидов\nПрограмма кредитования семей с невысоким доходом для приобретения жилья",
                       imageName: ImageName.bakyttyOtbasy.rawValue),
 
-        MortgageModel(pos: 46,
+        MortgageModel(pos: 1,  // booyababybowdown
                       name: "\"5-10-20\"",
                       AEIR: 5,
                       firstStageRate: 5,

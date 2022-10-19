@@ -1,19 +1,18 @@
 //
-//  Calculations1ViewController.swift
+//  Calculations4ViewController.swift
 //  anyk-ios
 //
-//  Created by Magzhan Zhumaly on 06.10.2022.
+//  Created by Magzhan Zhumaly on 19.10.2022.
 //
 
 import UIKit
 
-class Calculations1ViewController: UIViewController {
+class Calculations4ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "caluclations1"
-        
-        
+        title = "caluclations4"
+
         // Do any additional setup after loading the view.
     }
     

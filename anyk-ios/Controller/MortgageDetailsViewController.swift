@@ -10,6 +10,8 @@ import UIKit
 class MortgageDetailsViewController: UIViewController {
     let h = UIScreen.main.bounds.height - 88
 
+    var segueName = ""
+    
     let w = UIScreen.main.bounds.width - 20
     
     var popUpOption = "срок 1-го этапа 3 года, срок 2-го этапа 6 лет"
@@ -673,7 +675,7 @@ class MortgageDetailsViewController: UIViewController {
         // special cases
         if whereToApply == ["Жилстройсбербанк"] || name == "\"5-10-20\"" {
             
-            if initialFee.contains("49%") {
+            if initialFee.contains("49%") {  // calculations4
                 
                 // 2 textFields + popup button
                 termPopUpButton.frame = CGRect(x: 5, y: lowestY, width: w, height: tempHeight)
@@ -681,8 +683,10 @@ class MortgageDetailsViewController: UIViewController {
                 myButton.frame = CGRect(x: 5, y: lowestY, width: w, height: tempHeight)
                 calcView.addSubview(termPopUpButton)
                 
-            } else {
+                segueName = "calculations4"
+//                self.performSegue(withIdentifier: "calculations4", sender: self)
                 
+            } else {  // calculations2
                 
                 // 3 textFields + button
                 
@@ -690,8 +694,6 @@ class MortgageDetailsViewController: UIViewController {
                 calcView.addSubview(txtField3)
                 lowestY += 20 + tempHeight
                 
-                
-
                 var txtField4txt = {
                     let lbl = UILabel(frame: CGRect(x: 5, y: lowestY, width: w, height: tempHeight/2))
                     lbl.text = "У меня есть депозит в ЖССБ"
@@ -705,9 +707,6 @@ class MortgageDetailsViewController: UIViewController {
                 
                 lowestY += tempHeight / 2
                 calcView.addSubview(txtField4txt)
-                
-
-                
                 
                 // add segment
                 var segControl: UISegmentedControl = {
@@ -862,8 +861,16 @@ class MortgageDetailsViewController: UIViewController {
 
                     calcView.addSubview(txtField2_3txt)
                     calcView.addSubview(txtField2_3)
+                    
+                    segueName = "calculations3"
+//                    self.performSegue(withIdentifier: "calculations3", sender: self)
 
 
+                } else {
+                    
+                    segueName = "calculations2"
+//                    self.performSegue(withIdentifier: "calculations2", sender: self)
+                    
                 }
                 
             }
@@ -877,6 +884,9 @@ class MortgageDetailsViewController: UIViewController {
             calcView.addSubview(txtField3)
             lowestY += tempHeight + 20
             hiddenSegmentY = lowestY
+            
+            segueName = "calculations1"
+//            self.performSegue(withIdentifier: "calculations1", sender: self)
         }
 
         
@@ -1152,6 +1162,8 @@ class MortgageDetailsViewController: UIViewController {
         let myInt2 = Double(txtField2.text ?? "0") ?? 0
         let myInt3 = Double(txtField3.text ?? "0") ?? 0
 
+//        self.performSegue(withIdentifier: segueName, sender: self)
+
         
         if (myInt1 < 100000 || myInt1 > 175000000) || (myInt2 < myInt1 / 5 || myInt2 > myInt1 * 0.99) || (myInt3 < Double(minTerm) || myInt3 > Double(maxTerm)) {
             
@@ -1190,6 +1202,9 @@ class MortgageDetailsViewController: UIViewController {
 
         } else {  // case .success
             
+            self.performSegue(withIdentifier: segueName, sender: self)
+            
+            /*
             if whereToApply != ["Жилстройсбербанк"] {
                 
                 // case 1
@@ -1214,7 +1229,7 @@ class MortgageDetailsViewController: UIViewController {
                 }
                 
             }
-            
+            */
             // segue 1 - default w/ 3 labels.   Calc1VC
             // segue 2 - zhilstroisberbank default CalcZSSBdefVC
             // segue 3 - zhilstroisberbank w/ 3 stages CalcZSSB3StagesVC

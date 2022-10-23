@@ -19,6 +19,7 @@
 		562C9FFC28E7899100B7E830 /* MortgageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */; };
 		564CBA2A2900168E001B258B /* Calculations4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564CBA292900168E001B258B /* Calculations4ViewController.swift */; };
 		5650B7E928E05FF000E403FE /* ResidentialComplexesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */; };
+		56787EDE2905A1F4009844AD /* PaymentScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56787EDD2905A1F4009844AD /* PaymentScheduleTableViewCell.swift */; };
 		569C7D8B28C288D800992C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8A28C288D800992C8B /* AppDelegate.swift */; };
 		569C7D8D28C288D800992C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8C28C288D800992C8B /* SceneDelegate.swift */; };
 		569C7D8F28C288D800992C8B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C7D8E28C288D800992C8B /* ContainerViewController.swift */; };
@@ -73,6 +74,7 @@
 		562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortgageTableViewCell.swift; sourceTree = "<group>"; };
 		564CBA292900168E001B258B /* Calculations4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculations4ViewController.swift; sourceTree = "<group>"; };
 		5650B7E828E05FF000E403FE /* ResidentialComplexesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentialComplexesListViewController.swift; sourceTree = "<group>"; };
+		56787EDD2905A1F4009844AD /* PaymentScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		569C7D8728C288D800992C8B /* anyk-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "anyk-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569C7D8A28C288D800992C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		569C7D8C28C288D800992C8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				56B5E2AF28EEF348007A2892 /* Calculations2ViewController.swift */,
 				56B5E2B128EEF351007A2892 /* Calculations3ViewController.swift */,
 				564CBA292900168E001B258B /* Calculations4ViewController.swift */,
+				56787EDD2905A1F4009844AD /* PaymentScheduleTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				5619C36428CA1A0B00E86D94 /* SearchViewController.swift in Sources */,
 				56D34C8828E9FBA500E0CE8F /* MortgageDetailsViewController.swift in Sources */,
 				56E0C59728E0F6D400C5C241 /* SingleMortgageViewController.swift in Sources */,
+				56787EDE2905A1F4009844AD /* PaymentScheduleTableViewCell.swift in Sources */,
 				56B5E2AE28EEF33D007A2892 /* Calculations1ViewController.swift in Sources */,
 				5619C37228CA1A4D00E86D94 /* HelpViewController.swift in Sources */,
 				56B5E2B028EEF348007A2892 /* Calculations2ViewController.swift in Sources */,

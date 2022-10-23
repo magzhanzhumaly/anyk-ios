@@ -875,23 +875,23 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mortgageListSegue" {
-            let destinationVC = segue.destination as! MortgageListViewController
+            weak var destinationVC = segue.destination as? MortgageListViewController
 
-            destinationVC.textField1 = txtField1.text!
-            destinationVC.textField2 = txtField2.text!
-            destinationVC.textField3 = txtField3.text!
-            destinationVC.textField4 = par4
-            destinationVC.textField6_1 = txtField6_1.text!
-            destinationVC.textField6_2 = txtField6_2.text!
-            destinationVC.textField6_3 = txtField6_3.text!
-            destinationVC.textField8_1 = txtField8_1.text!
-            destinationVC.textField8_2 = txtField8_2.text!
-            destinationVC.textField8_3 = txtField8_3.text!
+            destinationVC?.textField1 = txtField1.text!
+            destinationVC?.textField2 = txtField2.text!
+            destinationVC?.textField3 = txtField3.text!
+            destinationVC?.textField4 = par4
+            destinationVC?.textField6_1 = txtField6_1.text!
+            destinationVC?.textField6_2 = txtField6_2.text!
+            destinationVC?.textField6_3 = txtField6_3.text!
+            destinationVC?.textField8_1 = txtField8_1.text!
+            destinationVC?.textField8_2 = txtField8_2.text!
+            destinationVC?.textField8_3 = txtField8_3.text!
 
-            destinationVC.segCtrl1Choice = segCtrl1Choice
-            destinationVC.segCtrl2Choice = segCtrl2Choice
-            destinationVC.segCtrl3Choice = segCtrl3Choice
-            destinationVC.segCtrl4Choice = segCtrl4Choice
+            destinationVC?.segCtrl1Choice = segCtrl1Choice
+            destinationVC?.segCtrl2Choice = segCtrl2Choice
+            destinationVC?.segCtrl3Choice = segCtrl3Choice
+            destinationVC?.segCtrl4Choice = segCtrl4Choice
         }
         
         if segue.identifier == "residentialComplexesListSegue" {
@@ -952,7 +952,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 
         scrollView.addSubview(titleText)
         scrollView.addSubview(subTitleText)
-        
         
         scrollView.addSubview(txtField1txt)
         scrollView.addSubview(txtField1)

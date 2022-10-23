@@ -38,8 +38,8 @@ enum ColorName: String {
     case green = "green"
     case orangish = "orangish"
 }
-class MortgageManager  {
-    var delegate: MortgageManagerDelegate?
+class MortgageManager {
+//    var delegate: MortgageManagerDelegate?
     var isPaginating = false
     
     var leftOutData = [MortgageModel]()
@@ -1158,9 +1158,6 @@ class MortgageManager  {
         
         var feePercent = 0
 
-        
-//        let sortedArray = [MortgageModel]
-
         var array = myOriginalData.filter({
             
             if $0.initialFee.count > 2 {
@@ -1204,8 +1201,6 @@ class MortgageManager  {
                 }
             }
             
-            
-            
             var bool5 = true
             if segCtrl1Choice == 1 {
                 if !$0.properties.contains("Первичное жилье (квартира и дом)") {
@@ -1216,9 +1211,7 @@ class MortgageManager  {
                     bool5 = false
                 }
             }
-            
-           
-            
+                  
             var bool6 = true
             if segCtrl2Choice == 1 {
                 // NOT CLEAR HOW THEY AFFECT THE SEARCH: THEY DON'T AFFECT IT IN THE WEBSITE
@@ -1246,8 +1239,6 @@ class MortgageManager  {
                 }
             }
             
-            
-            
             var bool8 = true
             if segCtrl4Choice == 1 {
                 
@@ -1258,76 +1249,12 @@ class MortgageManager  {
                 leftOutData.append($0)
             }
             
-            
             return finalBool
-            
-//            var new = myOriginalData.sorted(by: { $0.pos < $1.pos })
-            
         })
         
         array = array.sorted(by: { $0.pos < $1.pos })
         
-//        Не выбрано", handler: opti
-//        Не состою в очереди", stat
-//        Военный", handler: optionC
-//        Неполная семья", handler: 
-//        Многодетная семья", handle
-//        Семья с ребёнком инвалидом
-        
-        
-        
-        
-        
-        
-//        DispatchQueue.global().asyncAfter(deadline: .now() + (pagination ? 0 : 0), execute: {
-
         DispatchQueue.global().asyncAfter(deadline: .now(), execute: {
-
-            /*
-             let dataArray = ["72025",
-             "Баспана ХИТ",
-             "Жилищный заем \"Баспана\"",
-             "5-10-20",
-             "Бақытты отбасы",
-             "\"Стандартный\" для вторичного жилья",
-             "\"Стандартный\" для первичного жилья",
-             "\"Стандартный\" промежуточный заем для \"Свой дом\"",
-             "\"Женил 2\" для вторичного жилья",
-             "\"Женил 2\" для первичного жилья",
-             "\"Женил 2\" для промежуточный заем для \"Свой дом\"",
-             "\"Женил\" для вторичного жилья",
-             "\"Женил\" для первичного жилья",
-             "\"Женил\" для промежуточный заем для \"Свой дом\"",
-             "Ипотека \"Орда\" от АО \"КИК\"",
-             "Ипотека \"Орда\"",
-             "Военная ипотека",
-             "\"Стандартный\" для военных",
-             "\"Женил\" для военных",
-             "\"Женил 2\" для военных",
-             "Жилищный заем по программе \"Нұрлы жер\"",
-             "\"Стандартный\" заем для \"Нұрлы жер\"",
-             "\"Женил 2\" заем для \"Нұрлы жер\"",
-             "\"Жас отбасы\" с типом займа \"Жеңіл\"",
-             "\"Стандартный\" заем от \"Жилстройсбербанка и BI Group\"",
-             "\"Женил\" от \"Жилстройсбербанка и BI Group\"",
-             
-             
-             "Ипотека от Halykbank с подтверждением дохода без первоначального взноса",
-             "Ипотека от Halykbank с подтверждением дохода",
-             "Жилищный кредит от Сбербанка с полным подтверждением доходов",
-             "Жилищный кредит от Сбербанка с частичным подтверждением доходов",
-             "Ипотека от Fortebank с подтверждением дохода",
-             "Ипотека от Fortebank без подтверждения дохода",
-             "Ипотека от АТФ Банка с полным подтверждением доходов",
-             "Ипотека от АТФ Банка с частичным подтверждением доходов",
-             "Ипотека от Bank RBK",
-             "Ипотека Nurbank",
-             "Ипотека от Halykbank без подтверждения дохода",
-             "Ипотека от Altynbank с полным подтверждением доходов",
-             "Ипотека от Altynbank с частичным подтверждением доходов"
-             ]
-             */
-            
             completion(.success(array))
         })        
     }

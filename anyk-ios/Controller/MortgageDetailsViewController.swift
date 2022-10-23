@@ -1239,13 +1239,125 @@ class MortgageDetailsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "calculations1" {
-//            let destinationVC = segue.destination as! MortgageListViewController
+            
+//            let destinationVC = segue.destination as! Calculations1ViewController
+//
+//            destinationVC.txtField1 = self.txtField1.text ?? ""
+//            destinationVC.txtField2 = self.txtField2.text ?? ""
+//            destinationVC.txtField3 = self.txtField3.text ?? ""
+//            destinationVC.id = id
+//            destinationVC.name = name
+//            destinationVC.AEIR = AEIR
+//            destinationVC.firstStageRate = firstStageRate
+//            destinationVC.ageOfBorrower = ageOfBorrower
+//            destinationVC.initialFee = initialFee
+//            destinationVC.maxCredit = maxCredit
+//            destinationVC.continuousWorkExperience = continuousWorkExperience
+//            destinationVC.minTerm = minTerm
+//            destinationVC.maxTerm = maxTerm
+//            destinationVC.feePercent = feePercent
+//            destinationVC.feeInitial = feeInitial
+//            destinationVC.properties = properties
+//            destinationVC.whereToApply = whereToApply
+//            destinationVC.details = details
+//            destinationVC.detailsColors = detailsColors
+//            destinationVC.detailsFull = detailsFull
+//            destinationVC.imageName = imageName
+
+            weak var destinationVC = segue.destination as? Calculations1ViewController
+
+            destinationVC?.txtField1 = self.txtField1.text ?? ""
+            destinationVC?.txtField2 = self.txtField2.text ?? ""
+            destinationVC?.txtField3 = self.txtField3.text ?? ""
+
+            destinationVC?.id = id
+            destinationVC?.name = name
+            destinationVC?.AEIR = AEIR
+            destinationVC?.firstStageRate = firstStageRate
+            destinationVC?.ageOfBorrower = ageOfBorrower
+            destinationVC?.initialFee = initialFee
+            destinationVC?.maxCredit = maxCredit
+            destinationVC?.continuousWorkExperience = continuousWorkExperience
+            destinationVC?.minTerm = minTerm
+            destinationVC?.maxTerm = maxTerm
+            destinationVC?.feePercent = feePercent
+            destinationVC?.feeInitial = feeInitial
+            destinationVC?.properties = properties
+            destinationVC?.whereToApply = whereToApply
+            destinationVC?.details = details
+            destinationVC?.detailsColors = detailsColors
+            destinationVC?.detailsFull = detailsFull
+            destinationVC?.imageName = imageName
         }
         if segue.identifier == "calculations2" {
+            weak var destinationVC = segue.destination as? Calculations2ViewController
+            
+            destinationVC?.id = id
+            destinationVC?.name = name
+            destinationVC?.AEIR = AEIR
+            destinationVC?.firstStageRate = firstStageRate
+            destinationVC?.ageOfBorrower = ageOfBorrower
+            destinationVC?.initialFee = initialFee
+            destinationVC?.maxCredit = maxCredit
+            destinationVC?.continuousWorkExperience = continuousWorkExperience
+            destinationVC?.minTerm = minTerm
+            destinationVC?.maxTerm = maxTerm
+            destinationVC?.feePercent = feePercent
+            destinationVC?.feeInitial = feeInitial
+            destinationVC?.properties = properties
+            destinationVC?.whereToApply = whereToApply
+            destinationVC?.details = details
+            destinationVC?.detailsColors = detailsColors
+            destinationVC?.detailsFull = detailsFull
+            destinationVC?.imageName = imageName
         }
         if segue.identifier == "calculations3" {
+            weak var destinationVC = segue.destination as? Calculations3ViewController
+            
+            destinationVC?.id = id
+            destinationVC?.name = name
+            destinationVC?.AEIR = AEIR
+            destinationVC?.firstStageRate = firstStageRate
+            destinationVC?.ageOfBorrower = ageOfBorrower
+            destinationVC?.initialFee = initialFee
+            destinationVC?.maxCredit = maxCredit
+            destinationVC?.continuousWorkExperience = continuousWorkExperience
+            destinationVC?.minTerm = minTerm
+            destinationVC?.maxTerm = maxTerm
+            destinationVC?.feePercent = feePercent
+            destinationVC?.feeInitial = feeInitial
+            destinationVC?.properties = properties
+            destinationVC?.whereToApply = whereToApply
+            destinationVC?.details = details
+            destinationVC?.detailsColors = detailsColors
+            destinationVC?.detailsFull = detailsFull
+            destinationVC?.imageName = imageName
         }
+        if segue.identifier == "calculations4" {
+            weak var destinationVC = segue.destination as? Calculations4ViewController
+            
+            destinationVC?.id = id
+            destinationVC?.name = name
+            destinationVC?.AEIR = AEIR
+            destinationVC?.firstStageRate = firstStageRate
+            destinationVC?.ageOfBorrower = ageOfBorrower
+            destinationVC?.initialFee = initialFee
+            destinationVC?.maxCredit = maxCredit
+            destinationVC?.continuousWorkExperience = continuousWorkExperience
+            destinationVC?.minTerm = minTerm
+            destinationVC?.maxTerm = maxTerm
+            destinationVC?.feePercent = feePercent
+            destinationVC?.feeInitial = feeInitial
+            destinationVC?.properties = properties
+            destinationVC?.whereToApply = whereToApply
+            destinationVC?.details = details
+            destinationVC?.detailsColors = detailsColors
+            destinationVC?.detailsFull = detailsFull
+            destinationVC?.imageName = imageName
+        }
+
     }
 
     

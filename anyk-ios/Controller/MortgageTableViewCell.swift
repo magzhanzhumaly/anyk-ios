@@ -336,7 +336,7 @@ class MortgageTableViewCell: UITableViewCell {
             secondDetail.removeFromSuperview()
             thirdDetail.removeFromSuperview()
             
-            text1.removeFromSuperview()
+            text1.removeFromSuperview() 
             text2.removeFromSuperview()
             text3.removeFromSuperview()
             text4.removeFromSuperview()

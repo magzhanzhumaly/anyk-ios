@@ -151,7 +151,7 @@ class HelpViewController: UIViewController {
         let optionClosure = {(action : UIAction) in
             print(action.title)}
 
-        let btn = UIButton(frame: CGRect(x: 20, y: 17*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/12))
+        let btn = UIButton(frame: CGRect(x: 20, y: 17*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/18))
         btn.menu = UIMenu(children : [
             UIAction(title: "Предложения по работе платформы", state: .on, handler: optionClosure),
             UIAction(title: "Сообщить об ошибке на онлайн-платформе", handler: optionClosure),

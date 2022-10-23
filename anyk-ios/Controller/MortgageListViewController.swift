@@ -48,8 +48,8 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
     private var detailsColors = [""]
     private var detailsFull = ""
     private var imageName = ""
-
-    private let mortgageManager = MortgageManager()
+    
+//    var mortgageTableViewCell = MortgageTableViewCell()
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -79,23 +79,23 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let optionClosure = {(action : UIAction) in
+        let optionClosure = {[weak self] (action : UIAction) in
 //            self.button2.setTitle(action.title, for: .normal)
             print(action.title)
             if action.title == "общей переплате ▼" || action.title == "ежемесячному платежу ▼" {
-                self.data[0].sort {
+                self?.data[0].sort {
                     $0.pos < $1.pos
                 }
             } else if action.title == "процентной ставке (ГЭСВ) ▼"{
-                self.data[0].sort {
+                self?.data[0].sort {
                     $0.AEIR < $1.AEIR
                 }
             } else if action.title == "первоначальному взносу ▼" {
-                self.data[0].sort {
+                self?.data[0].sort {
                     (Int($0.initialFee.prefix(2)) ?? 0) < (Int($1.initialFee.prefix(2)) ?? 0)
                 }
             }
-            self.tableView.reloadData()
+            self?.tableView.reloadData()
         }
 
         button2.menu = UIMenu(children : [
@@ -146,6 +146,8 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         
         var hdrLbl1cnt = 0
         var hdrLbl2cnt = 0
+        
+        var mortgageManager = MortgageManager()
 
         mortgageManager.fetchData(textField1: textField1, textField2: textField2, textField3: textField3, textField4: textField4, textField6_1: textField6_1, textField6_2: textField6_2, textField6_3: textField6_3, textField8_1: textField8_1, textField8_2: textField8_2, textField8_3: textField8_3, segCtrl1Choice: segCtrl1Choice, segCtrl2Choice: segCtrl2Choice, segCtrl3Choice: segCtrl3Choice, segCtrl4Choice: segCtrl4Choice, completion: { [weak self] result in
             switch result {
@@ -382,49 +384,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         }
         return UIView()
     }
-    /*
-    private func createSpinnerFooter() -> UIView {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
-        
-        let spinner = UIActivityIndicatorView()
-        spinner.center = footerView.center
-        footerView.addSubview(spinner)
-        
-        spinner.startAnimating()
-        
-        return footerView
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        /*
-        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
-            // fetch more data
-            guard !mortgageManager.isPaginating else {
-                // we are already fetching more data
-                return
-            }
-            
-            self.tableView.tableFooterView = createSpinnerFooter()
-            
-            mortgageManager.fetchData(pagination: true) { [weak self] result in
-                DispatchQueue.main.async {
-                    self?.tableView.tableFooterView = nil
-                }
-                switch result {
-                case .success(let moreData):
-                    self?.data.append(contentsOf: moreData)
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                case .failure(_):
-                    break
-                }
-            }
-            print("Fetch more")
-        }
-         */
-    }*/
+   
 }
 
 extension MortgageListViewController: MortgageTableViewCellDelegate {
@@ -458,32 +418,82 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMortgageDetails" {
-            let destinationVC = segue.destination as! MortgageDetailsViewController
+            weak var destinationVC = segue.destination as? MortgageDetailsViewController
             
-            destinationVC.id = id
-            destinationVC.name = name
-            destinationVC.AEIR = AEIR
-            destinationVC.firstStageRate = firstStageRate
-            destinationVC.ageOfBorrower = ageOfBorrower
-            destinationVC.initialFee = initialFee
-            destinationVC.maxCredit = maxCredit
-            destinationVC.continuousWorkExperience = continuousWorkExperience
-            destinationVC.minTerm = minTerm
-            destinationVC.maxTerm = maxTerm
-            destinationVC.feePercent = feePercent
-            destinationVC.feeInitial = feeInitial
-            destinationVC.properties = properties
-            destinationVC.whereToApply = whereToApply
-            destinationVC.details = details
-            destinationVC.detailsColors = detailsColors
-            destinationVC.detailsFull = detailsFull
-            destinationVC.imageName = imageName
+            destinationVC?.id = id
+            destinationVC?.name = name
+            destinationVC?.AEIR = AEIR
+            destinationVC?.firstStageRate = firstStageRate
+            destinationVC?.ageOfBorrower = ageOfBorrower
+            destinationVC?.initialFee = initialFee
+            destinationVC?.maxCredit = maxCredit
+            destinationVC?.continuousWorkExperience = continuousWorkExperience
+            destinationVC?.minTerm = minTerm
+            destinationVC?.maxTerm = maxTerm
+            destinationVC?.feePercent = feePercent
+            destinationVC?.feeInitial = feeInitial
+            destinationVC?.properties = properties
+            destinationVC?.whereToApply = whereToApply
+            destinationVC?.details = details
+            destinationVC?.detailsColors = detailsColors
+            destinationVC?.detailsFull = detailsFull
+            destinationVC?.imageName = imageName
         }
+        
         if segue.identifier == "showRentalHousingDetails" {
-            let destinationVC = segue.destination as! RentalHousingViewController
+            weak var destinationVC = segue.destination as? RentalHousingViewController
             
             print("ageofborrower = \(self.ageOfBorrower)")
-            destinationVC.txt = self.ageOfBorrower
+            destinationVC?.txt = self.ageOfBorrower
         }
     }
 }
+
+
+
+
+
+
+/*
+private func createSpinnerFooter() -> UIView {
+    let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+    
+    let spinner = UIActivityIndicatorView()
+    spinner.center = footerView.center
+    footerView.addSubview(spinner)
+    
+    spinner.startAnimating()
+    
+    return footerView
+}
+
+func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let position = scrollView.contentOffset.y
+    /*
+    if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+        // fetch more data
+        guard !mortgageManager.isPaginating else {
+            // we are already fetching more data
+            return
+        }
+        
+        self.tableView.tableFooterView = createSpinnerFooter()
+        
+        mortgageManager.fetchData(pagination: true) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.tableView.tableFooterView = nil
+            }
+            switch result {
+            case .success(let moreData):
+                self?.data.append(contentsOf: moreData)
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(_):
+                break
+            }
+        }
+        print("Fetch more")
+    }
+     */
+}*/

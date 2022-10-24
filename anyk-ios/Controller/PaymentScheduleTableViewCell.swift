@@ -26,14 +26,14 @@ class PaymentScheduleTableViewCell: UITableViewCell {
 
     private let par1text: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 11, weight: .light)
         
         return label
     }()
     
     private let par2text: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 11, weight: .light)
         
         return label
     }()
@@ -41,7 +41,7 @@ class PaymentScheduleTableViewCell: UITableViewCell {
     
     private let par3text: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 11, weight: .light)
         
         return label
     }()
@@ -49,7 +49,7 @@ class PaymentScheduleTableViewCell: UITableViewCell {
     
     private let par4text: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 11, weight: .light)
         
         return label
     }()
@@ -57,7 +57,7 @@ class PaymentScheduleTableViewCell: UITableViewCell {
     
     private let par5text: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 11, weight: .light)
         
         return label
     }()
@@ -88,9 +88,9 @@ class PaymentScheduleTableViewCell: UITableViewCell {
         
         par1text.frame = CGRect(x: 10, y: 5, width: w/5, height: par1text.intrinsicContentSize.height)
         par2text.frame = CGRect(x: 10 + w/5, y: 5, width: w/5, height: par2text.intrinsicContentSize.height)
-        par1text.frame = CGRect(x: 10 + 2*w/5, y: 5, width: w/5, height: par3text.intrinsicContentSize.height)
-        par1text.frame = CGRect(x: 10 + 3*w/5, y: 5, width: w/5, height: par4text.intrinsicContentSize.height)
-        par1text.frame = CGRect(x: 10 + 4*w/5, y: 5, width: w/5, height: par5text.intrinsicContentSize.height)
+        par3text.frame = CGRect(x: 10 + 2*w/5, y: 5, width: w/5, height: par3text.intrinsicContentSize.height)
+        par4text.frame = CGRect(x: 10 + 3*w/5, y: 5, width: w/5, height: par4text.intrinsicContentSize.height)
+        par5text.frame = CGRect(x: 10 + 4*w/5, y: 5, width: w/5, height: par5text.intrinsicContentSize.height)
         
         contentView.addSubview(par1text)
         contentView.addSubview(par2text)
@@ -98,7 +98,7 @@ class PaymentScheduleTableViewCell: UITableViewCell {
         contentView.addSubview(par4text)
         contentView.addSubview(par5text)
 
-        contentView.backgroundColor = .red
+//        contentView.backgroundColor = .red
     }
     
     public func configure(par1: String, par2: Int, par3: Int, par4: Int, par5: Int) {

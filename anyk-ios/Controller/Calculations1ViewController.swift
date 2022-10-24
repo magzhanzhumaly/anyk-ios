@@ -39,18 +39,28 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     private let w = UIScreen.main.bounds.width - 20
     private let h = UIScreen.main.bounds.height - 88
 
-    private var lowestY: CGFloat = 98
+    private var lowestY: CGFloat = 0
     private var tempHeight: CGFloat = 0
     
     private var multiplier = 1.0
     
     var X = 0.0
     var S = 0.0
+    var initialS = 0
     var p = 0.0
     var m = 0
     
+    var totalPayout = 0
+    var totalOverpayment = 0
+    var type = 0
+    
+    let date = Date()
+    let calendar = Calendar.current
+    var month = 0
+    var year = 0
+    
     // outlets
-    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100))
+    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
 
     private var segControl: UISegmentedControl = {
         let segmentItems = ["Дифференцированный", "Аннуитетный"]
@@ -59,6 +69,18 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         control.selectedSegmentIndex = 0
 
         return control
+    }()
+    
+    private var toggleButton: UIButton = {
+        let btn = UIButton()
+     
+        btn.setTitle("График платежа ▼", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+//        btn.titleLabel?.textAlignment = .left
+        btn.contentHorizontalAlignment = .left
+        btn .addTarget(self, action: #selector(toggleButtonAction), for: .touchUpInside)
+
+        return btn
     }()
     
     private var txt1val = UILabel()
@@ -78,7 +100,18 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         title = "calculations1"
         
-        
+        tableView.dataSource = self
+        tableView.delegate = self
+
+
+        month = calendar.component(.month, from: date)
+        month += 1
+        year = calendar.component(.year, from: date)
+
+        if month > 12 {
+            month = 1
+            year += 1
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -87,7 +120,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLayoutSubviews()
         
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3000)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
 
         
         tempHeight = h / 18
@@ -189,15 +222,27 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         txt3val.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
         scrollView.addSubview(txt3val)
 
-        lowestY += tempHeight + 10
+        lowestY += tempHeight + 20
 
         
         calculateDifferentiated()
         
+        toggleButton.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+      
+        scrollView.addSubview(toggleButton)
+        lowestY += tempHeight + 10
+
         
-        tempHeight = 2000
+        tempHeight = 4000
         tableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
         scrollView.addSubview(tableView)
+        
+        tableView.isHidden = true
+        
+        let tableViewHeight = CGFloat(130 + 40*m)
+        tableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
+
     }
     
 
@@ -215,10 +260,10 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
 
         txt1val.text = "\(Int(X))"
         
-        let totalPayout = Int(X) * m
+        totalPayout = Int(X) * m
         txt2val.text = "\(Int(totalPayout))"
 
-        let totalOverpayment = totalPayout - Int(S)
+        totalOverpayment = totalPayout - Int(S)
         txt3val.text = "\(Int(totalOverpayment))"
         S -= X
         
@@ -232,46 +277,87 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
 //        M — это срок кредитования в месяцах.
         
         S = (Double(txtField1) ?? 0) - (Double(txtField2) ?? 0)
+        initialS = Int(S)
         p = AEIR/1200
         m = 12 * (Int(txtField3) ?? 0)
         
         X = (S*p) / (1 - pow((1+p), Double((1-m))))
         
-        
-//        X = (S*p/1200) / 1 - pow((1+p/1200), -m)
-
         txt1val.text = "\(Int(X))"
         
-        let totalPayout = Int(X) * m
+        totalPayout = Int(X) * m
         txt2val.text = "\(Int(totalPayout))"
 
-        let totalOverpayment = totalPayout - Int(S)
+        totalOverpayment = totalPayout - Int(S)
         txt3val.text = "\(Int(totalOverpayment))"
     }
     
     @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
-        
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
-            multiplier = 1
+            type = 0
             calculateDifferentiated()
+            month = calendar.component(.month, from: date)
+            month += 1
+            year = calendar.component(.year, from: date)
+
+            if month > 12 {
+                month = 1
+                year += 1
+            }
+            tableView.reloadData()
         case 1:
-            multiplier = 1.2
+            type = 1
             calculateAnnuity()
+            month = calendar.component(.month, from: date)
+            month += 1
+            year = calendar.component(.year, from: date)
+
+            if month > 12 {
+                month = 1
+                year += 1
+            }
+            tableView.reloadData()
         default:
             break
         }
-        
     }
    
-    
+    @objc func toggleButtonAction(sender: UIButton!) {
+        if !tableView.isHidden {
+            toggleButton.setTitle("График платежа ▼", for: .normal)
+            tableView.isHidden = true
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+        } else {
+            toggleButton.setTitle("График платежа ▲", for: .normal)
+
+            tableView.isHidden = false
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PaymentScheduleTableViewCell.identifier, for: indexPath) as? PaymentScheduleTableViewCell else {
             return UITableViewCell()
         }
 
-        cell.configure(par1: "\(X)", par2: Int(S), par3: Int(m), par4: Int(X), par5: Int(S))
+        if type == 0 {  // differentiated
+            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(totalOverpayment / m), par4: initialS / m, par5: Int(S) - Int(X))
+        }
+        if type == 1 { // annuity
+            S -= X
+            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(totalOverpayment / m), par4: initialS / m, par5: Int(S))
+
+//            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(X/2), par4: Int(X/2+20), par5: Int(S) - Int(X))
+        }
+        
+        month += 1
+        if month > 12 {
+            month = 1
+            year += 1
+        }
+        S -= X
+        
         return cell
     }
     
@@ -288,19 +374,100 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40.0
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let par1text = UILabel()
+        par1text.font = .systemFont(ofSize: 11, weight: .light)
+        par1text.text = "Итого"
+        par1text.numberOfLines = 3
+        par1text.textColor = .gray
+        par1text.frame = CGRect(x: 10, y: 5, width: w/5 - 5, height: par1text.intrinsicContentSize.height*3)
+
+        let par2text = UILabel()
+        par2text.font = .systemFont(ofSize: 11, weight: .light)
+        par2text.text = "115 728"
+        par2text.numberOfLines = 3
+        par2text.textColor = .gray
+        par2text.frame = CGRect(x: 10 + w/5, y: 5, width: w/5 - 5, height: par2text.intrinsicContentSize.height*3)
+
+        let par3text = UILabel()
+        par3text.font = .systemFont(ofSize: 11, weight: .light)
+        par3text.text = "34 128"
+        par3text.numberOfLines = 3
+        par3text.textColor = .gray
+        par3text.frame = CGRect(x: 10 + 2*w/5, y: 5, width: w/5 - 5, height: par3text.intrinsicContentSize.height*3)
+
+        let par4text = UILabel()
+        par4text.font = .systemFont(ofSize: 11, weight: .light)
+        par4text.text = "81 600"
+        par4text.numberOfLines = 3
+        par4text.textColor = .gray
+        par4text.frame = CGRect(x: 10 + 3*w/5, y: 5, width: w/5 - 5, height: par4text.intrinsicContentSize.height*3)
+
+        let par5text = UILabel()
+        par5text.font = .systemFont(ofSize: 11, weight: .light)
+        par5text.text = "0"
+        par5text.numberOfLines = 3
+        par5text.textColor = .gray
+        par5text.frame = CGRect(x: 10 + 4*w/5, y: 5, width: w/5 - 5, height: par5text.intrinsicContentSize.height*3)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
+
+        view.addSubview(par1text)
+        view.addSubview(par2text)
+        view.addSubview(par3text)
+        view.addSubview(par4text)
+        view.addSubview(par5text)
+
+        return view
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        //            view.backgroundColor = .red
-        let lbl = UILabel(frame: CGRect(x: 10, y: 20, width: view.frame.width - 20, height: 40))
         
-        lbl.font = .systemFont(ofSize: 14, weight: UIFont.Weight.medium)
-        lbl.numberOfLines = 2
-        lbl.textAlignment = .center
-        lbl.text = "Ничего не подошло? Есть еще \(1) программы, которые могут быть вам интересны"
-        view.addSubview(lbl)
+        let par1text = UILabel()
+        par1text.font = .systemFont(ofSize: 11, weight: .light)
+        par1text.text = "Период мм/гггг"
+        par1text.numberOfLines = 3
+        par1text.frame = CGRect(x: 10, y: 5, width: w/5 - 5, height: par1text.intrinsicContentSize.height*3)
+
+        let par2text = UILabel()
+        par2text.font = .systemFont(ofSize: 11, weight: .light)
+        par2text.text = "Общ. сумма выплаты, ₸"
+        par2text.numberOfLines = 3
+        par2text.frame = CGRect(x: 10 + w/5, y: 5, width: w/5 - 5, height: par2text.intrinsicContentSize.height*3)
+
+        let par3text = UILabel()
+        par3text.font = .systemFont(ofSize: 11, weight: .light)
+        par3text.text = "Проценты, ₸"
+        par3text.numberOfLines = 3
+        par3text.frame = CGRect(x: 10 + 2*w/5, y: 5, width: w/5 - 5, height: par3text.intrinsicContentSize.height*3)
+
+        let par4text = UILabel()
+        par4text.font = .systemFont(ofSize: 11, weight: .light)
+        par4text.text = "Кредит, ₸"
+        par4text.numberOfLines = 3
+        par4text.frame = CGRect(x: 10 + 3*w/5, y: 5, width: w/5 - 5, height: par4text.intrinsicContentSize.height*3)
+
+        let par5text = UILabel()
+        par5text.font = .systemFont(ofSize: 11, weight: .light)
+        par5text.text = "Осталось выплатить, ₸"
+        par5text.numberOfLines = 3
+        par5text.frame = CGRect(x: 10 + 4*w/5, y: 5, width: w/5 - 5, height: par5text.intrinsicContentSize.height*3)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
+
+        view.addSubview(par1text)
+        view.addSubview(par2text)
+        view.addSubview(par3text)
+        view.addSubview(par4text)
+        view.addSubview(par5text)
+
         return view
     }
     

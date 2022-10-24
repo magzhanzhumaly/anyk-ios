@@ -915,7 +915,7 @@ class MortgageDetailsViewController: UIViewController {
         
         calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: lowestY + 20)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 250)
-        myButton .addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        myButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         calcViewDefaultHeight = lowestY + 20
         

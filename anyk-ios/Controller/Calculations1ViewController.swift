@@ -56,6 +56,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     
     var amortization = 0.0 // ПОГАШЕНИЕ_ДОЛГА
     var percentagePart = 0.0// ПРОЦЕНТНАЯ_ЧАСТЬ
+    var percentagePartTotal = 0.0
     var paymentForMonth = 0.0 // ПЛАТЕЖ_ЗА_МЕСЯЦ
     var credit = 0.0
     
@@ -135,8 +136,6 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         scrollView.addSubview(segControl)
         
         lowestY += tempHeight + 10
-        
-        
         
         var firstDetail: UILabel = {
             let label = UILabel()
@@ -258,13 +257,15 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         //        M — это срок кредитования в месяцах.
         
         S = (Double(txtField1) ?? 0) - (Double(txtField2) ?? 0)
+        initialS = Int(S)
         p = AEIR/1200
         m = 12 * (Int(txtField3) ?? 0)
-        
-        var totalRate = Double(pow(Double(1+p), Double(m))) //Int(pow(Double(a),Double(b)))
-        
-        X = S/Double(m) + S*p
 
+        credit = S / Double(m)
+        
+        percentagePart = S * p
+//        percentagePartTotal += percentagePart
+        X = credit + percentagePart
         txt1val.text = "\(Int(X))"
         
         totalPayout = X * Double(m)
@@ -272,9 +273,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
 
         totalOverpayment = totalPayout - S
         txt3val.text = "\(Int(totalOverpayment))"
-        S -= X
-        
-        // kredit = S / m
+        S -= credit
     }
     
     func calculateAnnuity() {
@@ -291,24 +290,17 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         var totalRate = Double(pow(Double(1+p), Double(m))) //Int(pow(Double(a),Double(b)))
 
         X = S * p * totalRate / (totalRate - 1)
-//        СУММА_КРЕДИТА * ЕЖЕМЕСЯЧНАЯ_СТАВКА * ОБЩАЯ_СТАВКА / (ОБЩАЯ_СТАВКА - 1)
 
-//        X = (S*p) / (1 - pow((1+p), Double((1-m))))
-        
         txt1val.text = "\(Int(X))"
         
         totalPayout = X * Double(m)
         txt2val.text = "\(Int(totalPayout))"
 
-//        totalOverpayment = totalPayout - Int(S)
         totalOverpayment = X * Double(m) - S
-//        ЕЖЕМЕСЯЧНЫЙ_ПЛАТЕЖ * СРОК_ИПОТЕКИ_МЕСЯЦЕВ - СУММА_КРЕДИТА
 
         txt3val.text = "\(Int(totalOverpayment))"
         
-//        amortization = Int(S) / m
         percentagePart = S * p
-//        paymentForMonth = amortization + percentagePart
         credit = X - percentagePart
 
         print("percentagePart = \(percentagePart), credit = \(credit)")
@@ -347,6 +339,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     }
    
     @objc func toggleButtonAction(sender: UIButton!) {
+
         if !tableView.isHidden {
             toggleButton.setTitle("График платежа ▼", for: .normal)
             tableView.isHidden = true
@@ -365,7 +358,14 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         }
 
         if type == 0 {  // differentiated
-            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(totalOverpayment / Double(m)), par4: initialS / m, par5: Int(S) - Int(X))
+            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
+            percentagePartTotal += percentagePart
+
+            percentagePart = S * p
+            X = credit + percentagePart
+            
+            S -= credit
+
         }
         if type == 1 { // annuity
             
@@ -420,21 +420,33 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
 
         let par2text = UILabel()
         par2text.font = .systemFont(ofSize: 11, weight: .light)
-        par2text.text = "\(Int(totalPayout))"
+        if type == 1 {
+            par2text.text = "\(Int(totalPayout))"
+        } else {
+            par2text.text = "\(Int(Double(initialS) + percentagePartTotal))"
+        }
         par2text.numberOfLines = 3
         par2text.textColor = .gray
         par2text.frame = CGRect(x: 10 + w/5, y: 5, width: w/5 - 5, height: par2text.intrinsicContentSize.height*3)
 
         let par3text = UILabel()
         par3text.font = .systemFont(ofSize: 11, weight: .light)
-        par3text.text = "\(Int(totalOverpayment))"
+        if type == 1 {
+            par3text.text = "\(Int(totalOverpayment))"
+        } else {
+            par3text.text = "\(Int(percentagePartTotal))"
+        }
         par3text.numberOfLines = 3
         par3text.textColor = .gray
         par3text.frame = CGRect(x: 10 + 2*w/5, y: 5, width: w/5 - 5, height: par3text.intrinsicContentSize.height*3)
 
         let par4text = UILabel()
         par4text.font = .systemFont(ofSize: 11, weight: .light)
-        par4text.text = "\(initialS)"
+        if type == 1 {
+            par4text.text = "\(initialS)"
+        } else {
+            par4text.text = "\(initialS)"
+        }
         par4text.numberOfLines = 3
         par4text.textColor = .gray
         par4text.frame = CGRect(x: 10 + 3*w/5, y: 5, width: w/5 - 5, height: par4text.intrinsicContentSize.height*3)
@@ -491,6 +503,12 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
 
+        if type == 0 {
+            txt2val.text = "\(Int(Double(initialS) + percentagePartTotal))"
+
+            txt3val.text = "\(Int(percentagePartTotal))"
+        }
+        
         view.addSubview(par1text)
         view.addSubview(par2text)
         view.addSubview(par3text)

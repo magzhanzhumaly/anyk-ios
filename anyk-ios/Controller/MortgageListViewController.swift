@@ -32,7 +32,10 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
     private var AEIR = 0.0 // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
     private var firstStageRate = 0.0
     private var ageOfBorrower = [""]
-    private var initialFee = ""
+    private var initialFeePercentageString = ""
+    private var initialFeeLowerBound = 0
+    private var initialFeeUpperBound = 0
+
     private var maxCredit = 0
     private var continuousWorkExperience = ""
     
@@ -92,7 +95,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
                 }
             } else if action.title == "первоначальному взносу ▼" {
                 self?.data[0].sort {
-                    (Int($0.initialFee.prefix(2)) ?? 0) < (Int($1.initialFee.prefix(2)) ?? 0)
+                    (Int($0.initialFeePercentageString.prefix(2)) ?? 0) < (Int($1.initialFeePercentageString.prefix(2)) ?? 0)
                 }
             }
             self?.tableView.reloadData()
@@ -116,7 +119,6 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         data.append([MortgageModel]())
 
         title = "Ипотеки"
-          
         
         print("textField1 = \(textField1)")
         print("textField2 = \(textField2)")
@@ -186,9 +188,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
                 break
             }
         })
-        
-
-        
+              
         headerLabel1.text = "Под ваши условия подходят 0 программ"
         headerLabel2.text = "К Вашим условиям не подошли "
 
@@ -294,7 +294,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
         
-        cell.configure(id: data[indexPath.section][indexPath.row].pos, name: data[indexPath.section][indexPath.row].name, AEIR: data[indexPath.section][indexPath.row].AEIR, firstStageRate: data[indexPath.section][indexPath.row].firstStageRate, ageOfBorrower: data[indexPath.section][indexPath.row].ageOfBorrower, initialFee: data[indexPath.section][indexPath.row].initialFee, maxCredit: data[indexPath.section][indexPath.row].maxCredit, continuousWorkExperience: data[indexPath.section][indexPath.row].continuousWorkExperience, minTerm: data[indexPath.section][indexPath.row].minTerm, maxTerm: data[indexPath.section][indexPath.row].maxTerm, feePercent: data[indexPath.section][indexPath.row].feePercent, feeInitial: data[indexPath.section][indexPath.row].feeInitial, properties: data[indexPath.section][indexPath.row].properties, whereToApply: data[indexPath.section][indexPath.row].whereToApply, details: data[indexPath.section][indexPath.row].details, detailsColors: data[indexPath.section][indexPath.row].detailsColors, detailsFull: data[indexPath.section][indexPath.row].detailsFull, imageName: data[indexPath.section][indexPath.row].imageName)
+        cell.configure(id: data[indexPath.section][indexPath.row].pos, name: data[indexPath.section][indexPath.row].name, AEIR: data[indexPath.section][indexPath.row].AEIR, firstStageRate: data[indexPath.section][indexPath.row].firstStageRate, ageOfBorrower: data[indexPath.section][indexPath.row].ageOfBorrower, initialFeePercentageString: data[indexPath.section][indexPath.row].initialFeePercentageString, initialFeeLowerBound: data[indexPath.section][indexPath.row].initialFeeLowerBound, initialFeeUpperBound: data[indexPath.section][indexPath.row].initialFeeUpperBound, maxCredit: data[indexPath.section][indexPath.row].maxCredit, continuousWorkExperience: data[indexPath.section][indexPath.row].continuousWorkExperience, minTerm: data[indexPath.section][indexPath.row].minTerm, maxTerm: data[indexPath.section][indexPath.row].maxTerm, feePercent: data[indexPath.section][indexPath.row].feePercent, feeInitial: data[indexPath.section][indexPath.row].feeInitial, properties: data[indexPath.section][indexPath.row].properties, whereToApply: data[indexPath.section][indexPath.row].whereToApply, details: data[indexPath.section][indexPath.row].details, detailsColors: data[indexPath.section][indexPath.row].detailsColors, detailsFull: data[indexPath.section][indexPath.row].detailsFull, imageName: data[indexPath.section][indexPath.row].imageName)
         
         cell.delegate = self
         return cell
@@ -388,14 +388,15 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
 }
 
 extension MortgageListViewController: MortgageTableViewCellDelegate {
-    func didTapButton(id: Int, name: String, AEIR: Double, firstStageRate: Double, ageOfBorrower: [String], initialFee: String, maxCredit: Int, continuousWorkExperience: String, minTerm: Int, maxTerm: Int, feePercent: Double, feeInitial: Double, properties: [String], whereToApply: [String], details: [String], detailsColors: [String], detailsFull: String, imageName: String) {
-        
+    func didTapButton(id: Int, name: String, AEIR: Double, firstStageRate: Double, ageOfBorrower: [String], initialFeePercentageString: String, initialFeeLowerBound: Int, initialFeeUpperBound: Int, maxCredit: Int, continuousWorkExperience: String, minTerm: Int, maxTerm: Int, feePercent: Double, feeInitial: Double, properties: [String], whereToApply: [String], details: [String], detailsColors: [String], detailsFull: String, imageName: String) {
         self.id = id
         self.name = name
         self.AEIR = AEIR
         self.firstStageRate = firstStageRate
         self.ageOfBorrower = ageOfBorrower
-        self.initialFee = initialFee
+        self.initialFeePercentageString = initialFeePercentageString
+        self.initialFeeLowerBound = initialFeeLowerBound
+        self.initialFeeUpperBound = initialFeeUpperBound
         self.maxCredit = maxCredit
         self.continuousWorkExperience = continuousWorkExperience
         self.minTerm = minTerm
@@ -414,6 +415,7 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
         } else {
             self.performSegue(withIdentifier: "showMortgageDetails", sender: self)
         }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -425,7 +427,9 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
             destinationVC?.AEIR = AEIR
             destinationVC?.firstStageRate = firstStageRate
             destinationVC?.ageOfBorrower = ageOfBorrower
-            destinationVC?.initialFee = initialFee
+            destinationVC?.initialFeePercentageString = initialFeePercentageString
+            destinationVC?.initialFeeLowerBound = initialFeeLowerBound
+            destinationVC?.initialFeeUpperBound = initialFeeUpperBound
             destinationVC?.maxCredit = maxCredit
             destinationVC?.continuousWorkExperience = continuousWorkExperience
             destinationVC?.minTerm = minTerm

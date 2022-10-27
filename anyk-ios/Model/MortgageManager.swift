@@ -51,7 +51,9 @@ class MortgageManager {
                       firstStageRate: 13.75,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "20% - 99%",
+                      initialFeePercentageString: "20% - 99%",
+                      initialFeeLowerBound: 20,
+                      initialFeeUpperBound: 99,
                       maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -73,7 +75,9 @@ class MortgageManager {
                       firstStageRate: 16,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "20% - 99%",
+                      initialFeePercentageString: "20% - 99%",
+                      initialFeeLowerBound: 20,
+                      initialFeeUpperBound: 99,
                       maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -93,7 +97,9 @@ class MortgageManager {
                       firstStageRate: 16,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "50% - 99%",
+                      initialFeePercentageString: "50% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 75000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -113,7 +119,9 @@ class MortgageManager {
                       firstStageRate: 17,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "50% - 99%",
+                      initialFeePercentageString: "50% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -137,7 +145,9 @@ class MortgageManager {
                       firstStageRate: 15,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "35% - 99%",
+                      initialFeePercentageString: "35% - 99%",
+                      initialFeeLowerBound: 35,
+                      initialFeeUpperBound: 99,
                       maxCredit: 50000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -157,7 +167,9 @@ class MortgageManager {
                       firstStageRate: 14.5,
                       ageOfBorrower: ["мужчины: с 21 до",
                                        "женщины: с 21 до"],
-                      initialFee: "35% - 99%",
+                      initialFeePercentageString: "35% - 99%",
+                      initialFeeLowerBound: 35,
+                      initialFeeUpperBound: 99,
                       maxCredit: 75000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -177,7 +189,9 @@ class MortgageManager {
                       firstStageRate: 16,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "35% - 99%",
+                      initialFeePercentageString: "35% - 99%",
+                      initialFeeLowerBound: 35,
+                      initialFeeUpperBound: 99,
                       maxCredit: 100000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -197,7 +211,9 @@ class MortgageManager {
                       firstStageRate: 16,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "20% - 99%",
+                      initialFeePercentageString: "20% - 99%",
+                      initialFeeLowerBound: 20,
+                      initialFeeUpperBound: 99,
                       maxCredit: 100000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -217,7 +233,9 @@ class MortgageManager {
                       firstStageRate: 18.5,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "50% - 99%",
+                      initialFeePercentageString: "50% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -239,7 +257,9 @@ class MortgageManager {
                       firstStageRate: 15,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "50% - 99%",
+                      initialFeePercentageString: "50% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -262,7 +282,9 @@ class MortgageManager {
                       firstStageRate: 15,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "0%",
+                      initialFeePercentageString: "0%",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -284,7 +306,9 @@ class MortgageManager {
                       firstStageRate: 16,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "50% - 99%",
+                      initialFeePercentageString: "50% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -307,7 +331,9 @@ class MortgageManager {
                       firstStageRate: 15,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "30% - 99%",
+                      initialFeePercentageString: "30% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -329,7 +355,9 @@ class MortgageManager {
                       firstStageRate: 17,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "30% - 99%",
+                      initialFeePercentageString: "30% - 99%",
+                      initialFeeLowerBound: 30,
+                      initialFeeUpperBound: 99,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -353,7 +381,9 @@ class MortgageManager {
                       firstStageRate: 17,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "0%",
+                      initialFeePercentageString: "0%",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: 150000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -377,7 +407,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21 до",
                                       "женщины: с 21 до"],
-                      initialFee: "36% - 99%",
+                      initialFeePercentageString: "36% - 99%",
+                      initialFeeLowerBound: 36,
+                      initialFeeUpperBound: 99,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -397,7 +429,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21 до",
                                        "женщины: с 21 до"],
-                      initialFee: "36% - 100%",
+                      initialFeePercentageString: "36% - 100%",
+                      initialFeeLowerBound: 36,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -417,7 +451,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21 до",
                                        "женщины: с 21 до"],
-                      initialFee: "36% - 100%",
+                      initialFeePercentageString: "36% - 100%",
+                      initialFeeLowerBound: 36,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -437,7 +473,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21 до",
                                        "женщины: с 21 до"],
-                      initialFee: "36% - 100%",
+                      initialFeePercentageString: "36% - 100%",
+                      initialFeeLowerBound: 36,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -457,7 +495,9 @@ class MortgageManager {
                       firstStageRate: 6,
                       ageOfBorrower: ["мужчины: с 21 до",
                                        "женщины: с 21 до"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -479,7 +519,9 @@ class MortgageManager {
                       firstStageRate: 12,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 63"],
-                      initialFee: "0%",
+                      initialFeePercentageString: "0%",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: 65000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -500,7 +542,9 @@ class MortgageManager {
                       firstStageRate: 12,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 63"],
-                      initialFee: "30% - 99%",
+                      initialFeePercentageString: "30% - 99%",
+                      initialFeeLowerBound: 30,
+                      initialFeeUpperBound: 99,
                       maxCredit: 65000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -521,7 +565,9 @@ class MortgageManager {
                       firstStageRate: 14,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 63"],
-                      initialFee: "50% - 99%",
+                      initialFeePercentageString: "50% - 99%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 65000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -542,7 +588,9 @@ class MortgageManager {
                       firstStageRate: 14,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 63"],
-                      initialFee: "0%",
+                      initialFeePercentageString: "0%",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: 65000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -564,7 +612,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 99,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -584,7 +634,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -604,7 +656,9 @@ class MortgageManager {
                       firstStageRate: 8.5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -624,7 +678,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -644,7 +700,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -664,7 +722,9 @@ class MortgageManager {
                       firstStageRate: 8,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -684,7 +744,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -704,7 +766,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -724,7 +788,9 @@ class MortgageManager {
                       firstStageRate: 7.5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -744,7 +810,9 @@ class MortgageManager {
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 100000000,
                       continuousWorkExperience: "7 месяцев",
                       
@@ -768,7 +836,9 @@ class MortgageManager {
                       firstStageRate: 10.75,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 63"],
-                      initialFee: "20% - 90%",
+                      initialFeePercentageString: "20% - 90%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 35000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -796,7 +866,9 @@ class MortgageManager {
                       firstStageRate: 7,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 63"],
-                      initialFee: "20% - 95%",
+                      initialFeePercentageString: "20% - 95%",
+                      initialFeeLowerBound: 20,
+                      initialFeeUpperBound: 95,
                       maxCredit: 25000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -825,7 +897,9 @@ class MortgageManager {
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -845,7 +919,9 @@ class MortgageManager {
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -865,7 +941,9 @@ class MortgageManager {
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "20% - 49%",
+                      initialFeePercentageString: "20% - 49%",
+                      initialFeeLowerBound: 20,
+                      initialFeeUpperBound: 49,
                       maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -885,7 +963,9 @@ class MortgageManager {
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 175000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -906,7 +986,9 @@ class MortgageManager {
                       firstStageRate: 6,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -926,7 +1008,9 @@ class MortgageManager {
                       firstStageRate: 6,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -946,7 +1030,9 @@ class MortgageManager {
                       firstStageRate: 6,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "50% - 100%",
+                      initialFeePercentageString: "50% - 100%",
+                      initialFeeLowerBound: 50,
+                      initialFeeUpperBound: 100,
                       maxCredit: 90000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -966,7 +1052,9 @@ class MortgageManager {
                       firstStageRate: 8,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "15% - 49%",
+                      initialFeePercentageString: "15% - 49%",
+                      initialFeeLowerBound: 100,
+                      initialFeeUpperBound: 49,
                       maxCredit: 0,
                       continuousWorkExperience: "5 месяцев",
                       
@@ -986,7 +1074,9 @@ class MortgageManager {
                       firstStageRate: 2,
                       ageOfBorrower: ["мужчины: с 21",
                                       "женщины: с 21"],
-                      initialFee: "10% - 49%",
+                      initialFeePercentageString: "10% - 49%",
+                      initialFeeLowerBound: 10,
+                      initialFeeUpperBound: 49,
                       maxCredit: 15000000,
                       continuousWorkExperience: "6 месяцев",
                       
@@ -1006,7 +1096,9 @@ class MortgageManager {
                       firstStageRate: 5,
                       ageOfBorrower: ["мужчины: с 21 до 63",
                                       "женщины: с 21 до 58"],
-                      initialFee: "10% - 49%",
+                      initialFeePercentageString: "10% - 49%",
+                      initialFeeLowerBound: 10,
+                      initialFeeUpperBound: 49,
                       maxCredit: 18000000,
                       continuousWorkExperience: "0 месяцев",
                       
@@ -1040,7 +1132,9 @@ class MortgageManager {
                                       "\n • Отобранные претенденты подтверждают платежеспособность в соответствии с внутренними документами Samruk-Kazyna Construction. Для претендентов, подтвердивших выкуп жилья за счет собственности\n • Местный исполнительный орган утверждает пул претендентов, подтвердивших платежеспособность, соразмерно количеству квартир.\n • Samruk-Kazyna Construction предоставляет претендентам возможность выбора квартир согласно очередности, определяемой порядковым номером в предоставленных списках МИО.\n • При распределении арендных квартир АО «Samruk-Kazyna Construction» отдает предпочтение очередникам акиматов, для которых это жилье и строилось. При этом невостребованные квартиры без первоначального взноса в аренду с последующим выкупом могут взять и другие категории граждан, которых нет в списке, имеющих право стать очередником акиматов. Это, например, работники частных структур, индивидуальные предприниматели и другие.\n • В Фонде уточняют, что квартиры для очередников распределяются на основании полученных списков, утвержденных жилищной комиссией акимата. Невостребованные МИО квартиры реализуются в два этапа через интернет путем принятия электронных заявок на сайте Фонда.\n • В первом этапе участвуют граждане, не имеющие своего жилья. Если после первого этапа остаются невостребованные квартиры, то они реализуются на втором этапе для всех категорий граждан. По условиям программы реализация арендных квартир без выкупа не предусмотрена.",
                                       "Как подавать заявку",
                                       " 1. Дождаться окончания строительства и ввода в эксплуатацию жилья, строящегося по линии АО«Самрук-Казына».Информация о приеме заявок в городах будет опубликована на сайте www.fnsk.kz за пару месяцев.\n 2. Для подачи заявки на получение арендного жилья нужно зарегистрироваться на сайте Фонда недвижимости АО «Самрук-Казына» www.fnsk.kz. Для регистрации и подачи заявки вам понадобится электронная цифровая подпись (ЭЦП).\n 3. В процессе подачи заявки необходимо выбрать город и жилой комплекс,затем количество комнат в планируемой квартире и ознакомиться с местоположением и планировками. Далее необходимо указать тип заявления «Прямая покупка» или «Аренда с выкупом» — второе именно то, что нам необходимо. На экране вы увидите статус вашей заявки, ее идентификационный номер и дату завершения конкурса, количество поданных заявок, а также очередь в реальном времени по этому конкурсу.\n 4. Подать документы на арендное жилье с выкупом.Как только будет окончен срок приема заявок, опубликованный на сайте, и будет сформирован список очередников на арендное жилье, указанным претендентам необходимо будет обратиться со списком необходимых документов непосредственно в Управляющую компанию Фонда недвижимости."], // 14
-                      initialFee: "",
+                      initialFeePercentageString: "",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: -1,
                       continuousWorkExperience: "",
                       
@@ -1075,7 +1169,9 @@ class MortgageManager {
                                       " 1. заявление по форме согласно приложению к настоящим Правилам;\n 2. копия документа, удостоверяющего личность заявителя (оригинал представляется для идентификации личности);\n 3. копия документа об образовании;\n 4. копия свидетельства о заключении брака (при наличии);\n 5. копия свидетельств(а) о рождении детей (при наличии);\n 6. справка об отсутствии (наличии) недвижимого имущества на заявителя и всех членов семьи;\n 7. справка с места работы;\n 8. справка о доходах за последние шесть месяцев, подтверждающая ежемесячных доход заявителя в размере не менее 40 (сорока) месячных расчетных показателей;\n 9. документы, подтверждающие трудовой стаж в соответствии со статьей 35 Трудового кодекса Республики Казахстан;\n 10. справка о наличии и номере банковского счета и выписка об остатке и движении денег по банковскому счету;\n 11. документы, подтверждающие личные достижения заявителя в различных сферах деятельности (при наличии).",
                                       "Порядок рассмотрение документов",
                                       " 1. Уполномоченный орган публикует на интернет-ресурсе местного исполнительного органа области, города республиканского значения объявление о предоставлении арендного жилища без права выкупа для работающей молодежи с указанием даты начала и окончания приема заявлений.\n 2. Арендное жилище без права выкупа предоставляется работающей молодежи в соответствии с требованиями установленными Государственной программой жилищного строительства «Нұрлы жер», утвержденной постановлением Правительства Республики Казахстан от 22 июня 2018 года № 372.\n 3. Заявитель для получения арендного жилища без права выкупа предоставляет в уполномоченный орган вышеуказанные документы.\n 4. После завершения приема документов уполномоченный орган в течение 5 (пяти) рабочих дней проверяет полноту документов и их соответствие пунктам 1 и 2 настоящих Правил.\n 5. В случае предоставления заявителем неполного пакета документов согласно перечню, предусмотренному пунктом 4 настоящих Правил, заявителю предоставляется возможность в течение 1 (одного) рабочего дня дополнительно представить отсутствующие документы.\n 6. В случае несоответствия заявителя, требованиям пунктам 1 и 2 настоящих Правил, уполномоченный орган отказывает в предоставлении арендного жилища без права выкупа в письменном виде.\n 7. Уполномоченный орган в течение 10 (десяти) рабочих дней производит подсчет баллов и формирует список претендентов на получение арендного жилища без права выкупа по наибольшему количеству баллов.\n 8. Подсчет баллов осуществляется по балльной системе:\n 9. заявителю, освоившему профессию согласно перечню 100 (ста) наиболее востребованных рынком специальностей, утвержденному уполномоченным органом по вопросам занятости населения в соответствии с Государственной программой развития продуктивной занятости и массового предпринимательства на 2017 – 2021 годы «Еңбек», утвержденной поставнолением Правительства Республики Казахстан от 13 ноября 2018 года № 746 – 10 баллов;\n 10. при наличии семьи – 5 баллов, за каждый год в зарегистрированном браке – 2 балла;\n 11. при наличии 1 (одного) ребенка – 1 балл, за каждого последующего ребенка – 2 балла;\n 12. при осуществлении индивидуальной предпринимательской деятельности не менее 1 года – 5 баллов, за каждый год – 1 балл;\n 13. при наличии личных достижений заявителя в различных сферах деятельности – 2 балла;\n 14. за трудовую деятельность в бюджетных организациях (государственных учреждениях и государственных предприятиях) – 5 баллов, за каждый год стажа – 1 балл;\n 15. за каждый год накоплений на сберегательных счетах (депозитах) в банках второго уровня – 2 балла.\n 16. При равенстве баллов преимущество имеют претенденты, подавшие заявления раннее по дате подачи заявления.\n 17. Решение о предоставлении арендного жилища без права выкупа принимается уполномоченным органом и подписывается первым руководителем местного исполнительного органа области, города республиканского значения.\n 18. После принятия уполномоченным органом решения о предоставлении арендного жилища без права выкупа, в течение 15 (пятнадцати) календарных дней заключается договор найма жилища между заявителем и уполномоченным органом.\n 19. Арендное жилище без права выкупа предоставляется на срок – 5 (пять) лет."], // 14
-                      initialFee: "",
+                      initialFeePercentageString: "",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: 0,
                       continuousWorkExperience: "",
                       
@@ -1108,13 +1204,15 @@ class MortgageManager {
                                       " • необходимо обратиться в акимат для постановки на учет как нуждающийся\n • обратиться в Правительство для граждан (ЦОН) по месту жительства",
                                      "Документы",
                                      "Претендентам следует отслеживать на сайте акимата или управлений жилья информацию о приеме документов от очередников. При наличии электронной цифровой подписи (ЭЦП) документы можно сдать на портале электронного правительства.\n\nВ Государственную корпорацию «Правительство для граждан» услугополучатель (либо его представитель по нотариально заверенной доверенности) должен сдать:\n\n • заявление о постановке на учет граждан, нуждающихся в жилище из коммунального жилищного фонда, с указанием согласия на проверку услугодателем о наличии или отсутствия жилища из коммунального жилищного фонда;\n • документ, удостоверяющий личность (требуется для идентификации личности);\n • документ, подтверждающий факт проживания в городах республиканского значения, столице не менее трех лет (только для граждан Республики Казахстан, проживающих в городах республиканского значения, столице);\n • свидетельства о заключении (расторжении) брака (до 1 июня 2008 года), о смерти членов семьи (до 13 августа 2007 года), о рождении детей (до 13 августа 2007 года) оригинал представляется для идентификации личности);\n • справка соответствующего местного исполнительного органа, если единственное жилище признано аварийным;\n\nВ случае обращения услугополучателя, относящегося к социально уязвимым слоям населения (за исключением детей-сирот, детей, оставшихся без попечения родителей, и детей-инвалидов), дополнительно представляется:\n\n • справка о доходах за последние двенадцать месяцев перед обращением на каждого члена семьи.\n\nВ случае обращения услугополучателя, относящегося к категории государственных служащих, работников бюджетных организаций, военнослужащих, сотрудников специальных государственных органов и лиц, занимающие государственные выборные должности, дополнительно представляется:\n\n • справка с места работы (службы).\n\nВ случаях, когда жилище, в котором проживает семья, не отвечает установленным санитарным и техническим требованиям, либо когда в смежных, неизолированных жилых помещениях проживают две и более семей, либо когда в составе семьи имеются больные, страдающие тяжелыми формами некоторых хронических заболеваний, при которых совместное проживание с ними в одном помещении (квартире) становится невозможным, услугополучатель дополнительно представляет:\n\n • справки соответствующих уполномоченных органов. \n\nСведения документов, удостоверяющих личность, свидетельства о заключении или расторжении брака (после 1 июня 2008 года), о смерти (после 13 августа 2007 года), о рождении детей (после 13 августа 2007 года), справки о наличии или отсутствии жилища (по Республике Казахстан), принадлежащего им на праве собственности, адресной справки, решение суда о признании других лиц членами семьи услугополучателя, документов, подтверждающих принадлежность услугополучателя к социально уязвимым слоям населения, предоставляются услугодателю на всех членов семьи из соответствующих государственных информационных систем через шлюз «электронного правительства».\n\nЖилище из жилищного фонда государственного учреждения предоставляется согласно заключенному договору найма"], // 14
-                      initialFee: "",
+                      initialFeePercentageString: "",
+                      initialFeeLowerBound: 0,
+                      initialFeeUpperBound: 0,
                       maxCredit: 0,
                       continuousWorkExperience: "",
                       
                       minTerm: 0, maxTerm: 0,
                       feePercent: 0, feeInitial: 0,
-                      
+                                            
                       properties: ["150 ₸ / м²", "150 ₸ / м²", "без ограничений"],
                       whereToApply: [" • Выдается очередникам без наступления очереди",
                                      " • Необходимо продлевать договор займа каждые 5 лет",
@@ -1160,8 +1258,8 @@ class MortgageManager {
 
         var array = myOriginalData.filter({
             
-            if $0.initialFee.count > 2 {
-                feePercent = Int("\($0.initialFee.prefix(2))")!
+            if $0.initialFeePercentageString.count > 2 {
+                feePercent = Int("\($0.initialFeePercentageString.prefix(2))")!
             } else {
                 feePercent = 0
             }

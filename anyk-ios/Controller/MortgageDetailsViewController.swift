@@ -31,7 +31,10 @@ class MortgageDetailsViewController: UIViewController {
     var AEIR = 0.0 // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
     var firstStageRate = 0.0
     var ageOfBorrower = [""]
-    var initialFee = ""
+    var initialFeePercentageString = ""
+    var initialFeeLowerBound = 0
+    var initialFeeUpperBound = 0
+
     var maxCredit = 0
     var continuousWorkExperience = ""
     
@@ -376,7 +379,7 @@ class MortgageDetailsViewController: UIViewController {
         initialFeeValue.numberOfLines = 0
         
         scrollView.addSubview(initialFeeValue)
-        initialFeeValue.text = initialFee
+        initialFeeValue.text = initialFeePercentageString
         
         tempHeight = initialFeeValue.intrinsicContentSize.height
         initialFeeValue.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
@@ -675,7 +678,7 @@ class MortgageDetailsViewController: UIViewController {
         // special cases
         if whereToApply == ["Жилстройсбербанк"] || name == "\"5-10-20\"" {
             
-            if initialFee.contains("49%") {  // calculations4
+            if initialFeePercentageString.contains("49%") {  // calculations4
                 
                 // 2 textFields + popup button
                 termPopUpButton.frame = CGRect(x: 5, y: lowestY, width: w, height: tempHeight)
@@ -934,7 +937,7 @@ class MortgageDetailsViewController: UIViewController {
             txtField1_2txt.removeFromSuperview()
             txtField1_3.removeFromSuperview()
             txtField1_3txt.removeFromSuperview()
-
+            chosenSegment = 0
             calcView.frame = CGRect(x: 4, y: CGFloat(hhh), width: w + 12, height: calcViewDefaultHeight)
             myButton.frame = CGRect(x: 5, y: myButtonDefaultY, width: w, height: tempHeight)
             scrollView.contentSize = CGSize(width: view.frame.size.width, height: hh + 250)
@@ -997,6 +1000,8 @@ class MortgageDetailsViewController: UIViewController {
                         
         case 1:
             
+            chosenSegment = 1
+
             var localLowestY: CGFloat = 0
             txtField1_1txt = {
                 let lbl = UILabel(frame: CGRect(x: 5, y: hiddenSegmentY, width: w, height: tempHeight/2))
@@ -1160,12 +1165,14 @@ class MortgageDetailsViewController: UIViewController {
         
         let myInt1 = Double(txtField1.text ?? "0") ?? 0
         let myInt2 = Double(txtField2.text ?? "0") ?? 0
-        let myInt3 = Double(txtField3.text ?? "0") ?? 0
+        var myInt3 = Double(txtField3.text ?? "0") ?? 0
 
+        if initialFeeUpperBound < 50 {
+            myInt3 = 6
+        }
 //        self.performSegue(withIdentifier: segueName, sender: self)
 
-        
-        if (myInt1 < 100000 || myInt1 > 175000000) || (myInt2 < myInt1 / 5 || myInt2 > myInt1 * 0.99) || (myInt3 < Double(minTerm) || myInt3 > Double(maxTerm)) {
+        if (myInt1 < 100000 || Int(myInt1) > maxCredit) || (myInt2 < myInt1*Double(initialFeeLowerBound)/100 || myInt2 > myInt1 * Double(initialFeeUpperBound)/100) || (myInt3 < Double(minTerm) || myInt3 > Double(maxTerm)) {
             
             myButton.backgroundColor = .red
             /*
@@ -1179,21 +1186,22 @@ class MortgageDetailsViewController: UIViewController {
             if myInt1 < 100000 {
                 myButton.setTitle("Сумма займа от 100 000 ₸", for: .normal)
             } else if myInt1 > 175000000 {
-                myButton.setTitle("Сумма займа до 175 000 000 ₸", for: .normal)
+                myButton.setTitle("Сумма займа до \(maxCredit) ₸", for: .normal)
             } else {
-                if myInt2 < myInt1 / 5 {
-                    myButton.setTitle("Первоначальный взнос от \(myInt1 / 5) ₸", for: .normal)
-                } else if myInt2 > myInt1 * 0.99 {
-                    myButton.setTitle("Первоначальный взнос до \(myInt1 * 0.99) ₸", for: .normal)
+                if myInt2 < myInt1 * Double(initialFeeLowerBound) / 100 {
+                    myButton.setTitle("Первоначальный взнос от \(Int(myInt1) * initialFeeLowerBound / 100) ₸", for: .normal)
+                } else if myInt2 > myInt1 * Double(initialFeeUpperBound) / 100 {
+                    myButton.setTitle("Первоначальный взнос до \(Int(myInt1) * initialFeeUpperBound / 100) ₸", for: .normal)
                 }
             }
             
-            if myInt3 < Double(minTerm) {
-                myButton.setTitle("Срок займа от \(minTerm) лет", for: .normal)
-            } else if myInt3 > Double(maxTerm) {
-                myButton.setTitle("Срок займа до \(maxTerm) лет", for: .normal)
+            if maxTerm > 50 {
+                if myInt3 < Double(minTerm) {
+                    myButton.setTitle("Срок займа от \(minTerm) лет", for: .normal)
+                } else if myInt3 > Double(maxTerm) {
+                    myButton.setTitle("Срок займа до \(maxTerm) лет", for: .normal)
+                }
             }
-            
             let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
                 self.myButton.backgroundColor = UIColor(named: "AccentColor")
                 self.myButton.setTitle("РАССЧИТАТЬ", for: .normal)
@@ -1241,31 +1249,6 @@ class MortgageDetailsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "calculations1" {
-            
-//            let destinationVC = segue.destination as! Calculations1ViewController
-//
-//            destinationVC.txtField1 = self.txtField1.text ?? ""
-//            destinationVC.txtField2 = self.txtField2.text ?? ""
-//            destinationVC.txtField3 = self.txtField3.text ?? ""
-//            destinationVC.id = id
-//            destinationVC.name = name
-//            destinationVC.AEIR = AEIR
-//            destinationVC.firstStageRate = firstStageRate
-//            destinationVC.ageOfBorrower = ageOfBorrower
-//            destinationVC.initialFee = initialFee
-//            destinationVC.maxCredit = maxCredit
-//            destinationVC.continuousWorkExperience = continuousWorkExperience
-//            destinationVC.minTerm = minTerm
-//            destinationVC.maxTerm = maxTerm
-//            destinationVC.feePercent = feePercent
-//            destinationVC.feeInitial = feeInitial
-//            destinationVC.properties = properties
-//            destinationVC.whereToApply = whereToApply
-//            destinationVC.details = details
-//            destinationVC.detailsColors = detailsColors
-//            destinationVC.detailsFull = detailsFull
-//            destinationVC.imageName = imageName
-
             weak var destinationVC = segue.destination as? Calculations1ViewController
 
             destinationVC?.txtField1 = self.txtField1.text ?? ""
@@ -1277,7 +1260,7 @@ class MortgageDetailsViewController: UIViewController {
             destinationVC?.AEIR = AEIR
             destinationVC?.firstStageRate = firstStageRate
             destinationVC?.ageOfBorrower = ageOfBorrower
-            destinationVC?.initialFee = initialFee
+            destinationVC?.initialFee = initialFeePercentageString
             destinationVC?.maxCredit = maxCredit
             destinationVC?.continuousWorkExperience = continuousWorkExperience
             destinationVC?.minTerm = minTerm
@@ -1291,15 +1274,24 @@ class MortgageDetailsViewController: UIViewController {
             destinationVC?.detailsFull = detailsFull
             destinationVC?.imageName = imageName
         }
+        
         if segue.identifier == "calculations2" {
             weak var destinationVC = segue.destination as? Calculations2ViewController
             
+            destinationVC?.txtField1 = txtField1.text ?? ""
+            destinationVC?.txtField2 = txtField2.text ?? ""
+            destinationVC?.txtField3 = txtField3.text ?? ""
+            destinationVC?.chosenSegment = chosenSegment
+            destinationVC?.txtField1_1 = txtField1_1.text ?? ""
+            destinationVC?.txtField1_2 = txtField1_2.text ?? ""
+            destinationVC?.txtField1_3 = txtField1_3.text ?? ""
+
             destinationVC?.id = id
             destinationVC?.name = name
             destinationVC?.AEIR = AEIR
             destinationVC?.firstStageRate = firstStageRate
             destinationVC?.ageOfBorrower = ageOfBorrower
-            destinationVC?.initialFee = initialFee
+            destinationVC?.initialFeePercentageString = initialFeePercentageString
             destinationVC?.maxCredit = maxCredit
             destinationVC?.continuousWorkExperience = continuousWorkExperience
             destinationVC?.minTerm = minTerm
@@ -1313,15 +1305,27 @@ class MortgageDetailsViewController: UIViewController {
             destinationVC?.detailsFull = detailsFull
             destinationVC?.imageName = imageName
         }
+        
         if segue.identifier == "calculations3" {
             weak var destinationVC = segue.destination as? Calculations3ViewController
             
+            destinationVC?.txtField1 = txtField1.text ?? ""
+            destinationVC?.txtField2 = txtField2.text ?? ""
+            destinationVC?.txtField3 = txtField3.text ?? ""
+            destinationVC?.chosenSegment = chosenSegment
+            destinationVC?.txtField1_1 = txtField1_1.text ?? ""
+            destinationVC?.txtField1_2 = txtField1_2.text ?? ""
+            destinationVC?.txtField1_3 = txtField1_3.text ?? ""
+            destinationVC?.txtField2_1 = txtField2_1.text ?? ""
+            destinationVC?.txtField2_2 = txtField2_2.text ?? ""
+            destinationVC?.txtField2_3 = txtField2_3.text ?? ""
+            
             destinationVC?.id = id
             destinationVC?.name = name
             destinationVC?.AEIR = AEIR
             destinationVC?.firstStageRate = firstStageRate
             destinationVC?.ageOfBorrower = ageOfBorrower
-            destinationVC?.initialFee = initialFee
+            destinationVC?.initialFeePercentageString = initialFeePercentageString
             destinationVC?.maxCredit = maxCredit
             destinationVC?.continuousWorkExperience = continuousWorkExperience
             destinationVC?.minTerm = minTerm
@@ -1335,15 +1339,20 @@ class MortgageDetailsViewController: UIViewController {
             destinationVC?.detailsFull = detailsFull
             destinationVC?.imageName = imageName
         }
+        
         if segue.identifier == "calculations4" {
             weak var destinationVC = segue.destination as? Calculations4ViewController
+            
+            destinationVC?.txtField1 = txtField1.text ?? ""
+            destinationVC?.txtField2 = txtField2.text ?? ""
+            destinationVC?.popUpOption = popUpOption
             
             destinationVC?.id = id
             destinationVC?.name = name
             destinationVC?.AEIR = AEIR
             destinationVC?.firstStageRate = firstStageRate
             destinationVC?.ageOfBorrower = ageOfBorrower
-            destinationVC?.initialFee = initialFee
+            destinationVC?.initialFeePercentageString = initialFeePercentageString
             destinationVC?.maxCredit = maxCredit
             destinationVC?.continuousWorkExperience = continuousWorkExperience
             destinationVC?.minTerm = minTerm

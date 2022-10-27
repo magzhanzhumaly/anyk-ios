@@ -127,15 +127,93 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         
         view.addSubview(scrollView)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
+        
+        tempHeight = h / 36
+        
+        lowestY += 10
+        
+        let titleText: UILabel = {
+            let label = UILabel()
+            label.text = name
+            label.font = .systemFont(ofSize: 18, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        titleText.frame = CGRect(x: 10,
+                                   y: lowestY,
+                                   width: titleText.intrinsicContentSize.width < w ? titleText.intrinsicContentSize.width + 10.0 : w,
+                                   height: tempHeight)
+        
+        scrollView.addSubview(titleText)
+
+        lowestY += 20 + tempHeight
+
+
+        let argument1: UILabel = {
+            let label = UILabel()
+            label.text = "Стоимость жилья: \(txtField1)"
+            label.font = .systemFont(ofSize: 14, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        argument1.frame = CGRect(x: 10,
+                                   y: lowestY,
+                                   width: w,
+                                   height: tempHeight)
+        
+        scrollView.addSubview(argument1)
+
+        lowestY += tempHeight
+
+        let argument2: UILabel = {
+            let label = UILabel()
+            label.text = "Первоначальный взнос: \(txtField2)"
+            label.font = .systemFont(ofSize: 14, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        argument2.frame = CGRect(x: 10,
+                                   y: lowestY,
+                                   width: w,
+                                   height: tempHeight)
+        
+        scrollView.addSubview(argument2)
+
+        lowestY += tempHeight
+
+        let argument3: UILabel = {
+            let label = UILabel()
+            label.text = "Срок займа: \(txtField3) лет"
+            label.font = .systemFont(ofSize: 14, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        argument3.frame = CGRect(x: 10,
+                                   y: lowestY,
+                                   width: w,
+                                   height: tempHeight)
+        
+        scrollView.addSubview(argument3)
+
+        lowestY += tempHeight + 20
 
         
         tempHeight = h / 18
+
         
         segControl.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
 
         scrollView.addSubview(segControl)
         
-        lowestY += tempHeight + 10
+        lowestY += tempHeight + 20
         
         var firstDetail: UILabel = {
             let label = UILabel()
@@ -147,8 +225,8 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
             return label
         }()
         
-        
-        firstDetail.text = details[0]
+        let tempDetailString = detailsFull.components(separatedBy: "\n")
+        firstDetail.text = tempDetailString[0]
 
         firstDetail.layer.cornerRadius = 5
         firstDetail.layer.borderWidth = 1

@@ -13,7 +13,9 @@ protocol MortgageTableViewCellDelegate: AnyObject {
                       AEIR: Double,
                       firstStageRate: Double,
                       ageOfBorrower: [String],
-                      initialFee: String,
+                      initialFeePercentageString: String,
+                      initialFeeLowerBound: Int,
+                      initialFeeUpperBound: Int,
                       maxCredit: Int,
                       continuousWorkExperience: String,
 
@@ -79,7 +81,9 @@ class MortgageTableViewCell: UITableViewCell {
     private var AEIR = 0.0 // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
     private var firstStageRate = 0.0
     private var ageOfBorrower = [""]
-    private var initialFee = ""
+    private var initialFeePercentageString = ""
+    private var initialFeeLowerBound = 0
+    private var initialFeeUpperBound = 0
     private var maxCredit = 0
     private var continuousWorkExperience = ""
     
@@ -237,7 +241,7 @@ class MortgageTableViewCell: UITableViewCell {
     }()
     
     @objc func didTapButton(sender: UIButton!) {
-        delegate?.didTapButton(id: id, name: name, AEIR: AEIR, firstStageRate: firstStageRate, ageOfBorrower: ageOfBorrower, initialFee: initialFee, maxCredit: maxCredit, continuousWorkExperience: continuousWorkExperience, minTerm: minTerm, maxTerm: maxTerm, feePercent: feePercent, feeInitial: feeInitial, properties: properties, whereToApply: whereToApply, details: details, detailsColors: detailsColors, detailsFull: detailsFull, imageName: imageName)
+        delegate?.didTapButton(id: id, name: name, AEIR: AEIR, firstStageRate: firstStageRate, ageOfBorrower: ageOfBorrower, initialFeePercentageString: initialFeePercentageString, initialFeeLowerBound: initialFeeLowerBound, initialFeeUpperBound: initialFeeUpperBound, maxCredit: maxCredit, continuousWorkExperience: continuousWorkExperience, minTerm: minTerm, maxTerm: maxTerm, feePercent: feePercent, feeInitial: feeInitial, properties: properties, whereToApply: whereToApply, details: details, detailsColors: detailsColors, detailsFull: detailsFull, imageName: imageName)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -266,14 +270,16 @@ class MortgageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(id: Int, name: String, AEIR: Double, firstStageRate: Double, ageOfBorrower: [String], initialFee: String, maxCredit: Int, continuousWorkExperience: String, minTerm: Int, maxTerm: Int, feePercent: Double, feeInitial: Double, properties: [String], whereToApply: [String], details: [String], detailsColors: [String], detailsFull: String, imageName: String) {
-        
+    public func configure(id: Int, name: String, AEIR: Double, firstStageRate: Double, ageOfBorrower: [String], initialFeePercentageString: String, initialFeeLowerBound: Int, initialFeeUpperBound: Int, maxCredit: Int, continuousWorkExperience: String, minTerm: Int, maxTerm: Int, feePercent: Double, feeInitial: Double, properties: [String], whereToApply: [String], details: [String], detailsColors: [String], detailsFull: String, imageName: String) {
+ 
         self.id = id
         self.name = name
         self.AEIR = AEIR
         self.firstStageRate = firstStageRate
         self.ageOfBorrower = ageOfBorrower
-        self.initialFee = initialFee
+        self.initialFeePercentageString = initialFeePercentageString
+        self.initialFeeLowerBound = initialFeeLowerBound
+        self.initialFeeUpperBound = initialFeeUpperBound
         self.maxCredit = maxCredit
         self.continuousWorkExperience = continuousWorkExperience
         
@@ -281,7 +287,7 @@ class MortgageTableViewCell: UITableViewCell {
         self.maxTerm = maxTerm
         
         self.feePercent = feePercent
-        self.feeInitial = feeInitial
+        self.initialFeePercentageString = initialFeePercentageString
         
         self.properties = properties
         self.whereToApply = whereToApply
@@ -303,11 +309,13 @@ class MortgageTableViewCell: UITableViewCell {
         }
         
         self.text1val.text = "\(AEIR)%"
-        if initialFee.count > 2 {
-            self.text2val.text = "\(initialFee.prefix(3))"
+        
+        if initialFeePercentageString.count > 2 {
+            self.text2val.text = "\(initialFeePercentageString.prefix(3))"
         } else {
-            self.text2val.text = "\(initialFee)"
+            self.text2val.text = "\(initialFeePercentageString)"
         }
+        
         self.text3val.text = "\(maxCredit / 1000000) млн"
         self.text4val.text = "\(maxTerm) лет"
     }

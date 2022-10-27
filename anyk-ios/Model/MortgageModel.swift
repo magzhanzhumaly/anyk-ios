@@ -13,7 +13,10 @@ struct MortgageModel: Equatable {
     let AEIR: Double // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
     let firstStageRate: Double
     let ageOfBorrower: [String]
-    let initialFee: String
+    let initialFeePercentageString: String
+    let initialFeeLowerBound: Int
+    let initialFeeUpperBound: Int
+
     let maxCredit: Int
     let continuousWorkExperience: String
     

@@ -78,37 +78,99 @@ class Calculations2ViewController: UIViewController {
     let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
 
     
-    private var toggleButton: UIButton = {
+    private var depositScheduleToggleButton1: UIButton = {
+        let btn = UIButton()
+     
+        btn.setTitle("График депозита ▼", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+//        btn.titleLabel?.textAlignment = .left
+        btn.contentHorizontalAlignment = .left
+
+        return btn
+    }()
+
+    
+    private var paymentScheduleToggleButton1: UIButton = {
         let btn = UIButton()
      
         btn.setTitle("График платежа ▼", for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
 //        btn.titleLabel?.textAlignment = .left
         btn.contentHorizontalAlignment = .left
-        btn .addTarget(self, action: #selector(toggleButtonAction), for: .touchUpInside)
+
+        return btn
+    }()
+
+    private var depositScheduleToggleButton2: UIButton = {
+        let btn = UIButton()
+     
+        btn.setTitle("График депозита ▼", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+//        btn.titleLabel?.textAlignment = .left
+        btn.contentHorizontalAlignment = .left
+
+        return btn
+    }()
+
+    
+    private var paymentScheduleToggleButton2: UIButton = {
+        let btn = UIButton()
+     
+        btn.setTitle("График платежа ▼", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+//        btn.titleLabel?.textAlignment = .left
+        btn.contentHorizontalAlignment = .left
 
         return btn
     }()
     
+
     private var txt1val = UILabel()
     private var txt2val = UILabel()
     private var txt3val = UILabel()
     
-    private let tableView: UITableView = {
+    private let paymentStage1TableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(PaymentScheduleTableViewCell.self, forCellReuseIdentifier: PaymentScheduleTableViewCell.identifier)  // registered PaymentScheduleTableViewCell.self
+        
+        return tableView
+    }()
+    
+    private let depositStage1TableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(PaymentScheduleTableViewCell.self, forCellReuseIdentifier: PaymentScheduleTableViewCell.identifier)  // registered PaymentScheduleTableViewCell.self
+        
+        return tableView
+    }()
+    
+    private let paymentStage2TableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(PaymentScheduleTableViewCell.self, forCellReuseIdentifier: PaymentScheduleTableViewCell.identifier)  // registered PaymentScheduleTableViewCell.self
         
         return tableView
     }()
 
-    private var graphicToggler = UIButton()
-    
+    private let depositStage2TableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(PaymentScheduleTableViewCell.self, forCellReuseIdentifier: PaymentScheduleTableViewCell.identifier)  // registered PaymentScheduleTableViewCell.self
+        
+        return tableView
+    }()
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "calculations2"
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        depositScheduleToggleButton1.addTarget(self, action: #selector(depositSchedule1ToggleButtonAction), for: .touchUpInside)
+        paymentScheduleToggleButton1.addTarget(self, action: #selector(paymentSchedule1ToggleButtonAction), for: .touchUpInside)
+        
+        depositScheduleToggleButton2.addTarget(self, action: #selector(depositSchedule2ToggleButtonAction), for: .touchUpInside)
+        paymentScheduleToggleButton2.addTarget(self, action: #selector(paymentSchedule2ToggleButtonAction), for: .touchUpInside)
+        
+        calculateDifferentiated()
+
+        paymentStage1TableView.dataSource = self
+        paymentStage1TableView.delegate = self
 
 
         month = calendar.component(.month, from: date)
@@ -127,7 +189,7 @@ class Calculations2ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 10000)
         
         tempHeight = h / 36
         
@@ -290,67 +352,7 @@ class Calculations2ViewController: UIViewController {
         lowestY += tempHeight + 20
 
         
-        tempHeight = h / 18
 
-        let label1: UILabel = {
-            let label = UILabel()
-            label.text = "Этап 1 \"Промежуточный заем\""
-            label.font = .systemFont(ofSize: 17, weight: .medium)
-            label.layer.masksToBounds = true
-            
-            return label
-        }()
-        
-        label1.frame = CGRect(x: 10,
-                                 y: lowestY,
-                                 width: w,
-                                 height: tempHeight)
-        
-        scrollView.addSubview(label1)
-
-        lowestY += tempHeight + 10
-        
-        tempHeight = h/6
-
-        let label2: UILabel = {
-            let label = UILabel()
-            label.numberOfLines = 0
-            label.text = "Ежемесячный платеж: \(X)\n\nСтавка: \(txtField3)\n\nСрок этапа: 3 года\n\nПереплата: \(totalOverpayment)"
-            label.font = .systemFont(ofSize: 14, weight: .medium)
-            label.layer.masksToBounds = true
-            
-            return label
-        }()
-        
-        label2.frame = CGRect(x: 10,
-                                 y: lowestY,
-                                 width: w,
-                                 height: tempHeight)
-        
-        scrollView.addSubview(label2)
-
-        lowestY += tempHeight + 10
-
-        let label3: UILabel = {
-            let label = UILabel()
-            label.numberOfLines = 0
-            label.text = " • Вы вносите на депозит \((Int(txtField2) ?? 0) / (Int(txtField1) ?? 0))% от стоимости жилья \(txtField2)\n • Первые 3 года Вы ежемесячно платите \(X) тенге\n\nНа этом этапе Вы оплачиваете долг по промежуточному займу \(name) с процентной ставкой \(AEIR) на всю стоимость жилья (100%) \(txtField1)"
-            label.font = .systemFont(ofSize: 12, weight: .medium)
-            label.layer.masksToBounds = true
-            
-            return label
-        }()
-        
-        label3.frame = CGRect(x: 10,
-                                 y: lowestY,
-                                 width: w,
-                                 height: tempHeight)
-        
-        scrollView.addSubview(label3)
-
-        lowestY += tempHeight + 10
-
-        
         var firstDetail: UILabel = {
             let label = UILabel()
             label.font = .systemFont(ofSize: 12, weight: .light)
@@ -377,89 +379,333 @@ class Calculations2ViewController: UIViewController {
         
         scrollView.addSubview(firstDetail)
 
-        lowestY += 20 + tempHeight
+        lowestY += 10 + tempHeight
 
         
+        tempHeight = h / 18
+
         
-        let txt1 = UILabel()
-        txt1.font = .systemFont(ofSize: 14, weight: .light)
-        txt1.text = "Первоначальный взнос"
-        tempHeight = txt1.intrinsicContentSize.height
-        txt1.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        txt1.alpha = 0.7
+        let label1: UILabel = {
+            let label = UILabel()
+            label.text = "Этап 1 \"Промежуточный заем\""
+            label.font = .systemFont(ofSize: 17, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
         
-        scrollView.addSubview(txt1)
+        label1.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label1)
 
         lowestY += tempHeight + 10
+        
+        tempHeight = h/6
 
-        txt1val.text = "\(4056) ₸"
-        txt1val.font = .systemFont(ofSize: 16, weight: .medium)
-        tempHeight = txt1val.intrinsicContentSize.height
-        txt1val.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        scrollView.addSubview(txt1val)
+        let label2: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.text = "Ежемесячный платеж: \(Int(X))\n\nСтавка: \(txtField3)\n\nСрок этапа: 3 года\n\nПереплата: \(Int(totalOverpayment))"
+            label.font = .systemFont(ofSize: 14, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        label2.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label2)
 
-        lowestY += tempHeight + 10
+        lowestY += tempHeight
+
+        let label3: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.text = " • Вы вносите на депозит \((Int(txtField2)!) / (Int(txtField1)!))% от стоимости жилья \(txtField2)\n • Первые 3 года Вы ежемесячно платите \(Int(X)) тенге\n\nНа этом этапе Вы оплачиваете долг по промежуточному займу \(name) с процентной ставкой \(AEIR) на всю стоимость жилья (100%) \(txtField1)"
+            label.font = .systemFont(ofSize: 12, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        label3.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label3)
+
+        lowestY += tempHeight
+        
+
+
+        tempHeight = 45
+        depositScheduleToggleButton1.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+
+        scrollView.addSubview(depositScheduleToggleButton1)
+        lowestY += tempHeight
+ 
+        
+        tempHeight = 1565
+        depositStage1TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+        scrollView.addSubview(depositStage1TableView)
+        
+//        depositStage1TableView.isHidden = true
+        
+        let tableViewHeight = CGFloat(130 + 40*12*3)
+        depositStage1TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
 
         
-    
-        let txt2 = UILabel()
-        txt2.font = .systemFont(ofSize: 14, weight: .light)
-        txt2.text = "Общая сумма выплат"
-        tempHeight = txt2.intrinsicContentSize.height
-        txt2.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        txt2.alpha = 0.7
-
-        scrollView.addSubview(txt2)
-
-        lowestY += tempHeight + 10
-
-        txt2val.text = "\(226917) ₸"
-        txt2val.font = .systemFont(ofSize: 16, weight: .medium)
-        tempHeight = txt2val.intrinsicContentSize.height
-        txt2val.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        scrollView.addSubview(txt2val)
-
-        lowestY += tempHeight + 10
-
-        
-        
-        let txt3 = UILabel()
-        txt3.font = .systemFont(ofSize: 14, weight: .light)
-        txt3.text = "Общая переплата"
-        tempHeight = txt3.intrinsicContentSize.height
-        txt3.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        txt3.alpha = 0.7
-
-        scrollView.addSubview(txt3)
-
-        lowestY += tempHeight + 10
-
-        txt3val.text = "\(66917) ₸"
-        txt3val.font = .systemFont(ofSize: 16, weight: .medium)
-        tempHeight = txt3val.intrinsicContentSize.height
-        txt3val.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        scrollView.addSubview(txt3val)
-
         lowestY += tempHeight + 20
 
         
-        calculateDifferentiated()
         
-        toggleButton.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+        
+        tempHeight = 45
+        paymentScheduleToggleButton1.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
       
-        scrollView.addSubview(toggleButton)
-        lowestY += tempHeight + 10
+        scrollView.addSubview(paymentScheduleToggleButton1)
+        lowestY += tempHeight
+ 
+        
+        
+        tempHeight = 1565
+        paymentStage1TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+        scrollView.addSubview(paymentStage1TableView)
+        
+//        paymentStage1TableView.isHidden = true
+        
+//        let tableViewHeight = CGFloat(130 + 40*m)
+        paymentStage1TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
+        
+        
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 10000)
+
+//        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
+        
+        lowestY += tempHeight + 20
+        
+        tempHeight = h/3
+        
+        let label4: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.text = "В конце срока 3 года от суммы \(Int(txtField1)! - Int(txtField2)!) тенге:\n\n • По предварительному займу будет погашено: 0 тенге\n\n • По депозиту начислено 7 353 тенге, из которых:\n    • начислено процентов: 1 821 тенге\n    • государственная премия: 5 532 тенге\n\nПереплата по предварительному займу составит 7 647 тенге"
+            label.font = .systemFont(ofSize: 12, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        label4.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label4)
+
+        lowestY += tempHeight
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        tempHeight = h / 18
 
         
-        tempHeight = 4000
-        tableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
-        scrollView.addSubview(tableView)
+        let label1_1: UILabel = {
+            let label = UILabel()
+            label.text = "Этап 2 \"Жилищный заем\""
+            label.font = .systemFont(ofSize: 17, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
         
-        tableView.isHidden = true
+        label1_1.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
         
-        let tableViewHeight = CGFloat(130 + 40*m)
-        tableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
+        scrollView.addSubview(label1_1)
+
+        lowestY += tempHeight + 10
+        
+        tempHeight = h/6
+
+        let label1_2: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.text = "Ежемесячный платеж: \(Int(X))\n\nСтавка: \(txtField3)\n\nСрок этапа: \(Int(txtField3)!-3) года\n\nПереплата: \(Int(totalOverpayment))"
+            label.font = .systemFont(ofSize: 14, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        label1_2.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label1_2)
+
+        lowestY += tempHeight
+
+        let label1_3: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.text = "С учетом погашенного долга, нояб. 2025 Вы переходите на Жилищный заем. Ваш займ будет: 44 348 тенге\n\n • со сроком кредитования \(Int(txtField3)!-3) лет\n • по ставке вознаграждения \(AEIR)% годовых\n\nЗа срок в \(Int(txtField3)!-3) лет:\n\n • Размер ежемесячной выплаты: 714 тенге\n • Сумма выплат по жилищному займу: 51 424 тенге\n • Переплата по жилищному займу составляет: 7 076 тенге"
+//
+//            • по ставке вознаграждения 5% годовых
+//
+//            • Вы вносите на депозит \((Int(txtField2)!) / (Int(txtField1)!))% от стоимости жилья \(txtField2)\n • Первые 3 года Вы ежемесячно платите \(Int(X)) тенге\n\nНа этом этапе Вы оплачиваете долг по промежуточному займу \(name) с процентной ставкой \(AEIR) на всю стоимость жилья (100%) \(txtField1)"
+            label.font = .systemFont(ofSize: 12, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        tempHeight = h/3
+        
+        label1_3.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label1_3)
+
+        lowestY += tempHeight
+        
+
+
+        tempHeight = 45
+        depositScheduleToggleButton2.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+
+        scrollView.addSubview(depositScheduleToggleButton2)
+        lowestY += tempHeight
+
+
+        tempHeight = 1565
+        depositStage2TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+        scrollView.addSubview(depositStage2TableView)
+
+//        depositStage2TableView.isHidden = true
+
+//        tableViewHeight = CGFloat(130 + 40*12*3)
+        depositStage2TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
+
+
+        lowestY += tempHeight + 20
+
+
+
+
+        tempHeight = 45
+        paymentScheduleToggleButton2.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+
+        scrollView.addSubview(paymentScheduleToggleButton2)
+        lowestY += tempHeight
+
+
+
+        tempHeight = 1565
+        paymentStage2TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
+        scrollView.addSubview(paymentStage2TableView)
+
+//        paymentStage2TableView.isHidden = true
+
+//        tableViewHeight = CGFloat(130 + 40*m)
+        paymentStage2TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
+
+
+        lowestY += tempHeight + 20
+
+//        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 35000)
+
+//        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
+
+
+        
+        
+        
+        
+        
+        tempHeight = h / 18
+
+        
+        let label1_5: UILabel = {
+            let label = UILabel()
+            label.text = "Приобретение жилья"
+            label.font = .systemFont(ofSize: 17, weight: .medium)
+            label.layer.masksToBounds = true
+            
+            return label
+        }()
+        
+        label1_5.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+        
+        scrollView.addSubview(label1_5)
+
+        lowestY += tempHeight + 10
+        
+        
+        tempHeight = h/3
+
+        let label1_6: UILabel = {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.text = "Для приобретения жилья стоимостью 100 000 тенге в итоге за весь срок 9 лет Ваши затраты составят 114 723 тенге из них:\n\n • Взнос 10% на депозит 10 000 тенге\n • Взносы по предварительному займу в течение 3 года - 53 300 тенге\n • Взносы по жилищному займу в течение 6 лет - 51 424 тенге\n • Общая переплата составит 14 723 тенге"
+            label.font = .systemFont(ofSize: 12, weight: .medium)
+            label.layer.masksToBounds = true
+
+            return label
+        }()
+
+        label1_6.frame = CGRect(x: 10,
+                                 y: lowestY,
+                                 width: w,
+                                 height: tempHeight)
+
+        scrollView.addSubview(label1_6)
+
+        lowestY += tempHeight
+
+
 
     }
     
@@ -522,19 +768,64 @@ class Calculations2ViewController: UIViewController {
     }
 
    
-    @objc func toggleButtonAction(sender: UIButton!) {
+    @objc func depositSchedule1ToggleButtonAction(sender: UIButton!) {
 
-        if !tableView.isHidden {
-            toggleButton.setTitle("График платежа ▼", for: .normal)
-            tableView.isHidden = true
-            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+        if !depositStage1TableView.isHidden {
+            paymentScheduleToggleButton1.setTitle("График депозита ▼", for: .normal)
+            depositStage1TableView.isHidden = true
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
         } else {
-            toggleButton.setTitle("График платежа ▲", for: .normal)
+            paymentScheduleToggleButton1.setTitle("График депозита ▲", for: .normal)
 
-            tableView.isHidden = false
-            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
+            depositStage1TableView.isHidden = false
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 35000)
         }
     }
+
+    
+    @objc func paymentSchedule1ToggleButtonAction(sender: UIButton!) {
+
+        if !paymentStage1TableView.isHidden {
+            paymentScheduleToggleButton1.setTitle("График платежа ▼", for: .normal)
+            paymentStage1TableView.isHidden = true
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+        } else {
+            paymentScheduleToggleButton1.setTitle("График платежа ▲", for: .normal)
+
+            paymentStage1TableView.isHidden = false
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 35000)
+        }
+    }
+    
+    @objc func depositSchedule2ToggleButtonAction(sender: UIButton!) {
+
+        if !depositStage2TableView.isHidden {
+            paymentScheduleToggleButton2.setTitle("График депозита ▼", for: .normal)
+            depositStage2TableView.isHidden = true
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+        } else {
+            paymentScheduleToggleButton2.setTitle("График депозита ▲", for: .normal)
+
+            depositStage2TableView.isHidden = false
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 35000)
+        }
+    }
+
+    
+    @objc func paymentSchedule2ToggleButtonAction(sender: UIButton!) {
+
+        if !paymentStage2TableView.isHidden {
+            paymentScheduleToggleButton2.setTitle("График платежа ▼", for: .normal)
+            paymentStage2TableView.isHidden = true
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
+        } else {
+            paymentScheduleToggleButton2.setTitle("График платежа ▲", for: .normal)
+
+            paymentStage2TableView.isHidden = false
+//            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 35000)
+        }
+    }
+
     
 }
 
@@ -547,37 +838,79 @@ extension Calculations2ViewController: UITableViewDelegate, UITableViewDataSourc
             return UITableViewCell()
         }
 
-        if type == 0 {  // differentiated
-            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
-            percentagePartTotal += percentagePart
-
-            percentagePart = S * p
-            X = credit + percentagePart
+        if tableView == depositStage1TableView {
+            if type == 0 {  // differentiated
+                cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
+                percentagePartTotal += percentagePart
+                
+                percentagePart = S * p
+                X = credit + percentagePart
+                
+                S -= credit
+                
+            }
+            if type == 1 { // annuity
+                
+                cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
+                
+                
+                percentagePart = S * p
+                credit = X - percentagePart
+                
+                S -= Double(credit)
+                
+                //            paymentForMonth = amortization + percentagePart
+                //            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(X/2), par4: Int(X/2+20), par5: Int(S) - Int(X))
+            }
             
-            S -= credit
+            month += 1
+            if month > 12 {
+                month = 1
+                year += 1
+            }
+            
+            return cell
 
         }
-        if type == 1 { // annuity
+        if tableView == paymentStage1TableView {
             
-            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
-
-
-            percentagePart = S * p
-            credit = X - percentagePart
+            if type == 0 {  // differentiated
+                cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
+                percentagePartTotal += percentagePart
+                
+                percentagePart = S * p
+                X = credit + percentagePart
+                
+                S -= credit
+                
+            }
+            if type == 1 { // annuity
+                
+                cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(percentagePart), par4: Int(credit), par5: Int(S))
+                
+                
+                percentagePart = S * p
+                credit = X - percentagePart
+                
+                S -= Double(credit)
+                
+                //            paymentForMonth = amortization + percentagePart
+                //            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(X/2), par4: Int(X/2+20), par5: Int(S) - Int(X))
+            }
             
-            S -= Double(credit)
-
-//            paymentForMonth = amortization + percentagePart
-//            cell.configure(par1: "\(month)/\(year)", par2: Int(X), par3: Int(X/2), par4: Int(X/2+20), par5: Int(S) - Int(X))
+            month += 1
+            if month > 12 {
+                month = 1
+                year += 1
+            }
+            
+            return cell
         }
-        
-        month += 1
-        if month > 12 {
-            month = 1
-            year += 1
+        if tableView == depositStage2TableView {
         }
-        
-        return cell
+        if tableView == paymentStage2TableView {
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -709,7 +1042,7 @@ extension Calculations2ViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return m
+        return 12*3
     }
 }
 

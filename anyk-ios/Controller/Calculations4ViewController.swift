@@ -78,7 +78,7 @@ class Calculations4ViewController: UIViewController {
         btn.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
         //        btn.titleLabel?.textAlignment = .left
         btn.contentHorizontalAlignment = .left
-        btn .addTarget(self, action: #selector(toggleButtonAction), for: .touchUpInside)
+        btn .addTarget(self, action: #selector(paymentScheduleToggleButtonAction), for: .touchUpInside)
         
         return btn
     }()
@@ -398,7 +398,7 @@ class Calculations4ViewController: UIViewController {
     }
     
     
-    @objc func toggleButtonAction(sender: UIButton!) {
+    @objc func paymentScheduleToggleButtonAction(sender: UIButton!) {
         
         if !tableView.isHidden {
             toggleButton.setTitle("График платежа ▼", for: .normal)

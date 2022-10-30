@@ -127,7 +127,6 @@ class LoginViewController: UIViewController {
 //        txtField.backgroundColor = .black
         txtField.placeholder = "+"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .center
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect

@@ -4,13 +4,15 @@
 //
 //  Created by Magzhan Zhumaly on 08.09.2022.
 //
-
+import MessageUI
 import UIKit
 
 class HelpViewController: UIViewController {
     
     let h = UIScreen.main.bounds.height - 88
 
+    var popUpOption = "Предложения по работе платформы"
+    
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 88))
         
@@ -52,7 +54,6 @@ class HelpViewController: UIViewController {
 
         txtField.placeholder = "Введите ваше имя"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -86,12 +87,12 @@ class HelpViewController: UIViewController {
 
         txtField.placeholder = "Введите ваш E-mail"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = UIKeyboardType.emailAddress
+        txtField.autocapitalizationType = .none
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -119,12 +120,11 @@ class HelpViewController: UIViewController {
 
         txtField.placeholder = "Введите ваш номер телефона"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
+        txtField.keyboardType = UIKeyboardType.phonePad
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
@@ -144,32 +144,15 @@ class HelpViewController: UIViewController {
 
         return lbl
     }()
-    
+
     var myPopupButton: UIButton = {
         let h = UIScreen.main.bounds.height - 88
 
         let optionClosure = {(action : UIAction) in
-            print(action.title)}
+            print(action.title)
+        }
 
-        let btn = UIButton(frame: CGRect(x: 20, y: 17*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/18))
-        btn.menu = UIMenu(children : [
-            UIAction(title: "Предложения по работе платформы", state: .on, handler: optionClosure),
-            UIAction(title: "Сообщить об ошибке на онлайн-платформе", handler: optionClosure),
-            UIAction(title: "Вопрос по жилищной программе", handler: optionClosure),
-            UIAction(title: "Другое", handler: optionClosure)])
-
-        btn.showsMenuAsPrimaryAction = true
-        btn.changesSelectionAsPrimaryAction = true
-        btn.titleLabel?.numberOfLines = 2
-        btn.titleLabel?.textAlignment = .center
-        btn.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        btn.setTitle("Выберите тип сообщения", for: .normal)
-        btn.setTitleColor(.label, for: .normal)
-
-        btn.layer.cornerRadius = 6
-        btn.layer.borderWidth = 1
-        btn.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-
+        let btn = UIButton()
         
         return btn
     }()
@@ -194,7 +177,6 @@ class HelpViewController: UIViewController {
 
         txtField.placeholder = "Введите ваше сообщение в свободной форме"
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textColor = .black
         txtField.textAlignment = .left
 
         
@@ -207,36 +189,33 @@ class HelpViewController: UIViewController {
         return txtField
     }()
     
-
     var secondButton: UIButton = {
         let h = UIScreen.main.bounds.height - 88
 
-        let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/3, y: 31*h/36 + 88 + 20, width: UIScreen.main.bounds.width/3, height: h/18))
+        let btn = UIButton(frame: CGRect(x: 20, y: 31*h/36 + 88 + 20, width: UIScreen.main.bounds.width - 40, height: h/18))
         btn.setTitle("Отправить", for: .normal)
-        btn.titleLabel?.numberOfLines = 3
-        btn.layer.cornerRadius = 20
-        btn.titleLabel?.textAlignment = .center
-        btn.configuration?.titleAlignment = .center
-        btn.backgroundColor = UIColor(named: "AccentColor")
         return btn
     }()
     
     @objc func secondButtonAction(sender: UIButton!) {
-        secondButton.backgroundColor = .green
-        secondButton.setTitle("Отправлено", for: .normal)
-
-        /*
-        if let txtField1.text != "" && txtField2.text != "" && txtField3.text != "" && txtField4.text != "" {
-            
+        if txtField1.text != "" && txtField2.text != "" && txtField3.text != "" && txtField4.text != "" {
+            sendEmail()
         } else {
+            self.secondButton.backgroundColor = .red
+            if txtField1.text == "" {
+                secondButton.setTitle("Введите ваше имя", for: .normal)
+            } else if txtField2.text == "" {
+                secondButton.setTitle("Введите ваш e-mail", for: .normal)
+            } else if txtField3.text == "" {
+                secondButton.setTitle("Введите ваш номер телефона", for: .normal)
+            } else if txtField4.text == "" {
+                secondButton.setTitle("Введите сообщение", for: .normal)
+            }
             
-        }
-        */
-        
-        let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
-            self.secondButton.backgroundColor = UIColor(named: "AccentColor")
-            self.secondButton.setTitle("Отправить", for: .normal)
-            
+            let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
+                self.secondButton.backgroundColor = UIColor(named: "AccentColor")
+                self.secondButton.setTitle("Отправить", for: .normal)
+            }
         }
     }
 
@@ -244,14 +223,47 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        myPopupButton.titleLabel?.numberOfLines = 2
+        myPopupButton.titleLabel?.textAlignment = .center
+        myPopupButton.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        myPopupButton.setTitle("Выберите тип сообщения", for: .normal)
+        myPopupButton.setTitleColor(.label, for: .normal)
+        myPopupButton.layer.cornerRadius = 6
+        myPopupButton.layer.borderWidth = 1
+        myPopupButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+
+        myPopupButton.frame = CGRect(x: 20, y: 17*h/36 + 88, width: UIScreen.main.bounds.width - 40, height: h/18)
+
+        
+        let optionClosure = { (action : UIAction) in
+            self.popUpOption = action.title
+        }
+        
+        myPopupButton.menu = UIMenu(children : [
+            UIAction(title: "Предложения по работе платформы", state: .on, handler: optionClosure),
+            UIAction(title: "Сообщить об ошибке на онлайн-платформе", handler: optionClosure),
+            UIAction(title: "Вопрос по жилищной программе", handler: optionClosure),
+            UIAction(title: "Другое", handler: optionClosure)])
+
+
+        myPopupButton.showsMenuAsPrimaryAction = true
+        myPopupButton.changesSelectionAsPrimaryAction = true
+
+        secondButton.titleLabel?.numberOfLines = 3
+        secondButton.layer.cornerRadius = 20
+        secondButton.titleLabel?.textAlignment = .center
+        secondButton.configuration?.titleAlignment = .center
+        secondButton.backgroundColor = UIColor(named: "AccentColor")
+
+        
+        setPopupButton()
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         view.addSubview(scrollView)
         
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 4*h/3)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 1.45*h)
 
-        
         scrollView.addSubview(titleText)
         scrollView.addSubview(txtField1txt)
         scrollView.addSubview(txtField1)
@@ -283,9 +295,13 @@ class HelpViewController: UIViewController {
     }
     
     func setPopupButton() {
-        let optionClosure = {(action : UIAction) in
-            print(action.title)}
+        let optionClosure = { [weak self] (action : UIAction) in
+            print(action.title)
+            self?.popUpOption = action.title
+            print("self?.popUpOption = \(self?.popUpOption)")
+        }
     }
+    
 }
 
 extension HelpViewController: UITextFieldDelegate {
@@ -293,5 +309,29 @@ extension HelpViewController: UITextFieldDelegate {
         view.endEditing(true)
 
         return true
+    }
+}
+
+extension HelpViewController: MFMailComposeViewControllerDelegate {
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["magzhantheman@gmail.com"])
+            mail.setMessageBody("<p>Имя отправителя: \(txtField1.text ?? "")<br>E-mail отправителя: \(txtField2.text ?? "")<br>Номер телефона отправителя: \(txtField3.text ?? "")<br><br>Сообщение:<br>\(txtField4.text ?? "")</p>", isHTML: true)
+            
+            if popUpOption == "Сообщить об ошибке на онлайн-платформе" {
+                popUpOption = "Сообщение об ошибке на онлайн-платформе"
+            }
+            
+            mail.setSubject(popUpOption)
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

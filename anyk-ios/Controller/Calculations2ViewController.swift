@@ -189,7 +189,7 @@ class Calculations2ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 10000)
+//        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 10000)
         
         tempHeight = h / 36
         
@@ -485,7 +485,7 @@ class Calculations2ViewController: UIViewController {
         paymentStage1TableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
         
         
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 10000)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 8000)
 
 //        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
         

@@ -8,7 +8,7 @@
 import Foundation
 
 struct MortgageModel: Equatable {
-    var pos: Int
+    var id: Int
     let name: String
     let AEIR: Double // ГЭСВ Годовая Эффективная Ставка Вознаграждения - Annual Effective Interest Rate
     let firstStageRate: Double

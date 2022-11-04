@@ -87,7 +87,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
             print(action.title)
             if action.title == "общей переплате ▼" || action.title == "ежемесячному платежу ▼" {
                 self?.data[0].sort {
-                    $0.pos < $1.pos
+                    $0.id < $1.id
                 }
             } else if action.title == "процентной ставке (ГЭСВ) ▼"{
                 self?.data[0].sort {
@@ -294,7 +294,7 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
         
-        cell.configure(id: data[indexPath.section][indexPath.row].pos, name: data[indexPath.section][indexPath.row].name, AEIR: data[indexPath.section][indexPath.row].AEIR, firstStageRate: data[indexPath.section][indexPath.row].firstStageRate, ageOfBorrower: data[indexPath.section][indexPath.row].ageOfBorrower, initialFeePercentageString: data[indexPath.section][indexPath.row].initialFeePercentageString, initialFeeLowerBound: data[indexPath.section][indexPath.row].initialFeeLowerBound, initialFeeUpperBound: data[indexPath.section][indexPath.row].initialFeeUpperBound, maxCredit: data[indexPath.section][indexPath.row].maxCredit, continuousWorkExperience: data[indexPath.section][indexPath.row].continuousWorkExperience, minTerm: data[indexPath.section][indexPath.row].minTerm, maxTerm: data[indexPath.section][indexPath.row].maxTerm, feePercent: data[indexPath.section][indexPath.row].feePercent, feeInitial: data[indexPath.section][indexPath.row].feeInitial, properties: data[indexPath.section][indexPath.row].properties, whereToApply: data[indexPath.section][indexPath.row].whereToApply, details: data[indexPath.section][indexPath.row].details, detailsColors: data[indexPath.section][indexPath.row].detailsColors, detailsFull: data[indexPath.section][indexPath.row].detailsFull, imageName: data[indexPath.section][indexPath.row].imageName)
+        cell.configure(id: data[indexPath.section][indexPath.row].id, name: data[indexPath.section][indexPath.row].name, AEIR: data[indexPath.section][indexPath.row].AEIR, firstStageRate: data[indexPath.section][indexPath.row].firstStageRate, ageOfBorrower: data[indexPath.section][indexPath.row].ageOfBorrower, initialFeePercentageString: data[indexPath.section][indexPath.row].initialFeePercentageString, initialFeeLowerBound: data[indexPath.section][indexPath.row].initialFeeLowerBound, initialFeeUpperBound: data[indexPath.section][indexPath.row].initialFeeUpperBound, maxCredit: data[indexPath.section][indexPath.row].maxCredit, continuousWorkExperience: data[indexPath.section][indexPath.row].continuousWorkExperience, minTerm: data[indexPath.section][indexPath.row].minTerm, maxTerm: data[indexPath.section][indexPath.row].maxTerm, feePercent: data[indexPath.section][indexPath.row].feePercent, feeInitial: data[indexPath.section][indexPath.row].feeInitial, properties: data[indexPath.section][indexPath.row].properties, whereToApply: data[indexPath.section][indexPath.row].whereToApply, details: data[indexPath.section][indexPath.row].details, detailsColors: data[indexPath.section][indexPath.row].detailsColors, detailsFull: data[indexPath.section][indexPath.row].detailsFull, imageName: data[indexPath.section][indexPath.row].imageName)
         
         cell.delegate = self
         return cell
@@ -305,9 +305,9 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         var ret: CGFloat
         if data[indexPath.section][indexPath.row].AEIR < 0 {
             
-            if data[indexPath.section][indexPath.row].pos == 47 {
+            if data[indexPath.section][indexPath.row].id == 47 {
                 ret = 360
-            } else if data[indexPath.section][indexPath.row].pos == 48 {
+            } else if data[indexPath.section][indexPath.row].id == 48 {
                 ret = 332
             } else {
                 ret = 350
@@ -384,7 +384,6 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
         }
         return UIView()
     }
-   
 }
 
 extension MortgageListViewController: MortgageTableViewCellDelegate {
@@ -452,10 +451,6 @@ extension MortgageListViewController: MortgageTableViewCellDelegate {
         }
     }
 }
-
-
-
-
 
 
 /*

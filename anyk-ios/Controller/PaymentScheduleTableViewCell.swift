@@ -9,7 +9,7 @@ import UIKit
 
 class PaymentScheduleTableViewCell: UITableViewCell {
 
-    static let identifier = "MortgageTableViewCell"
+    static let identifier = "PaymentScheduleTableViewCell"
 
     private var par1 = ""
     private var par2 = 0

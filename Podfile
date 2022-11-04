@@ -10,6 +10,7 @@ target 'anyk-ios' do
 pod 'SideMenu'
 
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
 
   target 'anyk-iosTests' do

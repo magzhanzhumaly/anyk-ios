@@ -6,297 +6,296 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
+    
+    var option = 0
+    
+    var segControl: UISegmentedControl = {
+        let segmentItems = ["Войти", "Зарегистрироваться"]
+        let control = UISegmentedControl(items: segmentItems)
+        control.addTarget(self, action: #selector(segmentControl(_:)), for: .valueChanged)
+        control.selectedSegmentIndex = 0
 
-    // BACKGROUND VIEWS (TEMPORARY)
-    var myView0: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.1
-        myView.alpha = 0.0
-
-        return myView
+        return control
     }()
 
-    var myView1: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.2
-        myView.alpha = 0.0
 
-        return myView
-    }()
-    
-    var myView2: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.3
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView3: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h/2 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.4
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    var myView4: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*2/3 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        myView.alpha = 0.5
-        myView.alpha = 0 // TO DELETE
-
-        return myView
-    }()
-    
-    var myView5: UIView = {
-        let h = UIScreen.main.bounds.height - 88
-        
-        let myView = UIView(frame: CGRect(x: 0, y: h*5/6 + 88, width: UIScreen.main.bounds.width, height: h/6))
-        myView.backgroundColor = .gray
-        
-        myView.alpha = 0.6
-        myView.alpha = 0.0
-
-        return myView
-    }()
-    
-    
-    
-    
-
-    
-    var logoImg: UIImageView = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let imageName = "AipotekaLogoNoText"
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
-        
-        imageView.frame = CGRect(x: (UIScreen.main.bounds.width - h/9)/2, y: h/6 + 88, width: h/9, height: h/9)
-        return imageView
+    private let emailField: UITextField = {
+        let emailField = UITextField()
+        emailField.placeholder = "Почтовый адрес"
+//        emailField.layer.borderWidth = 1
+        emailField.borderStyle = UITextField.BorderStyle.roundedRect
+        emailField.autocorrectionType = UITextAutocorrectionType.no
+        emailField.keyboardType = .emailAddress
+        emailField.autocapitalizationType = .none
+        emailField.leftViewMode = .always
+        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        return emailField
     }()
 
     
-    var firstText: UILabel = {
-        let h = UIScreen.main.bounds.height - 88
+    private let passwordField: UITextField = {
+        let passwordField = UITextField()
+        passwordField.placeholder = "Пароль"
+        passwordField.borderStyle = UITextField.BorderStyle.roundedRect
+        passwordField.autocorrectionType = UITextAutocorrectionType.no
 
-        let lbl = UILabel(frame: CGRect(x: 0, y: 5*h/18 + 88, width: UIScreen.main.bounds.width, height: h/18))
-        lbl.text = "Войти по номеру"
-        lbl.font = .systemFont(ofSize: 25, weight: UIFont.Weight.heavy)
-        lbl.numberOfLines = 2
-        lbl.textColor = .black
-        lbl.textAlignment = .center
-        return lbl
-    }()
-    
-    var secondText: UILabel = {
-        let h = UIScreen.main.bounds.height - 88
+        passwordField.isSecureTextEntry = true
+        passwordField.keyboardType = .emailAddress
+        passwordField.autocapitalizationType = .none
+        passwordField.leftViewMode = .always
+        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
 
-        let lbl = UILabel(frame: CGRect(x: 0, y: h/3 + 88, width: UIScreen.main.bounds.width, height: h/18))
-        lbl.text = "Мобильный телефон"
-        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        lbl.numberOfLines = 2
-        lbl.textColor = .black
-        lbl.textAlignment = .center
-        lbl.alpha = 0.7
-        return lbl
-    }()
-    
-    var txtField: UITextField = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let txtField = UITextField(frame: CGRect(x: 50, y: 5*h/12 + 88, width: UIScreen.main.bounds.width - 100, height: h/24))
-
-//        txtField.backgroundColor = .black
-        txtField.placeholder = "+"
-        txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-        txtField.textAlignment = .center
-        
-        txtField.borderStyle = UITextField.BorderStyle.roundedRect
-        txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = UIKeyboardType.default
-        txtField.returnKeyType = UIReturnKeyType.done
-        txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-//        txtField.delegate = self
-
-        return txtField
-    }()
-    
-
-    var firstButton: UIButton = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let btn = UIButton(frame: CGRect(x: (UIScreen.main.bounds.width)/3, y: h/2 + 88 + 20, width: (UIScreen.main.bounds.width)/3, height: h/9 - 40))
-        btn.setTitle("Получить код", for: .normal)
-        btn.backgroundColor = UIColor(red: 87/255.0,
-                                      green: 118/255.0,
-                                      blue: 243/255.0,
-                                      alpha: 1)
-        btn.titleLabel?.numberOfLines = 3
-        btn.layer.cornerRadius = 20
-        btn.titleLabel?.textAlignment = .center
-        btn.configuration?.titleAlignment = .center
-//          button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        return btn
-    }()
-
-    var thirdText: UILabel = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let lbl = UILabel(frame: CGRect(x: 0, y: 7*h/12 + 88, width: UIScreen.main.bounds.width, height: h/12))
-        lbl.text = "Продолжая, вы соглашаетесь на передачу данных:\nНомер телефона , Имя , Фамилия \"Anyk\"."
-        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        lbl.numberOfLines = 2
-        lbl.textColor = .black
-        lbl.textAlignment = .center
-        return lbl
-    }()
-    
-    var fourthText: UILabel = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let lbl = UILabel(frame: CGRect(x: 0, y: 2*h/3 + 88, width: UIScreen.main.bounds.width, height: h/48))
-        lbl.text = "Вводя смс код, вы соглашаетесь с условиями"
-        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        lbl.numberOfLines = 2
-        lbl.textColor = .darkGray
-        lbl.textAlignment = .center
-        return lbl
-    }()
-    
-    var secondButton: UIButton = {
-        
-        let h = UIScreen.main.bounds.height - 88
-
-        let btn = UIButton(frame: CGRect(x: 0, y: 11*h/16 + 88, width: UIScreen.main.bounds.width, height: h/48))
-        btn.setTitle("пользовательского соглашения", for: .normal)
-        
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-
-        btn.titleLabel?.numberOfLines = 1
-        btn.setTitleColor(UIColor(red: 87/255.0,
-                                  green: 118/255.0,
-                                  blue: 243/255.0,
-                                  alpha: 1), for: .normal)
-        btn.titleLabel?.textAlignment = .center
-        btn.configuration?.titleAlignment = .trailing
-//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        return btn
-        
-    }()
-    
-    var fifthText: UILabel = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let lbl = UILabel(frame: CGRect(x: 0, y: 17*h/24 + 88, width: UIScreen.main.bounds.width, height: h/48))
-        lbl.text = "и"
-        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        lbl.numberOfLines = 2
-        lbl.textColor = .darkGray
-        lbl.textAlignment = .center
-        return lbl
-    }()
-    
-    var thirdButton: UIButton = {
-        
-        let h = UIScreen.main.bounds.height - 88
-
-        let btn = UIButton(frame: CGRect(x: 0, y: 35*h/48 + 88, width: UIScreen.main.bounds.width, height: h/48))
-        btn.setTitle("политики конфиденциальности", for: .normal)
-        
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-
-        btn.titleLabel?.numberOfLines = 1
-        btn.setTitleColor(UIColor(red: 87/255.0,
-                                  green: 118/255.0,
-                                  blue: 243/255.0,
-                                  alpha: 1), for: .normal)
-        btn.titleLabel?.textAlignment = .center
-        btn.configuration?.titleAlignment = .trailing
-//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        return btn
-        
-    }()
-
-    var sixthText: UILabel = {
-        let h = UIScreen.main.bounds.height - 88
-
-        let lbl = UILabel(frame: CGRect(x: 0, y: 3*h/4 + 88, width: UIScreen.main.bounds.width, height: h/24))
-        lbl.text = "Aitu Passport - единый вход в экосистему Aitu"
-        lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
-        lbl.numberOfLines = 2
-        lbl.textColor = .darkGray
-        lbl.textAlignment = .center
-        return lbl
-    }()
-    
-    var fourthButton: UIButton = {
-        
-        let h = UIScreen.main.bounds.height - 88
-
-        let btn = UIButton(frame: CGRect(x: 0, y: 19*h/24 + 88, width: UIScreen.main.bounds.width, height: h/48))
-        btn.setTitle("Отмена", for: .normal)
-    
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
-        
-        btn.titleLabel?.numberOfLines = 1
-        btn.setTitleColor(.darkGray, for: .normal)
-        btn.titleLabel?.textAlignment = .center
-        btn.configuration?.titleAlignment = .trailing
-//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        return btn
-        
+        return passwordField
     }()
 
     
+    private let button: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "AccentColor")
+        button.setTitleColor(.label, for: .normal)
+        button.setTitle("Продолжить", for: .normal)
+        button.layer.cornerRadius = 5
+
+        return button
+    }()
+    
+    private let signOutButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "AccentColor")
+        button.setTitleColor(.label, for: .normal)
+        button.setTitle("Выйти", for: .normal)
+        
+        return button
+    }()
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        view.addSubview(firstText)
-        view.addSubview(logoImg)
+        view.addSubview(segControl)
 
-        view.addSubview(secondText)
-        view.addSubview(txtField)
-        view.addSubview(firstButton)
-        view.addSubview(thirdText)
-        view.addSubview(fourthText)
-        view.addSubview(secondButton)
-        view.addSubview(fifthText)
-        view.addSubview(thirdButton)
-        view.addSubview(sixthText)
-        view.addSubview(fourthButton)
-
-
-//
-//
-        view.addSubview(myView0)
-        view.addSubview(myView1)
-        view.addSubview(myView2)
-        view.addSubview(myView3)
-        view.addSubview(myView4)
-        view.addSubview(myView5)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(button)
         
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
+        view.addSubview(signOutButton)
+        signOutButton.frame = CGRect(x: 20, y: 150, width: view.frame.size.width - 40, height: 50)
+        signOutButton.addTarget(self, action: #selector(logOutTapped), for: .touchUpInside)
+        signOutButton.isHidden = true
+
+        if FirebaseAuth.Auth.auth().currentUser != nil {
+            segControl.isHidden = true
+            emailField.isHidden = true
+            passwordField.isHidden = true
+            button.isHidden = true
+            
+            signOutButton.isHidden = false
+        }
     }
     
+    @objc private func logOutTapped() {
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+            
+            segControl.isHidden = false
+            emailField.isHidden = false
+            passwordField.isHidden = false
+            button.isHidden = false
+            
+            signOutButton.isHidden = true
+        } catch {
+            print("an error occurred")
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        segControl.frame = CGRect(x: 20, y: 98, width: view.frame.size.width - 40, height: 40)
+
+        emailField.frame = CGRect(x: 20,
+                                  y: segControl.frame.origin.y+segControl.frame.size.height+30,
+                                  width: view.frame.size.width - 40,
+                                  height: 50)
+        
+        passwordField.frame = CGRect(x: 20,
+                                     y: emailField.frame.origin.y+emailField.frame.size.height+10,
+                                     width: view.frame.size.width - 40,
+                                     height: 50)
+        
+        button.frame = CGRect(x: 20,
+                              y: passwordField.frame.origin.y+passwordField.frame.size.height+30,
+                              width: view.frame.size.width - 40,
+                              height: 50)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if FirebaseAuth.Auth.auth().currentUser == nil {
+            emailField.becomeFirstResponder()
+        }
+    }
+    
+    @objc private func didTapButton() {
+        guard let email = emailField.text, !email.isEmpty,
+              let password = passwordField.text, !password.isEmpty else {
+            
+            button.backgroundColor = .red
+            button.setTitle("Заполните поля", for: .normal)
+            
+            let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
+                self.button.backgroundColor = UIColor(named: "AccentColor")
+                self.button.setTitle("Продолжить", for: .normal)
+            }
+
+            return
+        }
+        
+        // Get auth instance
+        // attempt sign in
+        // if failure, present alert to create account
+        // if user continues, create account
+        
+        // check sign in on app launch
+        // allow user to to sign out with button
+        if option == 0 {  // login
+            FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] result, error in
+                // couldn't sign the user in with this
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                guard error == nil else {
+                    // show account creation
+                    
+                    //                print("error")
+                    //                print(error)
+                    //
+                    //                if error!.localizedDescription == "The password is invalid or the user does not have a password." {
+                    strongSelf.button.backgroundColor = .red
+                    strongSelf.button.setTitle("Не удалось войти", for: .normal)
+                    
+                    let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
+                        strongSelf.button.backgroundColor = UIColor(named: "AccentColor")
+                        strongSelf.button.setTitle("Продолжить", for: .normal)
+                    }
+                    //                    return
+                    //                }
+                    //
+                    //                strongSelf.showCreateAccount(email: email, password: password)
+                    print("Login failed")
+
+                    return
+                }
+                
+                print ("You have signed in")
+                
+                strongSelf.signOutButton.isHidden = false
+                
+                strongSelf.segControl.isHidden = true
+                strongSelf.emailField.isHidden = true
+                strongSelf.passwordField.isHidden = true
+                strongSelf.button.isHidden = true
+                
+                strongSelf.emailField.resignFirstResponder()
+                strongSelf.passwordField.resignFirstResponder()
+                
+            })
+        } else {  // register
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] result, error in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+
+                guard error == nil else {
+                    // show account creation
+                    
+                    strongSelf.button.backgroundColor = .red
+                    strongSelf.button.setTitle("Не удалось зарегистрироваться", for: .normal)
+                    
+                    let timer = Timer.scheduledTimer(withTimeInterval: 2 , repeats: false) { timer in
+                        strongSelf.button.backgroundColor = UIColor(named: "AccentColor")
+                        strongSelf.button.setTitle("Продолжить", for: .normal)
+                    }
+
+                    print("Account creation failed")
+                    return
+                }
+                
+                print ("You have signed in")
+
+                strongSelf.segControl.isHidden = true
+                strongSelf.emailField.isHidden = true
+                strongSelf.passwordField.isHidden = true
+                strongSelf.button.isHidden = true
+
+                strongSelf.signOutButton.frame = CGRect(x: 20, y: 150, width: strongSelf.view.frame.size.width - 40, height: 50)
+                strongSelf.signOutButton.isHidden = false
+                
+                strongSelf.emailField.resignFirstResponder()
+                strongSelf.passwordField.resignFirstResponder()
+            })
+        }
+    }
+    
+    func showCreateAccount(email: String, password: String) {
+        let alert = UIAlertController(title: "Создать аккаунт",
+                                      message: "Вы хотите создать аккаунт?",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Продолжить",
+                                      style: .default,
+                                      handler: {_ in
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] result, error in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+
+                guard error == nil else {
+                    // show account creation
+                    print("Account creation failed")
+                    return
+                }
+                
+                print ("You have signed in")
+                strongSelf.emailField.isHidden = true
+                strongSelf.passwordField.isHidden = true
+                strongSelf.button.isHidden = true
+
+                strongSelf.signOutButton.frame = CGRect(x: 20, y: 150, width: strongSelf.view.frame.size.width - 40, height: 50)
+                strongSelf.signOutButton.isHidden = false
+                
+                strongSelf.emailField.resignFirstResponder()
+                strongSelf.passwordField.resignFirstResponder()
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "Отменить",
+                                      style: .cancel,
+                                      handler: {_ in
+            
+        }))
+        
+        present(alert, animated: true)
+    }
+    
+    @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
+        
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            button.setTitle("Войти", for: .normal)
+            option = 0
+        case 1:
+            button.setTitle("Зарегистрироваться", for: .normal)
+            option = 1
+        default:
+            break
+        }
+    }
 }

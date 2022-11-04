@@ -38,6 +38,7 @@ enum ColorName: String {
     case green = "green"
     case orangish = "orangish"
 }
+
 class MortgageManager {
 //    var delegate: MortgageManagerDelegate?
     var isPaginating = false
@@ -45,7 +46,7 @@ class MortgageManager {
     var leftOutData = [MortgageModel]()
     
     var myOriginalData = [
-        MortgageModel(pos: -2,
+        MortgageModel(id: -2,
                       name: "Ипотека от Altynbank",
                       AEIR: 13.75,
                       firstStageRate: 13.75,
@@ -64,12 +65,12 @@ class MortgageManager {
                       properties: ["Первичное жилье (квартира и дом)", "Покупка вторичного жилья"],
                       whereToApply: ["Altynbank"],
                       details: ["с полным подтверждением дохода"],
-                      detailsColors: [ColorName.orange.rawValue],
+                      detailsColors: [ColorName.orange.rawValue ],
                       detailsFull: "с полным подтверждением доходов\nКредиты на покупку недвижимости в городах Алматы, Нур-Султан(в радиусе 30 км) от города, Атырау и Актау с требованием полного подтверждения доходов",
                       imageName: ImageName.altynBank.rawValue),
     
 
-        MortgageModel(pos: 2,
+        MortgageModel(id: 2,
                       name: "Ипотека от Altynbank",
                       AEIR: 18,
                       firstStageRate: 16,
@@ -91,7 +92,7 @@ class MortgageManager {
                       detailsFull: "с частичным подтверждением\nКредиты на покупку недвижимости в городах Алматы, Нур-Султан(в радиусе 30 км) от города, Атырау и Актау с возможностью частичного подтверждения доходов",
                       imageName: ImageName.altynBank.rawValue),
         
-        MortgageModel(pos: 3,
+        MortgageModel(id: 3,
                       name: "Ипотека от Bank RBK",
                       AEIR: 16,
                       firstStageRate: 16,
@@ -113,7 +114,7 @@ class MortgageManager {
                       detailsFull: "с частичным подтверждением доходов\n«Нужный кредит «Ипотека» с частичным подтверждением доходов",
                       imageName: ImageName.bankRBK.rawValue),
      
-        MortgageModel(pos: 4,
+        MortgageModel(id: 4,
                       name: "Ипотека от Halykbank",
                       AEIR: 17.9,
                       firstStageRate: 17,
@@ -139,7 +140,7 @@ class MortgageManager {
                       detailsFull: "без подтверждения дохода\nИпотека от Halykbank без подтверждения дохода",
                       imageName: ImageName.halykBank.rawValue),
         
-        MortgageModel(pos: 5,
+        MortgageModel(id: 5,
                       name: "Ипотека от Nurbank",
                       AEIR: 15,
                       firstStageRate: 15,
@@ -161,7 +162,7 @@ class MortgageManager {
                       detailsFull: "для приобретения жилья на первичном и вторичном рынке\nИпотечные кредиты физическим лицам-резидентам РК на: приобретение недвижимого имущества; рефинансирование ранее выданных ипотечных кредитов",
                       imageName: ImageName.nurBank.rawValue),
         
-        MortgageModel(pos: 6,
+        MortgageModel(id: 6,
                       name: "Ипотека от Bank RBK",
                       AEIR: 14.5,
                       firstStageRate: 14.5,
@@ -183,7 +184,7 @@ class MortgageManager {
                       detailsFull: "с полным подтверждением доходов\n«Нужный кредит «Ипотека» с полным подтверждением доходов",
                       imageName: ImageName.bankRBK.rawValue),
         
-        MortgageModel(pos: 7,
+        MortgageModel(id: 7,
                       name: "Ипотека от АТФ Банка",
                       AEIR: 17.3,
                       firstStageRate: 16,
@@ -205,7 +206,7 @@ class MortgageManager {
                       detailsFull: "с частичным подтверждением доходов\nИпотека от АТФБанка с частичным подтверждением доходов",
                       imageName: ImageName.atfBank.rawValue),
         
-        MortgageModel(pos: 8,
+        MortgageModel(id: 8,
                       name: "Ипотека от АТФ Банка",
                       AEIR: 17.3,
                       firstStageRate: 16,
@@ -227,7 +228,7 @@ class MortgageManager {
                       detailsFull: "с полным подтверждением доходов\nИпотека от АТФ Банка с полным подтверждением доходов",
                       imageName: ImageName.atfBank.rawValue),
         
-        MortgageModel(pos: 9,
+        MortgageModel(id: 9,
                       name: "Ипотека от Fortebank",
                       AEIR: 18.5,
                       firstStageRate: 18.5,
@@ -251,7 +252,7 @@ class MortgageManager {
                       detailsFull: "без подтверждения дохода\nИпотека от Fortebank без подтверждения дохода",
                       imageName: ImageName.forteBank.rawValue),
         
-        MortgageModel(pos: 10,
+        MortgageModel(id: 10,
                       name: "Ипотека от Fortebank",
                       AEIR: 17.5,
                       firstStageRate: 15,
@@ -276,7 +277,7 @@ class MortgageManager {
                       imageName: ImageName.forteBank.rawValue),
 
         
-        MortgageModel(pos: 11,
+        MortgageModel(id: 11,
                       name: "Жилищный кредит от Сбербанка",
                       AEIR: 15.56,
                       firstStageRate: 15,
@@ -300,7 +301,7 @@ class MortgageManager {
                       detailsFull: "без первоначального взноса\nЖилищный кредит от Сбербанка без первоначального взноса",
                       imageName: ImageName.sberbank.rawValue),
         
-        MortgageModel(pos: 12,
+        MortgageModel(id: 12,
                       name: "Жилищный кредит от Сбербанка",
                       AEIR: 17.22,
                       firstStageRate: 16,
@@ -325,7 +326,7 @@ class MortgageManager {
                       imageName: ImageName.sberbank.rawValue),
         
         
-        MortgageModel(pos: 13,
+        MortgageModel(id: 13,
                       name: "Жилищный кредит от Сбербанка",
                       AEIR: 15.56,
                       firstStageRate: 15,
@@ -349,7 +350,7 @@ class MortgageManager {
                       detailsFull: "с полным подтверждением доходов\nЖилищный кредит от Сбербанка с полным подтверждением доходов",
                       imageName: ImageName.sberbank.rawValue),
         
-        MortgageModel(pos: 14,
+        MortgageModel(id: 14,
                       name: "Ипотека от Halykbank",
                       AEIR: 17.9,
                       firstStageRate: 17,
@@ -375,7 +376,7 @@ class MortgageManager {
                       detailsFull: "с подтверждением дохода\nИпотека от Halykbank с подтверждением дохода",
                       imageName: ImageName.halykBank.rawValue),
         
-        MortgageModel(pos: 15,
+        MortgageModel(id: 15,
                       name: "Ипотека от Halykbank",
                       AEIR: 17.9,
                       firstStageRate: 17,
@@ -401,7 +402,7 @@ class MortgageManager {
                       detailsFull: "с подтверждением дохода без первоначального взноса\nИпотека от Halykbank с подтверждением дохода без первоначального взноса",
                       imageName: ImageName.halykBank.rawValue),
 
-        MortgageModel(pos: 0, // booyababybowdown
+        MortgageModel(id: 0, // booyababybowdown
                       name: "\"Женил\" от \"Жилстройсбербанка и BI Group\"",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -423,7 +424,7 @@ class MortgageManager {
                       detailsFull: "оформляется второй кредит по \"Стандарному\" займу\nПрограмма предназначена клиентам BI Group, у которых есть накопления в Жилстройсбербанке. Если клиент имеет на счету 36% от стоимости жилья, то он может оформить данную ипотеку. Особенность: открывается дополнительный второй счет (оформляется второй кредит).",
                       imageName: ImageName.halykBank.rawValue),
 
-        MortgageModel(pos: 17,
+        MortgageModel(id: 17,
                       name: "\"Женил\" от \"Жилстройсбербанка и BI Group\"",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -445,7 +446,7 @@ class MortgageManager {
                       detailsFull: "оформляется второй кредит по займу \"Женил\"\nПрограмма предназначена клиентам BI Group, у которых есть накопления в Жилстройсбербанке. Если клиент имеет на счету 36% от стоимости жилья, то он может оформить данную ипотеку. Особенность: открывается дополнительный второй счет (оформляется второй кредит).",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 18,
+        MortgageModel(id: 18,
                       name: "\"Стандартный\" заем от \"Жилстройсбербанка и BI Group\"",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -467,7 +468,7 @@ class MortgageManager {
                       detailsFull: "оформляется второй кредит по займу \"Женил\"\nПрограмма предназначена клиентам BI Group, у которых есть накопления в Жилстройсбербанке. Если клиент имеет на счету 36% от стоимости жилья, то он может оформить данную ипотеку. Особенность: открывается дополнительный второй счет (оформляется второй кредит).",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
         
-        MortgageModel(pos: 19,
+        MortgageModel(id: 19,
                       name: "\"Стандартный\" заем от \"Жилстройсбербанка и BI Group\"",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -489,7 +490,7 @@ class MortgageManager {
                       detailsFull: "оформляется второй кредит по \"Стандарному\" займу\nПрограмма предназначена клиентам BI Group, у которых есть накопления в Жилстройсбербанке. Если клиент имеет на счету 36% от стоимости жилья, то он может оформить данную ипотеку. Особенность: открывается дополнительный второй счет (оформляется второй кредит).",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 20,
+        MortgageModel(id: 20,
                       name: "\"Жас отбасы\" с типом займа \"Жеңіл\"",
                       AEIR: 6,
                       firstStageRate: 6,
@@ -513,7 +514,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для молодых семей, имеющих 50% от стоимости квартиры",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 21,
+        MortgageModel(id: 21,
                       name: "Ипотека \"Орда\"",
                       AEIR: 12,
                       firstStageRate: 12,
@@ -536,7 +537,7 @@ class MortgageManager {
                       detailsFull: "с полным подтверждением дохода без первоначального взноса\nИпотека \"Орда\" от АО \"КИК\" с полным подтверждением дохода без первоначального взноса",
                       imageName: ImageName.orda.rawValue),
         
-        MortgageModel(pos: 22,
+        MortgageModel(id: 22,
                       name: "Ипотека \"Орда\"",
                       AEIR: 12,
                       firstStageRate: 12,
@@ -559,7 +560,7 @@ class MortgageManager {
                       detailsFull: "с полным подтверждением дохода\nИпотека \"Орда\" от АО \"КИК\" с полным подтверждением дохода",
                       imageName: ImageName.orda.rawValue),
 
-        MortgageModel(pos: 23,
+        MortgageModel(id: 23,
                       name: "Ипотека \"Орда\" от АО \"КИК\"",
                       AEIR: 14,
                       firstStageRate: 14,
@@ -582,7 +583,7 @@ class MortgageManager {
                       detailsFull: "с частичным подтверждением дохода\nИпотека \"Орда\" от АО \"КИК\" с частичным подтверждением дохода",
                       imageName: ImageName.orda.rawValue),
 
-        MortgageModel(pos: 24,
+        MortgageModel(id: 24,
                       name: "Ипотека \"Орда\" от АО \"КИК\"",
                       AEIR: 14,
                       firstStageRate: 14,
@@ -606,7 +607,7 @@ class MortgageManager {
                       imageName: ImageName.orda.rawValue),
 
         
-        MortgageModel(pos: 25, // 1
+        MortgageModel(id: 25, // 1
                       name: "\"Женил\" промежуточный заем для \"Свой дом\"",
                       AEIR: 7,
                       firstStageRate: 7,
@@ -628,7 +629,7 @@ class MortgageManager {
                       detailsFull: "для покупки первичного жилья без дополнительного залога\nСобственная программа Жилстройсбербанка, нацеленная на предоставление жилья в новостройках по цене ниже рыночной.",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
         
-        MortgageModel(pos: 26, // 2
+        MortgageModel(id: 26, // 2
                       name: "\"Женил\" для первичного жилья",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -650,7 +651,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для вкладчиков ЖССБ, быстро накопивших 50% от стоимости жилья",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 27, // 3
+        MortgageModel(id: 27, // 3
                       name: "\"Женил\" для вторичного жилья",
                       AEIR: 8.5,
                       firstStageRate: 8.5,
@@ -672,7 +673,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для вкладчиков ЖССБ, быстро накопивших 50% от стоимости жилья",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 28, // 4
+        MortgageModel(id: 28, // 4
                       name: "\"Женил 2\" промежуточный заем для \"Свой дом\"",
                       AEIR: 7,
                       firstStageRate: 7,
@@ -694,7 +695,7 @@ class MortgageManager {
                       detailsFull: "для покупки первичного жилья без дополнительного залога\nСобственная программа Жилстройсбербанка, нацеленная на предоставление жилья в новостройках по цене ниже рыночной.",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 29, // 5
+        MortgageModel(id: 29, // 5
                       name: "\"Женил 2\" для первичного жилья",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -716,7 +717,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для вкладчиков ЖССБ, быстро накопивших 50% от стоимости жилья",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 30, // 6
+        MortgageModel(id: 30, // 6
                       name: "\"Женил 2\" для вторичного жилья",
                       AEIR: 8,
                       firstStageRate: 8,
@@ -738,7 +739,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для вкладчиков ЖССБ, быстро накопивших 50% от стоимости жилья",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 31, // 7
+        MortgageModel(id: 31, // 7
                       name: "\"Стандартный\" промежуточный заем для \"Свой дом\"",
                       AEIR: 7,
                       firstStageRate: 7,
@@ -760,7 +761,7 @@ class MortgageManager {
                       detailsFull: "для покупки первичного жилья без дополнительного залога\nСобственная программа Жилстройсбербанка, нацеленная на предоставление жилья в новостройках по цене ниже рыночной.",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 32, // 8
+        MortgageModel(id: 32, // 8
                       name: "\"Стандартный\" для первичного жилья",
                       AEIR: 7.4,
                       firstStageRate: 7,
@@ -782,7 +783,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для вкладчиков ЖССБ, быстро накопивших 50% от стоимости жилья",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 33, // 9
+        MortgageModel(id: 33, // 9
                       name: "\"Стандартный\" для вторичного жилья",
                       AEIR: 7.5,
                       firstStageRate: 7.5,
@@ -804,7 +805,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для вкладчиков ЖССБ, быстро накопивших 50% от стоимости жилья",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 34, // 10
+        MortgageModel(id: 34, // 10
                       name: "Жилищный заем \"Баспана\"",
                       AEIR: 5,
                       firstStageRate: 5,
@@ -830,7 +831,7 @@ class MortgageManager {
                       detailsFull: "для вкладчиков ЖССБ с достаточным Оценочным показателем депозита\nЖилищный заем в рамках программы \"Баспана\", предоставляется только для вкладчиков ЖССБ",
                       imageName: ImageName.baspana.rawValue),
 
-        MortgageModel(pos: 35,
+        MortgageModel(id: 35,
                       name: "Баспана ХИТ",
                       AEIR: 10.75,
                       firstStageRate: 10.75,
@@ -860,7 +861,7 @@ class MortgageManager {
                       detailsFull: "для приобретения жилья на первичном и вторичном рынке\nИпотека для первички и вторички от оператора 72025",
                       imageName: ImageName.baspana.rawValue),
 
-        MortgageModel(pos: 36,
+        MortgageModel(id: 36,
                       name: "72025",
                       AEIR: 7,
                       firstStageRate: 7,
@@ -891,7 +892,7 @@ class MortgageManager {
 
         
         //   unseeable mortgages
-        MortgageModel(pos: 37,
+        MortgageModel(id: 37,
                       name: "\"Женил 2\" заем для \"Нұрлы жер\"",
                       AEIR: 5.2,
                       firstStageRate: 5,
@@ -913,7 +914,7 @@ class MortgageManager {
                       detailsFull: "для покупки квартир, распределенных по конкурсу среди вкладчиков ЖССБ с обязательным подтверждением дохода\nГосударственная программа жилищно-коммунального развития «Нурлы жер» на 2020-2025 годы",
                       imageName: ImageName.nurlyZher.rawValue),
         
-        MortgageModel(pos: 38,
+        MortgageModel(id: 38,
                       name: "\"Стандартный\" заем для \"Нұрлы жер\"",
                       AEIR: 5.2,
                       firstStageRate: 5,
@@ -935,7 +936,7 @@ class MortgageManager {
                       detailsFull: "для покупки квартир, распределенных по конкурсу среди вкладчиков ЖССБ с обязательным подтверждением дохода\nГосударственная программа жилищно-коммунального развития «Нурлы жер» на 2020-2025 годы",
                       imageName: ImageName.nurlyZher.rawValue),
 
-        MortgageModel(pos: 39,
+        MortgageModel(id: 39,
                       name: "Предварительный заем \"Нұрлы жер\"",
                       AEIR: 5.2,
                       firstStageRate: 5,
@@ -957,7 +958,7 @@ class MortgageManager {
                       detailsFull: "для покупки квартир, распределенных по конкурсу среди вкладчиков ЖССБ с обязательным подтверждением дохода\nГосударственная программа жилищно-коммунального развития «Нурлы жер» на 2020-2025 годы",
                       imageName: ImageName.nurlyZher.rawValue),
 
-        MortgageModel(pos: 40,
+        MortgageModel(id: 40,
                       name: "Жилищный заем по программе \"Нұрлы жер\"",
                       AEIR: 5.2,
                       firstStageRate: 5,
@@ -980,7 +981,7 @@ class MortgageManager {
                       imageName: ImageName.nurlyZher.rawValue),
 
 
-        MortgageModel(pos: -1,  // booyababybowdown
+        MortgageModel(id: -1,  // booyababybowdown
                       name: "\"Женил 2\" для военных",
                       AEIR: 6,
                       firstStageRate: 6,
@@ -1002,7 +1003,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для военных, имеющих 50% от стоимости квартиры",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 42,
+        MortgageModel(id: 42,
                       name: "\"Женил\" для военных",
                       AEIR: 6,
                       firstStageRate: 6,
@@ -1024,7 +1025,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для военных, имеющих 50% от стоимости квартиры",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 43,
+        MortgageModel(id: 43,
                       name: "\"Стандартный\" для военных",
                       AEIR: 6,
                       firstStageRate: 6,
@@ -1046,7 +1047,7 @@ class MortgageManager {
                       detailsFull: "Промежуточный заем с полным подтверждением дохода\nИпотека для военных, имеющих 50% от стоимости квартиры",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
 
-        MortgageModel(pos: 44,
+        MortgageModel(id: 44,
                       name: "Военная ипотека",
                       AEIR: 8,
                       firstStageRate: 8,
@@ -1068,7 +1069,7 @@ class MortgageManager {
                       detailsFull: "только для получивших СМС об участии в программе\nИпотека для военных, получивших SMS об участии в военной программе на 2020 год",
                       imageName: ImageName.zhilStroiSberBank.rawValue),
         
-        MortgageModel(pos: 45,
+        MortgageModel(id: 45,
                       name: "\"Бақытты отбасы\"",
                       AEIR: 2.1,
                       firstStageRate: 2,
@@ -1090,7 +1091,7 @@ class MortgageManager {
                       detailsFull: "для лиц, состоящих в очереди на жилье как многодетная семья, неполная семья или семья, воспитывающая детей-инвалидов\nПрограмма кредитования семей с невысоким доходом для приобретения жилья",
                       imageName: ImageName.bakyttyOtbasy.rawValue),
 
-        MortgageModel(pos: 1,  // booyababybowdown
+        MortgageModel(id: 1,  // booyababybowdown
                       name: "\"5-10-20\"",
                       AEIR: 5,
                       firstStageRate: 5,
@@ -1114,7 +1115,7 @@ class MortgageManager {
     ]
     
     var rentals = [
-        MortgageModel(pos: 47,
+        MortgageModel(id: 47,
                       name: "Арендное жилье от АО \"Самрук-Казына\"",
                       AEIR: -1,
                       firstStageRate: 0,
@@ -1151,7 +1152,7 @@ class MortgageManager {
                       detailsFull: "",
                       imageName: ImageName.samrukKazyna.rawValue),
         
-        MortgageModel(pos: 48,
+        MortgageModel(id: 48,
                       name: "Арендное жилье для молодежи",
                       AEIR: -1,
                       firstStageRate: 0,
@@ -1186,7 +1187,7 @@ class MortgageManager {
                       detailsFull: "",
                       imageName: ImageName.rentTeens.rawValue),
 
-        MortgageModel(pos: 49,
+        MortgageModel(id: 49,
                       name: "Арендное жилье для очередников",
                       AEIR: -1,
                       firstStageRate: 0,
@@ -1288,7 +1289,7 @@ class MortgageManager {
 //                    }
 //                }
 
-                if $0.pos == 45 {
+                if $0.id == 45 {
                     bool4 = false
                 }
             } else if textField4 == "Неполная семья" || textField4 == "Многодетная семья" || textField4 == "Семья с ребёнком инвалидом" {
@@ -1317,7 +1318,7 @@ class MortgageManager {
 //                textField6_2
 //                textField6_3
             } else if segCtrl2Choice == 2 {
-                if $0.details.contains("с частичным подтверждением доходов") || $0.details.contains("без подтверждения дохода") || $0.pos == 34 {
+                if $0.details.contains("с частичным подтверждением доходов") || $0.details.contains("без подтверждения дохода") || $0.id == 34 {
                     bool6 = false
                 }
             }
@@ -1350,7 +1351,7 @@ class MortgageManager {
             return finalBool
         })
         
-        array = array.sorted(by: { $0.pos < $1.pos })
+        array = array.sorted(by: { $0.id < $1.id })
         
         DispatchQueue.global().asyncAfter(deadline: .now(), execute: {
             completion(.success(array))

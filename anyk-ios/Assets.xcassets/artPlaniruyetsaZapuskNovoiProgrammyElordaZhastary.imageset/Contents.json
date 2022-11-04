@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "artPlaniruyetsaZapuskNovoiProgrammyElordaZhastary.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "artPlaniruyetsaZapuskNovoiProgrammyElordaZhastary@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "artPlaniruyetsaZapuskNovoiProgrammyElordaZhastary@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

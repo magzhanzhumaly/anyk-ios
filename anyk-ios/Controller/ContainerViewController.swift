@@ -17,7 +17,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     private let searchController = SearchViewController()
     private let articlesController = ArticlesViewController()
     private let residentialComplexesController = ResidentialComplexesViewController()
-    private let communityController = CommunityViewController()
     private let aboutUsController = AboutUsViewController()
     private let helpController = HelpViewController()
     
@@ -37,6 +36,13 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
     let h = UIScreen.main.bounds.height - 88
 
+    
+    
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+    
+    
     
     private let datePicker = UIDatePicker()
     
@@ -907,6 +913,10 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        tap.cancelsTouchesInView = false
+
 //        view.endEditing(true)
         
         createDatePicker()
@@ -968,7 +978,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         scrollView.addSubview(firstButton)
         scrollView.addSubview(secondButton)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
 
         
@@ -1021,7 +1030,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         addChild(searchController)
         addChild(articlesController)
         addChild(residentialComplexesController)
-        addChild(communityController)
         addChild(aboutUsController)
         addChild(helpController)
      
@@ -1029,7 +1037,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         view.addSubview(searchController.view)
         view.addSubview(articlesController.view)
         view.addSubview(residentialComplexesController.view)
-        view.addSubview(communityController.view)
         view.addSubview(aboutUsController.view)
         view.addSubview(helpController.view)
         
@@ -1037,7 +1044,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         searchController.view.frame = view.bounds
         articlesController.view.frame = view.bounds
         residentialComplexesController.view.frame = view.bounds
-        communityController.view.frame = view.bounds
         aboutUsController.view.frame = view.bounds
         helpController.view.frame = view.bounds
         
@@ -1045,7 +1051,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         searchController.didMove(toParent: self)
         articlesController.didMove(toParent: self)
         residentialComplexesController.didMove(toParent: self)
-        communityController.didMove(toParent: self)
         aboutUsController.didMove(toParent: self)
         helpController.didMove(toParent: self)
         
@@ -1055,7 +1060,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         searchController.view.isHidden = true
         articlesController.view.isHidden = true
         residentialComplexesController.view.isHidden = true
-        communityController.view.isHidden = true
         aboutUsController.view.isHidden = true
         helpController.view.isHidden = true
     }
@@ -1078,7 +1082,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             searchController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = true
             helpController.view.isHidden = true
             
@@ -1090,7 +1093,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             searchController.view.isHidden = false
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = true
             helpController.view.isHidden = true
             
@@ -1102,19 +1104,20 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             searchController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = true
             helpController.view.isHidden = true
             
             
         case .articles:
+//            tap.cancelsTouchesInView = false
+
+            
             mainPageView.isHidden = true
 
             loginController.view.isHidden = true
             searchController.view.isHidden = true
             articlesController.view.isHidden = false
             residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = true
             helpController.view.isHidden = true
             
@@ -1126,22 +1129,8 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             searchController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = false
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = true
             helpController.view.isHidden = true
-            
-            
-        case .community:
-            mainPageView.isHidden = true
-
-            loginController.view.isHidden = true
-            searchController.view.isHidden = true
-            articlesController.view.isHidden = true
-            residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = false
-            aboutUsController.view.isHidden = true
-            helpController.view.isHidden = true
-            
             
         case .aboutUs:
             mainPageView.isHidden = true
@@ -1150,7 +1139,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             searchController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = false
             helpController.view.isHidden = true
             
@@ -1162,7 +1150,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             searchController.view.isHidden = true
             articlesController.view.isHidden = true
             residentialComplexesController.view.isHidden = true
-            communityController.view.isHidden = true
             aboutUsController.view.isHidden = true
             helpController.view.isHidden = false
             

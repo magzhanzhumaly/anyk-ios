@@ -28,7 +28,6 @@ class HelpViewController: UIViewController {
         lbl.text = "Обратная связь"
         lbl.font = .systemFont(ofSize: 30, weight: UIFont.Weight.medium)
         lbl.numberOfLines = 2
-        lbl.textColor = .black
         lbl.textAlignment = .center
         return lbl
     }()
@@ -41,7 +40,6 @@ class HelpViewController: UIViewController {
         lbl.text = "Имя"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -74,7 +72,6 @@ class HelpViewController: UIViewController {
         lbl.text = "E-mail"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -107,7 +104,6 @@ class HelpViewController: UIViewController {
         lbl.text = "Номер телефона"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -139,7 +135,6 @@ class HelpViewController: UIViewController {
         lbl.text = "Тип сообщения"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -164,7 +159,6 @@ class HelpViewController: UIViewController {
         lbl.text = "Сообщение"
         lbl.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)
         lbl.numberOfLines = 1
-        lbl.textColor = .black
         lbl.textAlignment = .left
 
         return lbl
@@ -179,7 +173,6 @@ class HelpViewController: UIViewController {
         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
         txtField.textAlignment = .left
 
-        
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
         txtField.keyboardType = UIKeyboardType.default

@@ -80,10 +80,6 @@ class ResidentialComplexesManager {
                                 dict: [1 : 6800000, 2 : 10200000],
                                 company: "ТОО WEST STANDARD",
                                 is72025: true),
-        
-
-        
-
     ]
 
     func fetchData(completion: @escaping (Result<[ResidentialComplexModel], Error>) -> Void) {

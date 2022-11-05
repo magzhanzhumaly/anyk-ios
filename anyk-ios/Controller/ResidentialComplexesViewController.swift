@@ -169,32 +169,6 @@ class ResidentialComplexesViewController: UIViewController {
         ])
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
       /*  let cityOptionClosure = { [weak self] (action : UIAction) in
             guard let strongSelf = self else {
                 return
@@ -315,21 +289,21 @@ extension ResidentialComplexesViewController: UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 460
     }
     
-    /*
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let newDestinationVC = ArticleDetailsViewController()
-        newDestinationVC.article = data[indexPath.row]
-        print("action")
-        
-        self.navigationController?.pushViewController(newDestinationVC, animated: true)
+//        
+//        let newDestinationVC = ArticleDetailsViewController()
+//        newDestinationVC.article = data[indexPath.row]
+//        print("action")
+//        
+//        self.navigationController?.pushViewController(newDestinationVC, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
 //        present(newDestinationVC, animated: true, completion: { tableView.deselectRow(at: indexPath, animated: true) })
         
-    }*/
+    }
 }
 

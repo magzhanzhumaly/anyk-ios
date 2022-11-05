@@ -903,7 +903,7 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 //        if segue.identifier == "residentialComplexesListSegue" {
 //            let destinationVC = segue.destination as! ResidentialComplexesListViewController
 //            print("I was here")
-//            destinationVC.selectedCity = self.txtField2.text!
+//            desti nationVC.selectedCity = self.txtField2.text!
 //        }
     }
 

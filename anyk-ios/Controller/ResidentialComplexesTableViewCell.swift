@@ -13,7 +13,7 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
     
     private var residentialComplexModel = ResidentialComplexModel(id: 0, name: "", city: "", address: "", dict: [0:0], company: "", is72025: false)
     
-    private let myImageView: UIImageView = {
+    private let photo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "cat1")
         imageView.contentMode = .scaleAspectFit
@@ -21,18 +21,28 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let titleText = UILabel()
+    private let nameLabel = UILabel()
+    private let addressLabel = UILabel()
     
-    private let secondText = UILabel()
-    
+    private let upperOption = UIButton()
+    private let middleOption = UIButton()
+    private let lowerOption = UIButton()
+
+    private let companyLabel = UILabel()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(myImageView)
-        contentView.addSubview(titleText)
-        contentView.addSubview(secondText)
+        contentView.addSubview(photo)
         
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(addressLabel)
+        
+        contentView.addSubview(upperOption)
+        contentView.addSubview(middleOption)
+        contentView.addSubview(lowerOption)
+        
+        contentView.addSubview(companyLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -52,30 +62,167 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
     override func layoutSubviews() {  // this method is called when the view is gonna ask how are you gonna layout all the subviews
         super.layoutSubviews()
         
-        myImageView.frame = CGRect(x: 0,
-                                   y: 2,
-                                   width: contentView.frame.width*0.4,
-                                   height: contentView.frame.height - 4)
+        photo.image = UIImage(named: residentialComplexModel.name)
+        photo.contentMode = .scaleAspectFill
         
-        titleText.frame = CGRect(x: myImageView.frame.width + 10,
-                                 y: 5,
-                                 width: contentView.frame.width - myImageView.frame.width - 10,
-                                 height: contentView.frame.height*0.75 - 5)
+        photo.frame = CGRect(x: 0,
+                             y: 0,
+                             width: contentView.frame.width,
+                             height: 200)
         
-        secondText.frame = CGRect(x: myImageView.frame.width + 10,
-                                  y: titleText.frame.maxY,
-                                  width: contentView.frame.width - myImageView.frame.width,
-                                  height: contentView.frame.height*0.25 - 5)
-            
-        myImageView.image = UIImage(named: residentialComplexModel.name)
-        myImageView.contentMode = .scaleAspectFill
-        titleText.text = residentialComplexModel.name
-        titleText.numberOfLines = 0
-        titleText.font = .systemFont(ofSize: 14)
-        secondText.text = "\(residentialComplexModel.address) • \(residentialComplexModel.company)"
-        secondText.font = .systemFont(ofSize: 12)
+        
+        nameLabel.text = residentialComplexModel.name
+        nameLabel.numberOfLines = 0
+        nameLabel.font = .systemFont(ofSize: 18)
+        nameLabel.textColor = .darkGray
+        
+        nameLabel.frame = CGRect(x: 10,
+                                 y: photo.frame.maxY + 10,
+                                 width: contentView.frame.width - 20,
+                                 height: 50)
+        
+        
+        addressLabel.text = residentialComplexModel.address
+        addressLabel.font = .systemFont(ofSize: 12)
+        addressLabel.numberOfLines = 0
+        addressLabel.textColor = .gray
 
-        secondText.numberOfLines = 0
+        addressLabel.frame = CGRect(x: 10,
+                                    y: nameLabel.frame.maxY,
+                                    width: contentView.frame.width - 20,
+                                    height: 50)
+        
+        upperOption.titleLabel?.numberOfLines = 0
+        upperOption.contentHorizontalAlignment = .left
+//        upperOption.titleLabel?.textAlignment = .center
+        upperOption.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.medium)
+        
+        middleOption.titleLabel?.numberOfLines = 0
+        middleOption.contentHorizontalAlignment = .left
+        middleOption.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.medium)
+
+        lowerOption.titleLabel?.numberOfLines = 0
+        lowerOption.contentHorizontalAlignment = .left
+        lowerOption.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.medium)
+        
+        var firstOption = 0
+        var secondOption = 0
+        var thirdOption = 0
+        
+        var arr = Array(residentialComplexModel.dict.keys)
+        
+        arr.sort()
+        
+        print("arr = \(arr)")
+        if arr.count == 1 {
+            for i in residentialComplexModel.dict {
+                if i.key == arr[0] {
+                    secondOption = i.key
+                    break
+                }
+            }
+            
+            upperOption.isHidden = true
+            middleOption.isHidden = false
+            lowerOption.isHidden = true
+
+            middleOption.setTitle("  \(secondOption)-комнатная квартира: \(residentialComplexModel.dict[secondOption] ?? 0) ₸", for: .normal)
+        } else if arr.count == 2 {
+            for i in residentialComplexModel.dict {
+                if i.key == arr[0] {
+                    firstOption = i.key
+                    break
+                }
+            }
+            for i in residentialComplexModel.dict {
+                if i.key == arr[1] {
+                    secondOption = i.key
+                    break
+                }
+            }
+            
+            upperOption.isHidden = false
+            middleOption.isHidden = false
+            lowerOption.isHidden = true
+
+            upperOption.setTitle("  \(firstOption)-комнатная квартира: \(residentialComplexModel.dict[firstOption] ?? 0) ₸", for: .normal)
+            middleOption.setTitle("  \(secondOption)-комнатная квартира: \(residentialComplexModel.dict[secondOption] ?? 0) ₸", for: .normal)
+
+        } else if arr.count == 3 {
+            for i in residentialComplexModel.dict {
+                if i.key == arr[0] {
+                    firstOption = i.key
+                    break
+                }
+            }
+            
+            for i in residentialComplexModel.dict {
+                if i.key == arr[1] {
+                    secondOption = i.key
+                    break
+                }
+            }
+
+            for i in residentialComplexModel.dict {
+                if i.key == arr[2] {
+                    thirdOption = i.key
+                    break
+                }
+            }
+            
+            upperOption.isHidden = false
+            middleOption.isHidden = false
+            lowerOption.isHidden = false
+
+            upperOption.setTitle("  \(firstOption)-комнатная квартира: \(residentialComplexModel.dict[firstOption] ?? 0) ₸", for: .normal)
+            middleOption.setTitle("  \(secondOption)-комнатная квартира: \(residentialComplexModel.dict[secondOption] ?? 0) ₸", for: .normal)
+            lowerOption.setTitle("  \(thirdOption)-комнатная квартира: \(residentialComplexModel.dict[thirdOption] ?? 0) ₸", for: .normal)
+
+        }
+
+
+//        upperOption.setTitle("1-комнатная квартира: \(residentialComplexModel.dict[1]) ₸", for: .normal)
+        upperOption.setTitleColor(.label, for: .normal)
+        upperOption.layer.cornerRadius = 6
+        upperOption.layer.borderWidth = 1
+        upperOption.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+
+        middleOption.setTitleColor(.label, for: .normal)
+        middleOption.layer.cornerRadius = 6
+        middleOption.layer.borderWidth = 1
+        middleOption.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+
+        lowerOption.setTitleColor(.label, for: .normal)
+        lowerOption.layer.cornerRadius = 6
+        lowerOption.layer.borderWidth = 1
+        lowerOption.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+
+
+        upperOption.frame = CGRect(x: 10,
+                                   y: Int(addressLabel.frame.maxY) + 10,
+                                   width: Int(contentView.frame.width) - 20,
+                                   height: 30)
+        
+        middleOption.frame = CGRect(x: 10,
+                                   y: Int(upperOption.frame.maxY) + 5,
+                                   width: Int(contentView.frame.width) - 20,
+                                   height: 30)
+
+        lowerOption.frame = CGRect(x: 10,
+                                   y: Int(middleOption.frame.maxY) + 5,
+                                   width: Int(contentView.frame.width) - 20,
+                                   height: 30)
+
+        companyLabel.text = residentialComplexModel.company
+        companyLabel.font = .systemFont(ofSize: 12)
+        companyLabel.textColor = .gray
+
+        companyLabel.frame = CGRect(x: 10,
+                                    y: lowerOption.frame.maxY + 10,
+                                    width: contentView.frame.width - 20,
+                                    height: 20)
+
     }
+    
 }
 

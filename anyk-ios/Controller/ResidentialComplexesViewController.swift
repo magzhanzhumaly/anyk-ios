@@ -34,7 +34,7 @@ class ResidentialComplexesViewController: UIViewController {
                      "Акмолинская область"]
     
     var chosenCity = "Все города"
-    var is72025 = "Да"
+    var is72025 = "Нет"
     
     var residentialComplexesManager = ResidentialComplexesManager()
 
@@ -135,11 +135,30 @@ class ResidentialComplexesViewController: UIViewController {
             // filtering
             strongSelf.data = strongSelf.fullData.filter({
                 if $0.city == strongSelf.chosenCity || strongSelf.chosenCity == "Все города" {
-                    return true
+                    if strongSelf.is72025 == "Да" {
+                        if $0.is72025 == true {
+                            return true
+                        } else {
+                            return false
+                        }
+                    } else {
+                        return true
+                    }
                 }
                 return false
             })
-            
+//            fdsahfdjlshf
+//            if strongSelf.is72025 == "Да" {
+//                strongSelf.data = strongSelf.fullData.filter({
+//                    if $0.is72025 == true {
+//                        return true
+//                    }
+//                    return false
+//                })
+//            } else {
+//                strongSelf.data = strongSelf.fullData
+//            }
+
             strongSelf.storeData = strongSelf.data
             strongSelf.tableView.reloadData()
         }
@@ -192,7 +211,7 @@ class ResidentialComplexesViewController: UIViewController {
         */
 //        var num72025OptionClosure = {[weak self] (action : UIAction) in }
            
-        var num72025OptionClosure = {[weak self] (action : UIAction) in
+        let num72025OptionClosure = {[weak self] (action : UIAction) in
             guard let strongSelf = self else {
                 return
             }
@@ -200,20 +219,24 @@ class ResidentialComplexesViewController: UIViewController {
             strongSelf.tableView.reloadData()
             
             if strongSelf.is72025 == "Да" {
-                strongSelf.data = strongSelf.storeData.filter({
+                strongSelf.data = strongSelf.fullData.filter({
                     if $0.is72025 == true {
                         return true
                     }
                     return false
                 })
+            } else {
+                strongSelf.data = strongSelf.fullData
             }
-
+                        
+            strongSelf.storeData = strongSelf.data
+            
             strongSelf.tableView.reloadData()
         }
         
         num72025PopUpButton.menu = UIMenu(children : [
-            UIAction(title: "Да" , state: .on, handler: num72025OptionClosure),
-            UIAction(title: "Нет", handler: num72025OptionClosure)
+            UIAction(title: "Да", handler: num72025OptionClosure),
+            UIAction(title: "Нет", state: .on, handler: num72025OptionClosure)
         ])
 
         cityPopUpButton.setTitle(chosenCity, for: .normal)
@@ -294,11 +317,11 @@ extension ResidentialComplexesViewController: UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
+//
 //        let newDestinationVC = ArticleDetailsViewController()
 //        newDestinationVC.article = data[indexPath.row]
 //        print("action")
-//        
+//
 //        self.navigationController?.pushViewController(newDestinationVC, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)

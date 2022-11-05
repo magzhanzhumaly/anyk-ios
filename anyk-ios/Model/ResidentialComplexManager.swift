@@ -23,7 +23,7 @@ class ResidentialComplexesManager {
                                 address: "Казахстан, Актобе, микрорайон Батыс-2, участок 29",
                                 dict: [1 : 5000000, 2 : 9662500, 3 : 10250000],
                                 company: "ТОО FSPC",
-                                is72025: true),
+                                is72025: false),
         
         ResidentialComplexModel(id: 2,
                                 name: "ЖК Еркен в Актобе",
@@ -31,7 +31,7 @@ class ResidentialComplexesManager {
                                 address: "Казахстан, Актобе, улица Бокенбай Батыра, 133",
                                 dict: [1 : 5220000],
                                 company: "Center Group",
-                                is72025: true),
+                                is72025: false),
         
         ResidentialComplexModel(id: 3,
                                 name: "ЖК Достар в Актобе",

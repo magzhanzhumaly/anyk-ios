@@ -900,11 +900,11 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
             destinationVC?.segCtrl4Choice = segCtrl4Choice
         }
         
-        if segue.identifier == "residentialComplexesListSegue" {
-            let destinationVC = segue.destination as! ResidentialComplexesListViewController
-            print("I was here")
-            destinationVC.selectedCity = self.txtField2.text!
-        }
+//        if segue.identifier == "residentialComplexesListSegue" {
+//            let destinationVC = segue.destination as! ResidentialComplexesListViewController
+//            print("I was here")
+//            destinationVC.selectedCity = self.txtField2.text!
+//        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

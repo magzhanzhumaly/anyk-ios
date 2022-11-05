@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "ЖК Abyroy в Актобе.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "ЖК Abyroy в Актобе@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "ЖК Abyroy в Актобе@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

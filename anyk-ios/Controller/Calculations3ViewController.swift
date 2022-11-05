@@ -108,7 +108,8 @@ class Calculations3ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "calculations3"
-        
+        view.backgroundColor = UIColor(named: "BackgroundColor")
+
         tableView.dataSource = self
         tableView.delegate = self
         

@@ -236,7 +236,8 @@ class Calculations2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "calculations2"
-        
+        view.backgroundColor = UIColor(named: "BackgroundColor")
+
         label4.text = " конце срока 3 года от суммы 90 000 тенге:\n\n • По предварительному займу будет погашено: 0 тенге\n • По депозиту начислено 7 353 тенге, из которых:\n    • начислено процентов: 1 821 тенге\n    • государственная премия: 5 532 тенге\n\nПереплата по предварительному займу составит 7 647 тенге"
         
         label1_2.text = "Ежемесячный платеж: \(Int(X))\n\nСтавка: \(txtField3)\n\nСрок этапа: \(Int(txtField3)!-3) года\n\nПереплата: \(Int(totalOverpayment))"

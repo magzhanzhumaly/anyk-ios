@@ -198,6 +198,7 @@ class MortgageDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         createDatePicker()
         
         title = "Ипотека"
@@ -348,7 +349,8 @@ class MortgageDetailsViewController: UIViewController {
         
         scrollView.addSubview(ageOfBorrowerValue)
     
-        var myString = ageOfBorrower[0] + "\n" + ageOfBorrower[1]
+//        asdfjas;ldfjalksdf  FIX !!!
+        var myString = ageOfBorrower[0] //+ "\n" + ageOfBorrower[1]
         
         ageOfBorrowerValue.text = myString
         
@@ -687,7 +689,6 @@ class MortgageDetailsViewController: UIViewController {
                 calcView.addSubview(termPopUpButton)
                 
                 segueName = "calculations4"
-//                self.performSegue(withIdentifier: "calculations4", sender: self)
                 
             } else {  // calculations2
                 
@@ -1209,38 +1210,133 @@ class MortgageDetailsViewController: UIViewController {
             
 
         } else {  // case .success
-            
-            self.performSegue(withIdentifier: segueName, sender: self)
-            
-            /*
-            if whereToApply != ["Жилстройсбербанк"] {
+                        
+            if segueName == "calculations1" {
+                let destinationVC = Calculations1ViewController()
                 
-                // case 1
-                self.performSegue(withIdentifier: "calculations1", sender: self)
+                destinationVC.txtField1 = self.txtField1.text ?? ""
+                destinationVC.txtField2 = self.txtField2.text ?? ""
+                destinationVC.txtField3 = self.txtField3.text ?? ""
 
-                print("case 1")
-            } else {
-                
-                if minTerm == 6 {
-                    
-                    // case 2
-                    self.performSegue(withIdentifier: "calculations2", sender: self)
-                    
-                    print("case 2")
-                } else {
-                    
-                    // case 3
-                    self.performSegue(withIdentifier: "calculations3", sender: self)
+                destinationVC.id = id
+                destinationVC.name = name
+                destinationVC.AEIR = AEIR
+                destinationVC.firstStageRate = firstStageRate
+                destinationVC.ageOfBorrower = ageOfBorrower
+                destinationVC.initialFee = initialFeePercentageString
+                destinationVC.maxCredit = maxCredit
+                destinationVC.continuousWorkExperience = continuousWorkExperience
+                destinationVC.minTerm = minTerm
+                destinationVC.maxTerm = maxTerm
+                destinationVC.feePercent = feePercent
+                destinationVC.feeInitial = feeInitial
+                destinationVC.properties = properties
+                destinationVC.whereToApply = whereToApply
+                destinationVC.details = details
+                destinationVC.detailsColors = detailsColors
+                destinationVC.detailsFull = detailsFull
+                destinationVC.imageName = imageName
 
-                    print("case 3")
-                    
-                }
                 
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            } else if segueName == "calculations2" {
+                let destinationVC = Calculations2ViewController()
+                
+                destinationVC.txtField1 = txtField1.text ?? ""
+                destinationVC.txtField2 = txtField2.text ?? ""
+                destinationVC.txtField3 = txtField3.text ?? ""
+                destinationVC.chosenSegment = chosenSegment
+                destinationVC.txtField1_1 = txtField1_1.text ?? ""
+                destinationVC.txtField1_2 = txtField1_2.text ?? ""
+                destinationVC.txtField1_3 = txtField1_3.text ?? ""
+
+                destinationVC.id = id
+                destinationVC.name = name
+                destinationVC.AEIR = AEIR
+                destinationVC.firstStageRate = firstStageRate
+                destinationVC.ageOfBorrower = ageOfBorrower
+                destinationVC.initialFeePercentageString = initialFeePercentageString
+                destinationVC.maxCredit = maxCredit
+                destinationVC.continuousWorkExperience = continuousWorkExperience
+                destinationVC.minTerm = minTerm
+                destinationVC.maxTerm = maxTerm
+                destinationVC.feePercent = feePercent
+                destinationVC.feeInitial = feeInitial
+                destinationVC.properties = properties
+                destinationVC.whereToApply = whereToApply
+                destinationVC.details = details
+                destinationVC.detailsColors = detailsColors
+                destinationVC.detailsFull = detailsFull
+                destinationVC.imageName = imageName
+
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            } else if segueName == "calculations3" {
+                let destinationVC = Calculations3ViewController()
+                
+                destinationVC.txtField1 = txtField1.text ?? ""
+                destinationVC.txtField2 = txtField2.text ?? ""
+                destinationVC.txtField3 = txtField3.text ?? ""
+                destinationVC.chosenSegment = chosenSegment
+                destinationVC.txtField1_1 = txtField1_1.text ?? ""
+                destinationVC.txtField1_2 = txtField1_2.text ?? ""
+                destinationVC.txtField1_3 = txtField1_3.text ?? ""
+                destinationVC.txtField2_1 = txtField2_1.text ?? ""
+                destinationVC.txtField2_2 = txtField2_2.text ?? ""
+                destinationVC.txtField2_3 = txtField2_3.text ?? ""
+                
+                destinationVC.id = id
+                destinationVC.name = name
+                destinationVC.AEIR = AEIR
+                destinationVC.firstStageRate = firstStageRate
+                destinationVC.ageOfBorrower = ageOfBorrower
+                destinationVC.initialFeePercentageString = initialFeePercentageString
+                destinationVC.maxCredit = maxCredit
+                destinationVC.continuousWorkExperience = continuousWorkExperience
+                destinationVC.minTerm = minTerm
+                destinationVC.maxTerm = maxTerm
+                destinationVC.feePercent = feePercent
+                destinationVC.feeInitial = feeInitial
+                destinationVC.properties = properties
+                destinationVC.whereToApply = whereToApply
+                destinationVC.details = details
+                destinationVC.detailsColors = detailsColors
+                destinationVC.detailsFull = detailsFull
+                destinationVC.imageName = imageName
+
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            } else if segueName == "calculations4" {
+                let destinationVC = Calculations4ViewController()
+                
+                destinationVC.txtField1 = txtField1.text ?? ""
+                destinationVC.txtField2 = txtField2.text ?? ""
+                destinationVC.popUpOption = popUpOption
+                
+                destinationVC.id = id
+                destinationVC.name = name
+                destinationVC.AEIR = AEIR
+                destinationVC.firstStageRate = firstStageRate
+                destinationVC.ageOfBorrower = ageOfBorrower
+                destinationVC.initialFeePercentageString = initialFeePercentageString
+                destinationVC.maxCredit = maxCredit
+                destinationVC.continuousWorkExperience = continuousWorkExperience
+                destinationVC.minTerm = minTerm
+                destinationVC.maxTerm = maxTerm
+                destinationVC.feePercent = feePercent
+                destinationVC.feeInitial = feeInitial
+                destinationVC.properties = properties
+                destinationVC.whereToApply = whereToApply
+                destinationVC.details = details
+                destinationVC.detailsColors = detailsColors
+                destinationVC.detailsFull = detailsFull
+                destinationVC.imageName = imageName
+
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
-            */
-            // segue 1 - default w/ 3 labels.   Calc1VC
-            // segue 2 - zhilstroisberbank default CalcZSSBdefVC
-            // segue 3 - zhilstroisberbank w/ 3 stages CalcZSSB3StagesVC
+
+
+
+
+//            self.performSegue(withIdentifier: segueName, sender: self)
             
         }
       

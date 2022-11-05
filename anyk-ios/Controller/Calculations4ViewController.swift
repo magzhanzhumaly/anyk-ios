@@ -99,7 +99,8 @@ class Calculations4ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "calculations4"
-        
+        view.backgroundColor = UIColor(named: "BackgroundColor")
+
         tableView.dataSource = self
         tableView.delegate = self
         

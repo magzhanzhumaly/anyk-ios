@@ -1224,6 +1224,14 @@ class MortgageManager {
                       imageName: ImageName.rentQueuers.rawValue),
     ]
 
+    func fetchMortgageById(id: Int, completion: @escaping (Result<[MortgageModel], Error>) -> Void) {
+        var newData = myOriginalData
+        var returnData = newData.filter({ $0.id == id })
+        DispatchQueue.global().asyncAfter(deadline: .now(), execute: {
+            completion(.success(returnData))
+        })
+    }
+    
     func fetchLeftOutData(completion: @escaping (Result<[MortgageModel], Error>) -> Void) {
         DispatchQueue.global().asyncAfter(deadline: .now(), execute: {
             completion(.success(self.leftOutData))

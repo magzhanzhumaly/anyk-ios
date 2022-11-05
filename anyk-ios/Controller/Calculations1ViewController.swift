@@ -105,6 +105,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "calculations1"
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         
         tableView.dataSource = self
         tableView.delegate = self

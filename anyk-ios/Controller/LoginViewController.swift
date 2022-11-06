@@ -21,7 +21,6 @@ class LoginViewController: UIViewController {
         return control
     }()
 
-
     private let emailField: UITextField = {
         let emailField = UITextField()
         emailField.placeholder = "Почтовый адрес"
@@ -72,9 +71,26 @@ class LoginViewController: UIViewController {
         return button
     }()
 
+    var tap = UITapGestureRecognizer()
+
+    @objc func dismisser() {
+        print("dismisser")
+        self.emailField.resignFirstResponder()
+        self.passwordField.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismisser))
+        tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
+
+        
+        view.endEditing(true)
+
         view.addSubview(segControl)
 
         view.addSubview(emailField)
@@ -97,7 +113,14 @@ class LoginViewController: UIViewController {
             signOutButton.isHidden = false
         }
     }
-    
+    /*
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textfieldshouldreturn")
+        dismisser()
+        didTapButton()
+        return true
+    }
+     */
     @objc private func logOutTapped() {
         do {
             try FirebaseAuth.Auth.auth().signOut()
@@ -139,7 +162,10 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if FirebaseAuth.Auth.auth().currentUser == nil {
-            emailField.becomeFirstResponder()
+//            emailField.becomeFirstResponder()
+            
+            
+//            PRIVETMEDVED
         }
     }
     

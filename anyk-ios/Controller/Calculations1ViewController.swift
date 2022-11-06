@@ -104,6 +104,8 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.endEditing(true)
+
         title = "calculations1"
         view.backgroundColor = UIColor(named: "BackgroundColor")
         

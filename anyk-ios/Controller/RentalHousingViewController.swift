@@ -13,6 +13,9 @@ class RentalHousingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.endEditing(true)
+
         title = "Арендное жилье"
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 88, width: view.frame.size.width, height: view.frame.size.height - 100))
         view.addSubview(scrollView)

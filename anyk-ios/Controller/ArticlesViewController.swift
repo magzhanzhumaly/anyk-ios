@@ -73,7 +73,8 @@ class ArticlesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.endEditing(true)
+
         tableView.delegate = self
         tableView.dataSource = self
         

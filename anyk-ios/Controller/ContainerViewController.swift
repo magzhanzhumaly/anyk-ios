@@ -35,17 +35,12 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     }()
         
     let h = UIScreen.main.bounds.height - 88
+    
+    var tap = UITapGestureRecognizer()
+    //    let tap = UITapGestureRecognizer(target: self, action: #selector(dismisser))
 
-    
-    
-    
-    let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-
-    
-    
-    
     private let datePicker = UIDatePicker()
-    
+        
     var titleText: UILabel = {
         let h = UIScreen.main.bounds.height - 88
 
@@ -95,14 +90,12 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
         
         txtField.borderStyle = UITextField.BorderStyle.roundedRect
         txtField.autocorrectionType = UITextAutocorrectionType.no
-        txtField.keyboardType = .numberPad
+        txtField.keyboardType = .default
         txtField.returnKeyType = UIReturnKeyType.done
         txtField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
         return txtField
     }()
-    
-    
     
     // TextField 2
     var txtField2txt: UILabel = {
@@ -913,11 +906,12 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.endEditing(true)
         
-        
+        tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
         tap.cancelsTouchesInView = false
 
-//        view.endEditing(true)
         
         createDatePicker()
         
@@ -1162,7 +1156,6 @@ class ContainerViewController: UIViewController, MenuControllerDelegate {
 extension ContainerViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
-        print("textFieldShouldReturn")
         return true
     }
 }

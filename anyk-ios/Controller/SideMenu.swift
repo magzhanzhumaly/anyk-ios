@@ -39,6 +39,8 @@ class MenuController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.endEditing(true)
+
         tableView.backgroundColor = color
         view.backgroundColor = color
     }

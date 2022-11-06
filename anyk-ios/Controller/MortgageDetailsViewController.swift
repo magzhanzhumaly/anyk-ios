@@ -203,7 +203,8 @@ class MortgageDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.endEditing(true)
+
         view.backgroundColor = UIColor(named: "BackgroundColor")
         createDatePicker()
         

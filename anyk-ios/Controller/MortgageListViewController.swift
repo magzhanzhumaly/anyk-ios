@@ -81,7 +81,8 @@ class MortgageListViewController: UIViewController, UITableViewDelegate, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.endEditing(true)
+
         let optionClosure = {[weak self] (action : UIAction) in
 //            self.button2.setTitle(action.title, for: .normal)
             print(action.title)

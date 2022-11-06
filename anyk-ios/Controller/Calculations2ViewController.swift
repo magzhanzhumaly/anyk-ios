@@ -235,6 +235,8 @@ class Calculations2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.endEditing(true)
+
         title = "calculations2"
         view.backgroundColor = UIColor(named: "BackgroundColor")
 

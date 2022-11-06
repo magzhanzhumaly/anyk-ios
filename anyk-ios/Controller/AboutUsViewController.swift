@@ -11,6 +11,8 @@ class AboutUsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.endEditing(true)
+
     }
     
     override func viewDidLayoutSubviews() {

@@ -180,6 +180,8 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         view.addSubview(lbl)
         view.addSubview(btn)
+        view.endEditing(true)
+
 
         valuesArray = Array(dataArray.values)
         

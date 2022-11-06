@@ -78,7 +78,7 @@ class ArticleManager {
 
     var myOriginalData = [
         
-        ArticleModel(id: 1,
+        ArticleModel(id: 51,
                      articleType: Types.novosti.rawValue,
                      tags: [Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
                      title: "Планируется запуск новой жилищной программы \"Елорда жастары\"",
@@ -102,7 +102,7 @@ class ArticleManager {
                      month: 12,
                      year: 2020),
         
-        ArticleModel(id: 2,
+        ArticleModel(id: 38,
                      articleType: Types.novosti.rawValue,
                      tags: [Tags.lgotnyeProgrammy.rawValue, Tags.programmyZSSB.rawValue, Tags.tag51020.rawValue, Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
                      title: "Планируется предоставления жилищного сертификата в рамках программы «5-10-20»",
@@ -122,7 +122,7 @@ class ArticleManager {
                      year: 2020),
 
         
-        ArticleModel(id: 3,
+        ArticleModel(id: 85,
                      articleType: Types.poleznyeStatii.rawValue,
                      tags: [Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
                      title: "Какие есть программы для молодых семей и специалистов?",
@@ -159,7 +159,7 @@ class ArticleManager {
                      month: 12,
                      year: 2020),
         
-        ArticleModel(id: 4,
+        ArticleModel(id: 50,
                      articleType: Types.poleznyeStatii.rawValue,
                      tags: [Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
                      title: "Почему нельзя верить жилищным кооперативам?",
@@ -183,7 +183,7 @@ class ArticleManager {
                      month: 12,
                      year: 2020),
         
-        ArticleModel(id: 5,
+        ArticleModel(id: 32,
                      articleType: Types.istoriaKlienta.rawValue,
                      tags: [Tags.baspanaHit.rawValue, Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
                      title: "История покупки жилья по программе \"Баспана Хит\"",
@@ -199,10 +199,10 @@ class ArticleManager {
                      month: 9,
                      year: 2020),
 
-        ArticleModel(id: 6,
+        ArticleModel(id: 20,
                      articleType: Types.istoriaKlienta.rawValue,
                      tags: [Tags.programmyZSSB.rawValue, Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
-                     title: "История покупки жилья по программе \"Баспана Хит\"",
+                     title: "История покупки жилья по 72025",
                      imageName: "artIstoriaPokupkiZhiliyaPo72025",
                      author: "Салтанат Жумабаева",
                      authorPhotoName: "authSaltanatZhumabayeva",
@@ -213,21 +213,7 @@ class ArticleManager {
                      month: 7,
                      year: 2020),
 
-        ArticleModel(id: 7,
-                     articleType: Types.istoriaKlienta.rawValue,
-                     tags: [Tags.programmyZSSB.rawValue, Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue, Tags.vozngarozhdeniya.rawValue, Tags.depozit.rawValue, Tags.otsenochnyiPokazatel.rawValue],
-                     title: "Не стоит бояться ипотеки",
-                     imageName: "artNeStoitBoyatsaIpoteki",
-                     author: "Салтанат Жумабаева",
-                     authorPhotoName: "authSaltanatZhumabayeva",
-                     text: ["Как у меня получилось купить жилье?" : "bold",
-                            
-                            "Когда-то в далёком 2012 году, вернувшись после учебы в Казахстан я столкнулась с жестокой реальностью. Аренда квартиры стоит 90000 тг. на правом берегу, зарплата 80 000 тг. Хорошо были подруги с кем мы вместе решили жить, но хватало только на аренду, проезд и еду. Тогда я загорелась желанием иметь свою квартиру в Астане, изучила все имеющиеся программы и выбрала в Жилстройсбербанк.\n\nЛетним утром я пошла открывать депозит, просидев в очереди 2 часа, я услышала возмущения одной женщины, которая хотела закрыть депозит, но теряла премию государства. Сумма была небольшая - 60 000тг., плюс премия государства - 20000 тг. Я предложила ей выкупить ее депозит, таким образом она переуступила депозит мне и не потеряла деньги.\n\nШло время, я уехала в родной город чтобы не тратиться на жилье и еду, чтобы откладывать деньги и жила на шее родителей. Каждый месяц я откладывала зарплату и если бывали премии по следующей схеме: 50% на депозит Каспи (чтобы немного увеличить сумму за счёт процентов) и 50% в ЖССБ (чтобы рос оценочный показатель). Время проведенное в отчем доме и вблизи с родственниками теперь вспоминаются с большой теплотой.\n\nТак прошло полтора года, однажды в новостях объявили о старте государственной программы \"Доступное жилье 2020\" и начале приема заявок в ЖССБ. Недолго думая, я решила попытать удачу и поехала в Астану.\n\nО программе многие не знали и все было довольно чинно и благородно, потом уже на других потоках люди ночевали возле банка и толпились в смертельной давке чтобы подать заявку.\n\nКредитный менеджер спросила скольки комнатную квартиру я хочу подать заявление. Я подумала, что скорее всего большинство захочет подать на однокомнатную, потому что шансов больше, так как баллы считались по схеме: Срок депозита (Макс. 30 баллов)+ Наличие 50% (Макс. 30 баллов)+ Достигнутый оценочный показатель (Макс. 30 баллов).\n\nУ меня было примерно 60 баллов из максимальных 90 и я решила подать на 2-комнатную квартиру с мыслью: \"Кто не рискует, тот не пьет шампанского\".Через 2 месяца объявили результаты и я была предпоследней в списке кто прошел по этой программе.\n\nСчастью не было предела..." : "regular",],
-                     day: 9,
-                     month: 7,
-                     year: 2020),
-
-        ArticleModel(id: 8,
+        ArticleModel(id: 84,
                      articleType: Types.ipoteka.rawValue,
                      tags: [Tags.nedvizhimost.rawValue, Tags.obshestvo.rawValue],
                      title: "\"Особая ипотека\" от BI Group и Сбербанк",
@@ -247,7 +233,7 @@ class ArticleManager {
                      month: 7,
                      year: 2020),
                             //                            • D
-        ArticleModel(id: 9,
+        ArticleModel(id: 43,
                      articleType: Types.ipoteka.rawValue,
                      tags: [Tags.programmyZSSB.rawValue, Tags.depozit.rawValue, Tags.otsenochnyiPokazatel.rawValue],
                      title: "Программа от \"Жилстройсбербанка и BI Group\"",
@@ -274,14 +260,6 @@ class ArticleManager {
     ]
 
     func fetchData(completion: @escaping (Result<[ArticleModel], Error>) -> Void) {
-        
-//        // filtering
-//        var array = myOriginalData.filter({
-//            if $0.articleType == articleType || articleType == "Все статьи" {
-//                return true
-//            }
-//            return false
-//        })
      
         self.myOriginalData = self.myOriginalData.sorted(by: { $0.id < $1.id })
         

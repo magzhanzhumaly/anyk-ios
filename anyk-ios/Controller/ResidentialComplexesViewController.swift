@@ -130,7 +130,8 @@ class ResidentialComplexesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.endEditing(true)
+
 //        view.backgroundColor = .red
         tableView.delegate = self
         tableView.dataSource = self

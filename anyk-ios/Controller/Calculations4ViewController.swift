@@ -98,6 +98,8 @@ class Calculations4ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.endEditing(true)
+
         title = "calculations4"
         view.backgroundColor = UIColor(named: "BackgroundColor")
 

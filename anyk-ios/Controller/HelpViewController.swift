@@ -215,7 +215,8 @@ class HelpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.endEditing(true)
+
         myPopupButton.titleLabel?.numberOfLines = 2
         myPopupButton.titleLabel?.textAlignment = .center
         myPopupButton.titleLabel?.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light)

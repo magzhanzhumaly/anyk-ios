@@ -67,7 +67,8 @@ class LoginViewController: UIViewController {
         button.backgroundColor = UIColor(named: "AccentColor")
         button.setTitleColor(.label, for: .normal)
         button.setTitle("Выйти", for: .normal)
-        
+        button.layer.cornerRadius = 5
+
         return button
     }()
 

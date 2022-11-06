@@ -110,6 +110,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.dataSource = self
         tableView.delegate = self
 
+        
 
         month = calendar.component(.month, from: date)
         month += 1
@@ -127,7 +128,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLayoutSubviews()
         
         view.addSubview(scrollView)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 0)
         
         tempHeight = h / 36
         
@@ -312,6 +313,8 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         
         toggleButton.frame = CGRect(x: 10, y: lowestY, width: w, height: tempHeight)
       
+        toggleButton.setTitleColor(.label, for: .normal)
+        
         scrollView.addSubview(toggleButton)
         lowestY += tempHeight + 10
 
@@ -324,7 +327,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         
         let tableViewHeight = CGFloat(130 + 40*m)
         tableView.frame = CGRect(x: 10, y: lowestY, width: w, height: tableViewHeight)
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
+//        scrollView.contentSize = CGSize(width: view.frame.size.width, height: lowestY + tableViewHeight)
 
     }
     
@@ -334,6 +337,11 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         //        S — это общая сумма кредита.
         //        P обозначает месячную ставку по кредиту (это годовая процентная ставка, разделенная на 12).
         //        M — это срок кредитования в месяцах.
+        
+        X = 0
+        S = 0
+        p = 0
+        m = 0
         
         S = (Double(txtField1) ?? 0) - (Double(txtField2) ?? 0)
         initialS = Int(S)
@@ -348,8 +356,10 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
         txt1val.text = "\(Int(X))"
         
         totalPayout = X * Double(m)
+        totalPayout = 0
         txt2val.text = "\(Int(totalPayout))"
 
+        totalOverpayment = 0
         totalOverpayment = totalPayout - S
         txt3val.text = "\(Int(totalOverpayment))"
         S -= credit
@@ -389,6 +399,7 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
     @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
+            percentagePartTotal = 0
             type = 0
             calculateDifferentiated()
             month = calendar.component(.month, from: date)
@@ -427,7 +438,8 @@ class Calculations1ViewController: UIViewController, UITableViewDelegate, UITabl
             toggleButton.setTitle("График платежа ▲", for: .normal)
 
             tableView.isHidden = false
-            scrollView.contentSize = CGSize(width: view.frame.size.width, height: 3500)
+            
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: CGFloat(m * 40 + 600))
         }
     }
     

@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol ResidentialComplexesTableViewCellDelegate: AnyObject {
+    func didTapButton(par1: Int, par2: Int)
+}
+
 class ResidentialComplexesTableViewCell: UITableViewCell {
     
+    weak var delegate: ResidentialComplexesTableViewCellDelegate?
+
     static let identifier = "ResidentialComplexesTableViewCell"
     
     private var residentialComplexModel = ResidentialComplexModel(id: 0, name: "", city: "", address: "", dict: [0:0], company: "", is72025: false)
@@ -29,6 +35,10 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
     private let lowerOption = UIButton()
 
     private let companyLabel = UILabel()
+
+    var upperOptionArr = [1, 2]
+    var middleOptionArr = [1, 2]
+    var lowerOptionArr = [1, 2]
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -127,6 +137,10 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
             lowerOption.isHidden = true
 
             middleOption.setTitle("  \(secondOption)-комнатная квартира: \(residentialComplexModel.dict[secondOption] ?? 0) ₸", for: .normal)
+            
+            upperOptionArr[0] = secondOption
+            upperOptionArr[1] = residentialComplexModel.dict[secondOption] ?? 0
+
         } else if arr.count == 2 {
             for i in residentialComplexModel.dict {
                 if i.key == arr[0] {
@@ -146,7 +160,13 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
             lowerOption.isHidden = true
 
             upperOption.setTitle("  \(firstOption)-комнатная квартира: \(residentialComplexModel.dict[firstOption] ?? 0) ₸", for: .normal)
+            upperOptionArr[0] = firstOption
+            upperOptionArr[1] = residentialComplexModel.dict[firstOption] ?? 0
+            
             middleOption.setTitle("  \(secondOption)-комнатная квартира: \(residentialComplexModel.dict[secondOption] ?? 0) ₸", for: .normal)
+            middleOptionArr[0] = secondOption
+            middleOptionArr[1] = residentialComplexModel.dict[secondOption] ?? 0
+
 
         } else if arr.count == 3 {
             for i in residentialComplexModel.dict {
@@ -175,8 +195,16 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
             lowerOption.isHidden = false
 
             upperOption.setTitle("  \(firstOption)-комнатная квартира: \(residentialComplexModel.dict[firstOption] ?? 0) ₸", for: .normal)
+            upperOptionArr[0] = firstOption
+            upperOptionArr[1] = residentialComplexModel.dict[firstOption] ?? 0
+
             middleOption.setTitle("  \(secondOption)-комнатная квартира: \(residentialComplexModel.dict[secondOption] ?? 0) ₸", for: .normal)
+            middleOptionArr[0] = secondOption
+            middleOptionArr[1] = residentialComplexModel.dict[secondOption] ?? 0
+
             lowerOption.setTitle("  \(thirdOption)-комнатная квартира: \(residentialComplexModel.dict[thirdOption] ?? 0) ₸", for: .normal)
+            lowerOptionArr[0] = thirdOption
+            lowerOptionArr[1] = residentialComplexModel.dict[thirdOption] ?? 0
 
         }
 
@@ -222,7 +250,23 @@ class ResidentialComplexesTableViewCell: UITableViewCell {
                                     width: contentView.frame.width - 20,
                                     height: 20)
 
+        upperOption.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        middleOption.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        lowerOption.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
     
+    @objc func didTapButton(sender: UIButton!) {
+        
+        
+        print("didtapbutton \(sender)")
+        if sender == upperOption {
+            delegate?.didTapButton(par1: upperOptionArr[0], par2: upperOptionArr[1])
+        } else if sender == middleOption {
+            delegate?.didTapButton(par1: middleOptionArr[0], par2: middleOptionArr[1])
+        } else if sender == lowerOption {
+            delegate?.didTapButton(par1: lowerOptionArr[0], par2: lowerOptionArr[1])
+        }
+    
+    }
 }
 

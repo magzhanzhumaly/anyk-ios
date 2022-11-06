@@ -10,6 +10,12 @@ import UIKit
 class MortgageDetailsViewController: UIViewController {
     let h = UIScreen.main.bounds.height - 88
 
+    
+    var arg1 = ""
+    var arg2 = ""
+    var arg3 = "25"
+    
+    
     var segueName = ""
     
     let w = UIScreen.main.bounds.width - 20
@@ -731,8 +737,6 @@ class MortgageDetailsViewController: UIViewController {
 
                 
                 
-                
-                
                 if feePercent != 0 {
                     
                     // 3 textFields + button + 3 more textFields
@@ -925,6 +929,14 @@ class MortgageDetailsViewController: UIViewController {
         
         lowestY = hh
         
+        
+        
+        
+        if nameLabel.text == "72025" {
+            txtField1.text = arg1
+            txtField2.text = arg2
+            txtField3.text = arg3
+        }
     }
     
     @objc func segmentControl(_ segmentedControl: UISegmentedControl) {

@@ -14,7 +14,7 @@ protocol ResidentialComplexManagerDelegate {
 }
 
 class ResidentialComplexesManager {
-
+        
     var myOriginalData = [
         
         ResidentialComplexModel(id: 1,
@@ -81,17 +81,17 @@ class ResidentialComplexesManager {
                                 company: "ТОО WEST STANDARD",
                                 is72025: true),
     ]
-
+    
     func fetchData(completion: @escaping (Result<[ResidentialComplexModel], Error>) -> Void) {
         
-//        // filtering
-//        var array = myOriginalData.filter({
-//            if $0.articleType == articleType || articleType == "Все статьи" {
-//                return true
-//            }
-//            return false
-//        })
-     
+        //        // filtering
+        //        var array = myOriginalData.filter({
+        //            if $0.articleType == articleType || articleType == "Все статьи" {
+        //                return true
+        //            }
+        //            return false
+        //        })
+        
         self.myOriginalData = self.myOriginalData.sorted(by: { $0.id < $1.id })
         
         DispatchQueue.global().asyncAfter(deadline: .now(), execute: {

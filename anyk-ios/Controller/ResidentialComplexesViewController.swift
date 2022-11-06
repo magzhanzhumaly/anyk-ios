@@ -11,6 +11,36 @@ class ResidentialComplexesViewController: UIViewController {
     
     var selectedCity = "Все города"
     
+    let mort72025 = MortgageModel(id: 36,
+                                  name: "72025",
+                                  AEIR: 7,
+                                  firstStageRate: 7,
+                                  ageOfBorrower: ["мужчины: с 21 до 63",
+                                                  "женщины: с 21 до 63"],
+                                  initialFeePercentageString: "20% - 95%",
+                                  initialFeeLowerBound: 20,
+                                  initialFeeUpperBound: 95,
+                                  maxCredit: 25000000,
+                                  continuousWorkExperience: "6 месяцев",
+                                  
+                                  minTerm: 6, maxTerm: 25,
+                                  feePercent: 0, feeInitial: 0,
+                                  
+                                  properties: ["Первичное жилье (квартира и дом)"],
+                                  whereToApply: ["Банк ЦентрКредит",
+                                                 "Сбербанк",
+                                                 "Евразийский Банк",
+                                                 "АТФБанк",
+                                                 "Jusanbank",
+                                                 "Bank RBK",
+                                                 "Народный банк Казахстана",
+                                                 "Forte Bank"],
+                                  details: ["первичное жилье"],
+                                  detailsColors: [ColorName.purple.rawValue],
+                                  detailsFull: "для приобретения жилья на первичном рынке (от застройщика) с требованиями отсутствия жилья\nCоциальная программа для граждан РК, предоставлляющая новые возможности покупки жилья на первичном рынке с доступными условиями кредитования.",
+                                  imageName: ImageName.zhilStroiSberBank.rawValue)
+
+    
     let dataArray = ["Все города",
                      "Нур-Султан (Астана)",
                      "Алматы",
@@ -38,6 +68,9 @@ class ResidentialComplexesViewController: UIViewController {
     
     var residentialComplexesManager = ResidentialComplexesManager()
 
+    var par1 = 0
+    var par2 = 0
+    
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 88))
         return scrollView
@@ -307,6 +340,7 @@ extension ResidentialComplexesViewController: UITableViewDelegate, UITableViewDa
         }
         
         cell.configure(residentialComplexModel: data[indexPath.row])
+        cell.delegate = self
         
         return cell
     }
@@ -330,3 +364,38 @@ extension ResidentialComplexesViewController: UITableViewDelegate, UITableViewDa
     }
 }
 
+extension ResidentialComplexesViewController: ResidentialComplexesTableViewCellDelegate {
+    func didTapButton(par1: Int, par2: Int) {
+        self.par1 = par1
+        self.par2 = par2
+        
+        let newDestinationVC = MortgageDetailsViewController()
+        
+        newDestinationVC.arg1 = "\(par2)"
+        newDestinationVC.arg2 = "\(par2/5)"
+        
+        
+        newDestinationVC.id = mort72025.id
+        newDestinationVC.name = mort72025.name
+        newDestinationVC.AEIR = mort72025.AEIR
+        newDestinationVC.firstStageRate = mort72025.firstStageRate
+        newDestinationVC.ageOfBorrower = mort72025.ageOfBorrower
+        newDestinationVC.initialFeePercentageString = mort72025.initialFeePercentageString
+        newDestinationVC.initialFeeLowerBound = mort72025.initialFeeLowerBound
+        newDestinationVC.initialFeeUpperBound = mort72025.initialFeeUpperBound
+        newDestinationVC.maxCredit = mort72025.maxCredit
+        newDestinationVC.continuousWorkExperience = mort72025.continuousWorkExperience
+        newDestinationVC.minTerm = mort72025.minTerm
+        newDestinationVC.maxTerm = mort72025.maxTerm
+        newDestinationVC.feePercent = mort72025.feePercent
+        newDestinationVC.feeInitial = mort72025.feeInitial
+        newDestinationVC.properties = mort72025.properties
+        newDestinationVC.whereToApply = mort72025.whereToApply
+        newDestinationVC.details = mort72025.details
+        newDestinationVC.detailsColors = mort72025.detailsColors
+        newDestinationVC.detailsFull = mort72025.detailsFull
+        newDestinationVC.imageName = mort72025.imageName
+        
+        self.navigationController?.pushViewController(newDestinationVC, animated: true)
+    }
+}

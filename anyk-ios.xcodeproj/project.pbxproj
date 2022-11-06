@@ -171,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				5619C36F28CA1A4200E86D94 /* AboutUsViewController.swift */,
+				5631A980291463330033B1D4 /* ArticleDetailsViewController.swift */,
 				5619C36928CA1A2300E86D94 /* ArticlesViewController.swift */,
 				5631A97E29144D910033B1D4 /* ArticleTableViewCell.swift */,
 				56B5E2AD28EEF33D007A2892 /* Calculations1ViewController.swift */,
@@ -186,11 +187,10 @@
 				562C9FFB28E7899100B7E830 /* MortgageTableViewCell.swift */,
 				56787EDD2905A1F4009844AD /* PaymentScheduleTableViewCell.swift */,
 				56B5E2AB28EEF2E8007A2892 /* RentalHousingViewController.swift */,
+				56ABD3F92916FD11000B1624 /* ResidentialComplexesTableViewCell.swift */,
 				5619C36B28CA1A3000E86D94 /* ResidentialComplexesViewController.swift */,
 				5619C36328CA1A0B00E86D94 /* SearchViewController.swift */,
 				5619C35928CA0FF500E86D94 /* SideMenu.swift */,
-				5631A980291463330033B1D4 /* ArticleDetailsViewController.swift */,
-				56ABD3F92916FD11000B1624 /* ResidentialComplexesTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

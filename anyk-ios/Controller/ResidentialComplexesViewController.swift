@@ -127,6 +127,9 @@ class ResidentialComplexesViewController: UIViewController {
     private var fullData = [ResidentialComplexModel]()
     private var data = [ResidentialComplexModel]()
     private var storeData = [ResidentialComplexModel]()
+    private var tempData = [ResidentialComplexModel]()
+    private var tempestData = [ResidentialComplexModel]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,7 +170,10 @@ class ResidentialComplexesViewController: UIViewController {
             strongSelf.chosenCity = action.title
             
             // filtering
-            strongSelf.data = strongSelf.fullData.filter({
+            
+            strongSelf.tempestData = strongSelf.fullData
+            
+            strongSelf.data = strongSelf.tempestData.filter({
                 if $0.city == strongSelf.chosenCity || strongSelf.chosenCity == "Все города" {
                     if strongSelf.is72025 == "Да" {
                         if $0.is72025 == true {
@@ -194,6 +200,7 @@ class ResidentialComplexesViewController: UIViewController {
 //            }
 
             strongSelf.storeData = strongSelf.data
+            strongSelf.storeData = strongSelf.tempestData
             strongSelf.tableView.reloadData()
         }
         
@@ -252,21 +259,30 @@ class ResidentialComplexesViewController: UIViewController {
             strongSelf.is72025 = action.title
             strongSelf.tableView.reloadData()
             
+            strongSelf.tempData = strongSelf.storeData
+            
             if strongSelf.is72025 == "Да" {
-                strongSelf.data = strongSelf.fullData.filter({
+//                strongSelf.data = strongSelf.fullData.filter({
+                strongSelf.data = strongSelf.storeData.filter({
                     if $0.is72025 == true {
                         return true
                     }
                     return false
                 })
             } else {
-                strongSelf.data = strongSelf.fullData
+//                strongSelf.data = strongSelf.fullData
+                strongSelf.data = strongSelf.storeData
             }
                         
-            strongSelf.storeData = strongSelf.data
+            strongSelf.storeData = strongSelf.tempData
             
             strongSelf.tableView.reloadData()
         }
+        
+//        private var fullData = [ResidentialComplexModel]()
+//        private var data = [ResidentialComplexModel]()
+//        private var storeData = [ResidentialComplexModel]()
+
         
         num72025PopUpButton.menu = UIMenu(children : [
             UIAction(title: "Да", handler: num72025OptionClosure),

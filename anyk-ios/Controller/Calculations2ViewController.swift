@@ -845,9 +845,11 @@ class Calculations2ViewController: UIViewController {
             paymentScheduleToggleButton1.setTitle("График платежа ▼", for: .normal)
             paymentStage1TableView.isHidden = true
 
-            paymentScheduleToggleButton1.frame = paymentScheduleToggleButton1.frame.offsetBy(dx: 0, dy: -(tableViewHeight+20))
+//            paymentScheduleToggleButton1.frame = paymentScheduleToggleButton1.frame.offsetBy(dx: 0, dy: (tableViewHeight+20))
+
+//            paymentScheduleToggleButton1.frame = paymentScheduleToggleButton1.frame.offsetBy(dx: 0, dy: -(tableViewHeight+20))
             
-            paymentStage1TableView.frame = paymentStage1TableView.frame.offsetBy(dx: 0, dy: -(tableViewHeight+20))
+//            paymentStage1TableView.frame = paymentStage1TableView.frame.offsetBy(dx: 0, dy: -(tableViewHeight+20))
         
             label4.frame = label4.frame.offsetBy(dx: 0, dy: -(tableViewHeight+20))
             

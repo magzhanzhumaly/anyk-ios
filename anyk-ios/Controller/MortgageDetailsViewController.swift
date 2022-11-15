@@ -779,7 +779,7 @@ class MortgageDetailsViewController: UIViewController {
                         
                         txtField.placeholder = "0₸"
                         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-                        txtField.backgroundColor = .black
+//                        txtField.backgroundColor = .black
                         txtField.textAlignment = .left
                         
                         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -813,7 +813,7 @@ class MortgageDetailsViewController: UIViewController {
                         
                         txtField.placeholder = "0₸"
                         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-                        txtField.backgroundColor = .black
+//                        txtField.backgroundColor = .black
                         txtField.textAlignment = .left
                         
                         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -847,7 +847,7 @@ class MortgageDetailsViewController: UIViewController {
                         
                         txtField.placeholder = "0 лет"
                         txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-                        txtField.backgroundColor = .black
+//                        txtField.backgroundColor = .black
                         txtField.textAlignment = .left
                         
                         txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -1069,7 +1069,7 @@ class MortgageDetailsViewController: UIViewController {
                 
                 txtField.placeholder = "0₸"
                 txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-                txtField.backgroundColor = .black
+//                txtField.backgroundColor = .black
                 txtField.textAlignment = .left
                 
                 txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -1101,7 +1101,7 @@ class MortgageDetailsViewController: UIViewController {
                 
                 txtField.placeholder = "0₸"
                 txtField.font = .systemFont(ofSize: 13, weight: UIFont.Weight.light )
-                txtField.backgroundColor = .black
+//                txtField.backgroundColor = .black
                 txtField.textAlignment = .left
                 
                 txtField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -1180,7 +1180,12 @@ class MortgageDetailsViewController: UIViewController {
         let myInt1 = Double(txtField1.text ?? "0") ?? 0
         let myInt2 = Double(txtField2.text ?? "0") ?? 0
         var myInt3 = Double(txtField3.text ?? "0") ?? 0
-
+        
+        var myInt4 = 0.0
+        if txtField2_1.text != "" {
+            myInt4 = Double(txtField2_1.text ?? "0") ?? 0
+        }
+        
         if initialFeeUpperBound < 50 {
             myInt3 = 6
         }
@@ -1196,6 +1201,8 @@ class MortgageDetailsViewController: UIViewController {
                 
             }
             */
+            
+            
             
             if myInt1 < 100000 {
                 myButton.setTitle("Сумма займа от 100 000 ₸", for: .normal)
@@ -1214,6 +1221,14 @@ class MortgageDetailsViewController: UIViewController {
                     myButton.setTitle("Срок займа от \(minTerm) лет", for: .normal)
                 } else if myInt3 > Double(maxTerm) {
                     myButton.setTitle("Срок займа до \(maxTerm) лет", for: .normal)
+                }
+                
+                if txtField2_1.text != "" {
+                    if myInt4 < Double(minTerm) {
+                        myButton.setTitle("Срок займа от \(minTerm) лет", for: .normal)
+                    } else if myInt4 > Double(maxTerm) {
+                        myButton.setTitle("Срок займа до \(maxTerm) лет", for: .normal)
+                    }
                 }
             }
             let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
